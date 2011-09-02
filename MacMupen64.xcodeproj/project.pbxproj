@@ -209,6 +209,7 @@
 		2F4951F51411381C00D2B2C1 /* Glide64.ini */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Glide64.ini; sourceTree = "<group>"; };
 		2F4951F714113B8500D2B2C1 /* mupen64plus-video-arachnoid.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.bundle"; path = "mupen64plus-video-arachnoid.dylib"; sourceTree = "<group>"; };
 		2F4951F814113B8500D2B2C1 /* mupen64plus-video-glide64.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.bundle"; path = "mupen64plus-video-glide64.dylib"; sourceTree = "<group>"; };
+		2F4951FD14113EEC00D2B2C1 /* TODO_LIST.txt */ = {isa = PBXFileReference; lastKnownFileType = text; name = TODO_LIST.txt; path = ../TODO_LIST.txt; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -275,6 +276,7 @@
 		2F49511F1411019D00D2B2C1 /* MacMupen64 */ = {
 			isa = PBXGroup;
 			children = (
+				2F4951FD14113EEC00D2B2C1 /* TODO_LIST.txt */,
 				2F495143141101F800D2B2C1 /* API */,
 				2F495161141102A500D2B2C1 /* Keyboard */,
 				2F495162141102BF00D2B2C1 /* OBJprintf.h */,

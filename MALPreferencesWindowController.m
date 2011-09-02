@@ -37,10 +37,20 @@
 	[[self window] setTitle:[sender label]];
 	NSString * ident = [sender itemIdentifier];
 	NSView * pane = [[panes objectForKey:ident] pane];
-//	[[[self window] toolbar] setSelectedItemIdentifier:ident];
+	
+	[[[self window] toolbar] setSelectedItemIdentifier:ident];
+	
+	NSSize oldSize = [[[self window] contentView] frame].size;
 	NSSize newSize = [pane frame].size;
+	NSRect frame = [[self window] frame];
+	
+	float yDiff = newSize.height - oldSize.height;
+	frame.size.width += newSize.width - oldSize.width;
+	frame.size.height += yDiff;
+	frame.origin.y -= yDiff;
+	
 	[[self window] setContentView:pane];
-	[[self window] setContentSize:newSize];
+	[[self window] setFrame:frame display:YES animate: YES];
 }
 -(void) awakeFromNib {
 	[super awakeFromNib];
