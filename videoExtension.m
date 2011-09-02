@@ -12,6 +12,7 @@
 #include "callbacks.h"
 #import "MALGameWindow.h"
 #include <SDL/SDL.h>
+#import "OpenGL/OpenGL.h"
 
 /*
  typedef struct {
@@ -45,9 +46,13 @@ NSOpenGLView * vidExtOpenGL;
 NSMutableArray * pixelAttributes;
 NSOpenGLView * goodGLView;
 MALGameWindow * malwin;
+GLuint TV_FBO;
 
 /* video extension functions to be called by the video plugin */
 m64p_error VidExt_Init(void) {
+//	glGenFramebuffersEXT(1, &TV_FBO);
+	NSLog(@"--------- init ---------");
+	
 	pixelAttributes = [[NSMutableArray alloc] init];
 	[[[malwin openGLview] openGLContext] flushBuffer];
     return M64ERR_SUCCESS;
@@ -129,8 +134,8 @@ m64p_error VidExt_SetVideoMode(int Width, int Height, int BitsPerPixel, int scre
     const SDL_VideoInfo *videoInfo;
     int videoFlags = 0;
 	
-	long val = NSOpenGLPFAColorSize;
-#define addVal(value,array) val=value; [array addObject:[NSValue valueWithBytes:&val objCType:@encode(NSOpenGLPixelFormatAttribute)]]
+#define addVal(value,array) {int val=value; [array addObject:[NSValue valueWithBytes:&val objCType:@encode(NSOpenGLPixelFormatAttribute)]];}
+	
 	addVal(NSOpenGLPFAColorSize,pixelAttributes);
 	addVal((BitsPerPixel*3)/4, pixelAttributes);
 	addVal(NSOpenGLPFAAlphaSize,pixelAttributes);
@@ -138,6 +143,8 @@ m64p_error VidExt_SetVideoMode(int Width, int Height, int BitsPerPixel, int scre
 #undef addVal
 		
 #ifdef KILL_SDL
+//	NSLog(@"%@",pixelAttributes);
+	
 	NSOpenGLPixelFormatAttribute * form = (NSOpenGLPixelFormatAttribute*)malloc(sizeof(NSOpenGLPixelFormatAttribute) * (1 +[pixelAttributes count]));
 	for(int i=0; i<[pixelAttributes count]; i++)
 		[[pixelAttributes objectAtIndex:i] getValue:&form[i]];

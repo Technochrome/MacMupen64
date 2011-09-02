@@ -452,6 +452,8 @@ void configCallback(void* null, const char * SectionName) {
 		(*ConfigListParameters)(ConfigSectionHandle, &ConfigSectionHandle, paramList);
 }
 
+#import "videoExtension.h"
+
 int TestOtherMain() {
 	m64p_error rval;
 	
@@ -484,7 +486,8 @@ int TestOtherMain() {
 		return 11;
 	}
 
-
+	
+	pixelAttributes = [[NSMutableArray alloc] init];
 	(*CoreOverrideVidExt)(&extensionFunctions);
 	
 	/* run the game */

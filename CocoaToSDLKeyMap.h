@@ -6,5 +6,6 @@
 #import <SDL/SDL.h>
 
 extern SDLKey MAC_keymap[256];
+void initSDLKeyMap();
 
 #endif

@@ -121,6 +121,7 @@
 SDLKey MAC_keymap[256];
 int initialized = 0;
 
+
 void initSDLKeyMap() {
 	if(initialized == 1) return;
 	

@@ -28,7 +28,7 @@ NSURL * applicationSupportFolder() {
 	supportFolder = [supportFolder URLByAppendingPathComponent:MALApplicationName];
 	NSString * folderPath = [supportFolder relativePath];
 	if ([fileManager fileExistsAtPath:folderPath] == NO) {
-		[fileManager createDirectoryAtPath:folderPath attributes: nil];
+		[fileManager createDirectoryAtPath:folderPath withIntermediateDirectories:YES attributes:nil error:NULL];
 	}
 	return supportFolder;
 }

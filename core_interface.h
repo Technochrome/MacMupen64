@@ -29,8 +29,8 @@
 #include "m64p_debugger.h"
 
 /* function declarations */
-extern m64p_error getCoreFunctionPointers(m64p_dynlib_handle coreHandle);
-extern m64p_error zeroCoreFunctionPointers(void);
+m64p_error getCoreFunctionPointers(m64p_dynlib_handle coreHandle);
+m64p_error zeroCoreFunctionPointers(void);
 
 /* global variables from core_interface.c */
 extern int g_CoreCapabilities;

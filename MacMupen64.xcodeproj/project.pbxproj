@@ -10,7 +10,6 @@
 		2F49511A1411019D00D2B2C1 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F4951191411019D00D2B2C1 /* Cocoa.framework */; };
 		2F4951241411019D00D2B2C1 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2F4951221411019D00D2B2C1 /* InfoPlist.strings */; };
 		2F49512A1411019D00D2B2C1 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 2F4951281411019D00D2B2C1 /* Credits.rtf */; };
-		2F49512D1411019D00D2B2C1 /* MacMupen64AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F49512C1411019D00D2B2C1 /* MacMupen64AppDelegate.m */; };
 		2F4951301411019D00D2B2C1 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2F49512E1411019D00D2B2C1 /* MainMenu.xib */; };
 		2F495142141101F300D2B2C1 /* callbacks.c in Sources */ = {isa = PBXBuildFile; fileRef = 2F495137141101F300D2B2C1 /* callbacks.c */; };
 		2F49514E1411021700D2B2C1 /* cheat.c in Sources */ = {isa = PBXBuildFile; fileRef = 2F4951441411021600D2B2C1 /* cheat.c */; };
@@ -47,8 +46,6 @@
 		2F4951B61411032A00D2B2C1 /* mupen64plus-audio-sdl.dylib in Resources */ = {isa = PBXBuildFile; fileRef = 2F49519D1411032A00D2B2C1 /* mupen64plus-audio-sdl.dylib */; };
 		2F4951B71411032A00D2B2C1 /* mupen64plus-input-sdl.dylib in Resources */ = {isa = PBXBuildFile; fileRef = 2F49519E1411032A00D2B2C1 /* mupen64plus-input-sdl.dylib */; };
 		2F4951B81411032A00D2B2C1 /* mupen64plus-rsp-hle.dylib in Resources */ = {isa = PBXBuildFile; fileRef = 2F49519F1411032A00D2B2C1 /* mupen64plus-rsp-hle.dylib */; };
-		2F4951B91411032A00D2B2C1 /* mupen64plus-video-arachnoid.dylib in Resources */ = {isa = PBXBuildFile; fileRef = 2F4951A01411032A00D2B2C1 /* mupen64plus-video-arachnoid.dylib */; };
-		2F4951BA1411032A00D2B2C1 /* mupen64plus-video-glide64.dylib in Resources */ = {isa = PBXBuildFile; fileRef = 2F4951A11411032A00D2B2C1 /* mupen64plus-video-glide64.dylib */; };
 		2F4951BB1411032A00D2B2C1 /* mupen64plus-video-rice.dylib in Resources */ = {isa = PBXBuildFile; fileRef = 2F4951A21411032A00D2B2C1 /* mupen64plus-video-rice.dylib */; };
 		2F4951BC1411032A00D2B2C1 /* IMTx-virtual-keycodes.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 2F4951A31411032A00D2B2C1 /* IMTx-virtual-keycodes.pdf */; };
 		2F4951BD1411032A00D2B2C1 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2F4951A41411032A00D2B2C1 /* InfoPlist.strings */; };
@@ -67,6 +64,16 @@
 		2F4951D11411061F00D2B2C1 /* libSDL-1.2.0.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 2F49519B1411032A00D2B2C1 /* libSDL-1.2.0.dylib */; };
 		2F4951D21411084E00D2B2C1 /* libSDL-1.2.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F49519B1411032A00D2B2C1 /* libSDL-1.2.0.dylib */; };
 		2F4951D614110AFF00D2B2C1 /* mupen64plus.icns in Resources */ = {isa = PBXBuildFile; fileRef = 2F4951D514110AFF00D2B2C1 /* mupen64plus.icns */; };
+		2F4951DE14110DF500D2B2C1 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F4951191411019D00D2B2C1 /* Cocoa.framework */; };
+		2F4951E414110DF600D2B2C1 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2F4951E214110DF600D2B2C1 /* InfoPlist.strings */; };
+		2F4951E914110E2D00D2B2C1 /* PluginListPane.xib in Sources */ = {isa = PBXBuildFile; fileRef = 2F4951901411032A00D2B2C1 /* PluginListPane.xib */; };
+		2F4951EA14110E2F00D2B2C1 /* ROMListPane.xib in Sources */ = {isa = PBXBuildFile; fileRef = 2F4951911411032A00D2B2C1 /* ROMListPane.xib */; };
+		2F4951EB14110E5600D2B2C1 /* Preference Panes.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 2F4951DD14110DF500D2B2C1 /* Preference Panes.bundle */; };
+		2F4951F61411381C00D2B2C1 /* Glide64.ini in Resources */ = {isa = PBXBuildFile; fileRef = 2F4951F51411381C00D2B2C1 /* Glide64.ini */; };
+		2F4951F914113B8500D2B2C1 /* mupen64plus-video-arachnoid.dylib in Resources */ = {isa = PBXBuildFile; fileRef = 2F4951F714113B8500D2B2C1 /* mupen64plus-video-arachnoid.dylib */; };
+		2F4951FA14113B8500D2B2C1 /* mupen64plus-video-glide64.dylib in Resources */ = {isa = PBXBuildFile; fileRef = 2F4951F814113B8500D2B2C1 /* mupen64plus-video-glide64.dylib */; };
+		2F4951FB14113BA100D2B2C1 /* mupen64plus-video-arachnoid.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 2F4951F714113B8500D2B2C1 /* mupen64plus-video-arachnoid.dylib */; };
+		2F4951FC14113BA500D2B2C1 /* mupen64plus-video-glide64.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 2F4951F814113B8500D2B2C1 /* mupen64plus-video-glide64.dylib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -80,6 +87,8 @@
 				2F4951CA1411058600D2B2C1 /* mupen64plus-audio-sdl.dylib in CopyFiles */,
 				2F4951CB1411058800D2B2C1 /* mupen64plus-input-sdl.dylib in CopyFiles */,
 				2F4951CC1411058C00D2B2C1 /* mupen64plus-rsp-hle.dylib in CopyFiles */,
+				2F4951FB14113BA100D2B2C1 /* mupen64plus-video-arachnoid.dylib in CopyFiles */,
+				2F4951FC14113BA500D2B2C1 /* mupen64plus-video-glide64.dylib in CopyFiles */,
 				2F4951CD1411059100D2B2C1 /* mupen64plus-video-rice.dylib in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -108,8 +117,6 @@
 		2F4951231411019D00D2B2C1 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		2F4951271411019D00D2B2C1 /* MacMupen64-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MacMupen64-Prefix.pch"; sourceTree = "<group>"; };
 		2F4951291411019D00D2B2C1 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
-		2F49512B1411019D00D2B2C1 /* MacMupen64AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MacMupen64AppDelegate.h; sourceTree = "<group>"; };
-		2F49512C1411019D00D2B2C1 /* MacMupen64AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MacMupen64AppDelegate.m; sourceTree = "<group>"; };
 		2F49512F1411019D00D2B2C1 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		2F495136141101F300D2B2C1 /* callbacks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = callbacks.h; sourceTree = "<group>"; };
 		2F495137141101F300D2B2C1 /* callbacks.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = callbacks.c; sourceTree = "<group>"; };
@@ -133,20 +140,20 @@
 		2F49514B1411021600D2B2C1 /* osal_dynamiclib_unix.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = osal_dynamiclib_unix.m; sourceTree = "<group>"; };
 		2F49514C1411021600D2B2C1 /* osal_preproc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = osal_preproc.h; sourceTree = "<group>"; };
 		2F49514D1411021600D2B2C1 /* version.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = version.h; sourceTree = "<group>"; };
-		2F4951531411023300D2B2C1 /* SDLMain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDLMain.m; sourceTree = "<group>"; };
-		2F4951541411023300D2B2C1 /* videoExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = videoExtension.h; sourceTree = "<group>"; };
-		2F4951551411023300D2B2C1 /* videoExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = videoExtension.m; sourceTree = "<group>"; };
+		2F4951531411023300D2B2C1 /* SDLMain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SDLMain.m; path = ../SDLMain.m; sourceTree = "<group>"; };
+		2F4951541411023300D2B2C1 /* videoExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = videoExtension.h; path = ../videoExtension.h; sourceTree = "<group>"; };
+		2F4951551411023300D2B2C1 /* videoExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = videoExtension.m; path = ../videoExtension.m; sourceTree = "<group>"; };
 		2F4951581411029F00D2B2C1 /* CocoaToSDLKeyMap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CocoaToSDLKeyMap.h; sourceTree = "<group>"; };
 		2F4951591411029F00D2B2C1 /* CocoaToSDLKeyMap.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = CocoaToSDLKeyMap.c; sourceTree = "<group>"; };
 		2F49515A1411029F00D2B2C1 /* MALKeyGrabber.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MALKeyGrabber.h; sourceTree = "<group>"; };
 		2F49515B1411029F00D2B2C1 /* MALKeyGrabber.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MALKeyGrabber.m; sourceTree = "<group>"; };
 		2F49515C1411029F00D2B2C1 /* MALKeyboardView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MALKeyboardView.h; sourceTree = "<group>"; };
 		2F49515D1411029F00D2B2C1 /* MALKeyboardView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MALKeyboardView.m; sourceTree = "<group>"; };
-		2F495162141102BF00D2B2C1 /* OBJprintf.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBJprintf.h; sourceTree = "<group>"; };
-		2F495163141102BF00D2B2C1 /* MALAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MALAdditions.h; sourceTree = "<group>"; };
-		2F495164141102BF00D2B2C1 /* MALAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MALAdditions.m; sourceTree = "<group>"; };
-		2F495165141102BF00D2B2C1 /* MALBackporting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MALBackporting.h; sourceTree = "<group>"; };
-		2F495166141102BF00D2B2C1 /* MALBackporting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MALBackporting.m; sourceTree = "<group>"; };
+		2F495162141102BF00D2B2C1 /* OBJprintf.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OBJprintf.h; path = ../OBJprintf.h; sourceTree = "<group>"; };
+		2F495163141102BF00D2B2C1 /* MALAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MALAdditions.h; path = ../MALAdditions.h; sourceTree = "<group>"; };
+		2F495164141102BF00D2B2C1 /* MALAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MALAdditions.m; path = ../MALAdditions.m; sourceTree = "<group>"; };
+		2F495165141102BF00D2B2C1 /* MALBackporting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MALBackporting.h; path = ../MALBackporting.h; sourceTree = "<group>"; };
+		2F495166141102BF00D2B2C1 /* MALBackporting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MALBackporting.m; path = ../MALBackporting.m; sourceTree = "<group>"; };
 		2F495169141102CB00D2B2C1 /* core_interface.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = core_interface.c; sourceTree = "<group>"; };
 		2F49516A141102CB00D2B2C1 /* core_interface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = core_interface.h; sourceTree = "<group>"; };
 		2F49516B141102CB00D2B2C1 /* MALMupenEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MALMupenEngine.h; sourceTree = "<group>"; };
@@ -171,8 +178,8 @@
 		2F495189141102FD00D2B2C1 /* MALGameWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MALGameWindow.m; sourceTree = "<group>"; };
 		2F49518A141102FD00D2B2C1 /* MALMainWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MALMainWindowController.h; sourceTree = "<group>"; };
 		2F49518B141102FD00D2B2C1 /* MALMainWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MALMainWindowController.m; sourceTree = "<group>"; };
-		2F4951901411032A00D2B2C1 /* PluginListPane.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PluginListPane.xib; sourceTree = "<group>"; };
-		2F4951911411032A00D2B2C1 /* ROMListPane.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ROMListPane.xib; sourceTree = "<group>"; };
+		2F4951901411032A00D2B2C1 /* PluginListPane.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PluginListPane.xib; path = MacMupen64/PluginListPane.xib; sourceTree = "<group>"; };
+		2F4951911411032A00D2B2C1 /* ROMListPane.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ROMListPane.xib; path = MacMupen64/ROMListPane.xib; sourceTree = "<group>"; };
 		2F4951921411032A00D2B2C1 /* InputAutoCfg.ini */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = InputAutoCfg.ini; sourceTree = "<group>"; };
 		2F4951931411032A00D2B2C1 /* RiceVideoLinux.ini */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = RiceVideoLinux.ini; sourceTree = "<group>"; };
 		2F4951941411032A00D2B2C1 /* font.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = font.ttf; sourceTree = "<group>"; };
@@ -186,8 +193,6 @@
 		2F49519D1411032A00D2B2C1 /* mupen64plus-audio-sdl.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.bundle"; path = "mupen64plus-audio-sdl.dylib"; sourceTree = "<group>"; };
 		2F49519E1411032A00D2B2C1 /* mupen64plus-input-sdl.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.bundle"; path = "mupen64plus-input-sdl.dylib"; sourceTree = "<group>"; };
 		2F49519F1411032A00D2B2C1 /* mupen64plus-rsp-hle.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.bundle"; path = "mupen64plus-rsp-hle.dylib"; sourceTree = "<group>"; };
-		2F4951A01411032A00D2B2C1 /* mupen64plus-video-arachnoid.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.bundle"; path = "mupen64plus-video-arachnoid.dylib"; sourceTree = "<group>"; };
-		2F4951A11411032A00D2B2C1 /* mupen64plus-video-glide64.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.bundle"; path = "mupen64plus-video-glide64.dylib"; sourceTree = "<group>"; };
 		2F4951A21411032A00D2B2C1 /* mupen64plus-video-rice.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.bundle"; path = "mupen64plus-video-rice.dylib"; sourceTree = "<group>"; };
 		2F4951A31411032A00D2B2C1 /* IMTx-virtual-keycodes.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "IMTx-virtual-keycodes.pdf"; sourceTree = "<group>"; };
 		2F4951A41411032A00D2B2C1 /* InfoPlist.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = InfoPlist.strings; sourceTree = "<group>"; };
@@ -197,6 +202,13 @@
 		2F4951A81411032A00D2B2C1 /* GameWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GameWindow.xib; sourceTree = "<group>"; };
 		2F4951C21411041200D2B2C1 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = OpenGL.framework; sourceTree = "<group>"; };
 		2F4951D514110AFF00D2B2C1 /* mupen64plus.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = mupen64plus.icns; path = ../mupen64plus.icns; sourceTree = "<group>"; };
+		2F4951DD14110DF500D2B2C1 /* Preference Panes.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Preference Panes.bundle"; sourceTree = BUILT_PRODUCTS_DIR; };
+		2F4951E114110DF600D2B2C1 /* Preference Panes-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Preference Panes-Info.plist"; sourceTree = "<group>"; };
+		2F4951E314110DF600D2B2C1 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		2F4951E514110DF600D2B2C1 /* Preference Panes-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Preference Panes-Prefix.pch"; sourceTree = "<group>"; };
+		2F4951F51411381C00D2B2C1 /* Glide64.ini */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Glide64.ini; sourceTree = "<group>"; };
+		2F4951F714113B8500D2B2C1 /* mupen64plus-video-arachnoid.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.bundle"; path = "mupen64plus-video-arachnoid.dylib"; sourceTree = "<group>"; };
+		2F4951F814113B8500D2B2C1 /* mupen64plus-video-glide64.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.bundle"; path = "mupen64plus-video-glide64.dylib"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -210,27 +222,22 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		2F4951DA14110DF500D2B2C1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2F4951DE14110DF500D2B2C1 /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
 		2F49510A1411019D00D2B2C1 = {
 			isa = PBXGroup;
 			children = (
-				2F495162141102BF00D2B2C1 /* OBJprintf.h */,
-				2F495163141102BF00D2B2C1 /* MALAdditions.h */,
-				2F495164141102BF00D2B2C1 /* MALAdditions.m */,
-				2F495165141102BF00D2B2C1 /* MALBackporting.h */,
-				2F495166141102BF00D2B2C1 /* MALBackporting.m */,
-				2F495161141102A500D2B2C1 /* Keyboard */,
-				2F495185141102EC00D2B2C1 /* Preferences */,
-				2F49518F1411030200D2B2C1 /* Main Window */,
-				2F495178141102D000D2B2C1 /* Plugins */,
-				2F4951521411021C00D2B2C1 /* Old Console SRC */,
-				2F4951531411023300D2B2C1 /* SDLMain.m */,
-				2F4951541411023300D2B2C1 /* videoExtension.h */,
-				2F4951551411023300D2B2C1 /* videoExtension.m */,
-				2F495143141101F800D2B2C1 /* API */,
 				2F49511F1411019D00D2B2C1 /* MacMupen64 */,
+				2F4951DF14110DF500D2B2C1 /* Preference Panes */,
 				2F4951181411019D00D2B2C1 /* Frameworks */,
 				2F4951161411019D00D2B2C1 /* Products */,
 			);
@@ -240,6 +247,7 @@
 			isa = PBXGroup;
 			children = (
 				2F4951151411019D00D2B2C1 /* MacMupen64.app */,
+				2F4951DD14110DF500D2B2C1 /* Preference Panes.bundle */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -267,8 +275,20 @@
 		2F49511F1411019D00D2B2C1 /* MacMupen64 */ = {
 			isa = PBXGroup;
 			children = (
-				2F49512B1411019D00D2B2C1 /* MacMupen64AppDelegate.h */,
-				2F49512C1411019D00D2B2C1 /* MacMupen64AppDelegate.m */,
+				2F495143141101F800D2B2C1 /* API */,
+				2F495161141102A500D2B2C1 /* Keyboard */,
+				2F495162141102BF00D2B2C1 /* OBJprintf.h */,
+				2F495163141102BF00D2B2C1 /* MALAdditions.h */,
+				2F495164141102BF00D2B2C1 /* MALAdditions.m */,
+				2F495165141102BF00D2B2C1 /* MALBackporting.h */,
+				2F495166141102BF00D2B2C1 /* MALBackporting.m */,
+				2F495185141102EC00D2B2C1 /* Preferences */,
+				2F49518F1411030200D2B2C1 /* Main Window */,
+				2F495178141102D000D2B2C1 /* Plugins */,
+				2F4951521411021C00D2B2C1 /* Old Console SRC */,
+				2F4951531411023300D2B2C1 /* SDLMain.m */,
+				2F4951541411023300D2B2C1 /* videoExtension.h */,
+				2F4951551411023300D2B2C1 /* videoExtension.m */,
 				2F4951201411019D00D2B2C1 /* Supporting Files */,
 			);
 			path = MacMupen64;
@@ -310,6 +330,7 @@
 				2F495141141101F300D2B2C1 /* vidext.h */,
 			);
 			name = API;
+			path = ..;
 			sourceTree = "<group>";
 		};
 		2F4951521411021C00D2B2C1 /* Old Console SRC */ = {
@@ -327,6 +348,7 @@
 				2F49514D1411021600D2B2C1 /* version.h */,
 			);
 			name = "Old Console SRC";
+			path = ..;
 			sourceTree = "<group>";
 		};
 		2F495161141102A500D2B2C1 /* Keyboard */ = {
@@ -340,6 +362,7 @@
 				2F49515D1411029F00D2B2C1 /* MALKeyboardView.m */,
 			);
 			name = Keyboard;
+			path = ..;
 			sourceTree = "<group>";
 		};
 		2F495178141102D000D2B2C1 /* Plugins */ = {
@@ -357,11 +380,14 @@
 				2F495172141102CB00D2B2C1 /* MALMupenRom.m */,
 			);
 			name = Plugins;
+			path = ..;
 			sourceTree = "<group>";
 		};
 		2F495185141102EC00D2B2C1 /* Preferences */ = {
 			isa = PBXGroup;
 			children = (
+				2F4951901411032A00D2B2C1 /* PluginListPane.xib */,
+				2F4951911411032A00D2B2C1 /* ROMListPane.xib */,
 				2F495179141102E700D2B2C1 /* MALPathArrayInserter.h */,
 				2F49517A141102E700D2B2C1 /* MALPathArrayInserter.m */,
 				2F49517B141102E700D2B2C1 /* MALPreferencePaneController.h */,
@@ -372,6 +398,7 @@
 				2F495180141102E700D2B2C1 /* preferences.m */,
 			);
 			name = Preferences;
+			path = ..;
 			sourceTree = "<group>";
 		};
 		2F49518F1411030200D2B2C1 /* Main Window */ = {
@@ -385,6 +412,7 @@
 				2F49518B141102FD00D2B2C1 /* MALMainWindowController.m */,
 			);
 			name = "Main Window";
+			path = ..;
 			sourceTree = "<group>";
 		};
 		2F4951D314110AA000D2B2C1 /* Plugins */ = {
@@ -397,8 +425,8 @@
 				2F49519D1411032A00D2B2C1 /* mupen64plus-audio-sdl.dylib */,
 				2F49519E1411032A00D2B2C1 /* mupen64plus-input-sdl.dylib */,
 				2F49519F1411032A00D2B2C1 /* mupen64plus-rsp-hle.dylib */,
-				2F4951A01411032A00D2B2C1 /* mupen64plus-video-arachnoid.dylib */,
-				2F4951A11411032A00D2B2C1 /* mupen64plus-video-glide64.dylib */,
+				2F4951F714113B8500D2B2C1 /* mupen64plus-video-arachnoid.dylib */,
+				2F4951F814113B8500D2B2C1 /* mupen64plus-video-glide64.dylib */,
 				2F4951A21411032A00D2B2C1 /* mupen64plus-video-rice.dylib */,
 			);
 			name = Plugins;
@@ -416,6 +444,7 @@
 		2F4951D714110C4E00D2B2C1 /* Prefs */ = {
 			isa = PBXGroup;
 			children = (
+				2F4951F51411381C00D2B2C1 /* Glide64.ini */,
 				2F4951921411032A00D2B2C1 /* InputAutoCfg.ini */,
 				2F4951931411032A00D2B2C1 /* RiceVideoLinux.ini */,
 				2F4951951411032A00D2B2C1 /* mupen64plus.cht */,
@@ -431,10 +460,26 @@
 				2F49512E1411019D00D2B2C1 /* MainMenu.xib */,
 				2F4951A71411032A00D2B2C1 /* Preferences.xib */,
 				2F4951A81411032A00D2B2C1 /* GameWindow.xib */,
-				2F4951901411032A00D2B2C1 /* PluginListPane.xib */,
-				2F4951911411032A00D2B2C1 /* ROMListPane.xib */,
 			);
 			name = Xibs;
+			sourceTree = "<group>";
+		};
+		2F4951DF14110DF500D2B2C1 /* Preference Panes */ = {
+			isa = PBXGroup;
+			children = (
+				2F4951E014110DF600D2B2C1 /* Supporting Files */,
+			);
+			path = "Preference Panes";
+			sourceTree = "<group>";
+		};
+		2F4951E014110DF600D2B2C1 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				2F4951E114110DF600D2B2C1 /* Preference Panes-Info.plist */,
+				2F4951E214110DF600D2B2C1 /* InfoPlist.strings */,
+				2F4951E514110DF600D2B2C1 /* Preference Panes-Prefix.pch */,
+			);
+			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -459,6 +504,23 @@
 			productReference = 2F4951151411019D00D2B2C1 /* MacMupen64.app */;
 			productType = "com.apple.product-type.application";
 		};
+		2F4951DC14110DF500D2B2C1 /* Preference Panes */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2F4951E614110DF600D2B2C1 /* Build configuration list for PBXNativeTarget "Preference Panes" */;
+			buildPhases = (
+				2F4951D914110DF500D2B2C1 /* Sources */,
+				2F4951DA14110DF500D2B2C1 /* Frameworks */,
+				2F4951DB14110DF500D2B2C1 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Preference Panes";
+			productName = "Preference Panes";
+			productReference = 2F4951DD14110DF500D2B2C1 /* Preference Panes.bundle */;
+			productType = "com.apple.product-type.bundle";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -477,6 +539,7 @@
 			projectRoot = "";
 			targets = (
 				2F4951141411019D00D2B2C1 /* MacMupen64 */,
+				2F4951DC14110DF500D2B2C1 /* Preference Panes */,
 			);
 		};
 /* End PBXProject section */
@@ -486,6 +549,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2F4951EB14110E5600D2B2C1 /* Preference Panes.bundle in Resources */,
 				2F4951241411019D00D2B2C1 /* InfoPlist.strings in Resources */,
 				2F49512A1411019D00D2B2C1 /* Credits.rtf in Resources */,
 				2F4951301411019D00D2B2C1 /* MainMenu.xib in Resources */,
@@ -500,8 +564,6 @@
 				2F4951B61411032A00D2B2C1 /* mupen64plus-audio-sdl.dylib in Resources */,
 				2F4951B71411032A00D2B2C1 /* mupen64plus-input-sdl.dylib in Resources */,
 				2F4951B81411032A00D2B2C1 /* mupen64plus-rsp-hle.dylib in Resources */,
-				2F4951B91411032A00D2B2C1 /* mupen64plus-video-arachnoid.dylib in Resources */,
-				2F4951BA1411032A00D2B2C1 /* mupen64plus-video-glide64.dylib in Resources */,
 				2F4951BB1411032A00D2B2C1 /* mupen64plus-video-rice.dylib in Resources */,
 				2F4951BC1411032A00D2B2C1 /* IMTx-virtual-keycodes.pdf in Resources */,
 				2F4951BD1411032A00D2B2C1 /* InfoPlist.strings in Resources */,
@@ -510,6 +572,17 @@
 				2F4951C01411032A00D2B2C1 /* Preferences.xib in Resources */,
 				2F4951C11411032A00D2B2C1 /* GameWindow.xib in Resources */,
 				2F4951D614110AFF00D2B2C1 /* mupen64plus.icns in Resources */,
+				2F4951F61411381C00D2B2C1 /* Glide64.ini in Resources */,
+				2F4951F914113B8500D2B2C1 /* mupen64plus-video-arachnoid.dylib in Resources */,
+				2F4951FA14113B8500D2B2C1 /* mupen64plus-video-glide64.dylib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2F4951DB14110DF500D2B2C1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2F4951E414110DF600D2B2C1 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -520,7 +593,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2F49512D1411019D00D2B2C1 /* MacMupen64AppDelegate.m in Sources */,
 				2F495142141101F300D2B2C1 /* callbacks.c in Sources */,
 				2F49514E1411021700D2B2C1 /* cheat.c in Sources */,
 				2F49514F1411021700D2B2C1 /* compare_core.c in Sources */,
@@ -545,6 +617,15 @@
 				2F49518C141102FD00D2B2C1 /* MALArrayController.m in Sources */,
 				2F49518D141102FD00D2B2C1 /* MALGameWindow.m in Sources */,
 				2F49518E141102FD00D2B2C1 /* MALMainWindowController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2F4951D914110DF500D2B2C1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2F4951E914110E2D00D2B2C1 /* PluginListPane.xib in Sources */,
+				2F4951EA14110E2F00D2B2C1 /* ROMListPane.xib in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -573,6 +654,14 @@
 				2F49512F1411019D00D2B2C1 /* en */,
 			);
 			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+		2F4951E214110DF600D2B2C1 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2F4951E314110DF600D2B2C1 /* en */,
+			);
+			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -663,6 +752,30 @@
 			};
 			name = Release;
 		};
+		2F4951E714110DF600D2B2C1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Preference Panes/Preference Panes-Prefix.pch";
+				INFOPLIST_FILE = "Preference Panes/Preference Panes-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = bundle;
+			};
+			name = Debug;
+		};
+		2F4951E814110DF600D2B2C1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Preference Panes/Preference Panes-Prefix.pch";
+				INFOPLIST_FILE = "Preference Panes/Preference Panes-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = bundle;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -680,6 +793,14 @@
 			buildConfigurations = (
 				2F4951341411019D00D2B2C1 /* Debug */,
 				2F4951351411019D00D2B2C1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		2F4951E614110DF600D2B2C1 /* Build configuration list for PBXNativeTarget "Preference Panes" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2F4951E714110DF600D2B2C1 /* Debug */,
+				2F4951E814110DF600D2B2C1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 		};

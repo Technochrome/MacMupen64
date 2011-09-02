@@ -18,7 +18,7 @@
 	[self setContentView:openGLview];
 }
 
-+(NSWindowController*) gameWindowWithDelegate:(id<MALGameWindowEventDelegate>)delegate {
++(NSWindowController*) gameWindowWithDelegate:(id<MALGameWindowEventDelegate,NSWindowDelegate>)delegate {
 	NSWindowController * wc = [[NSWindowController alloc] initWithWindowNibName:@"GameWindow"];
 	MALGameWindow * emu = (MALGameWindow*)[wc window];
 	[emu setOpenGLview:[[[NSOpenGLView alloc] initWithFrame:[emu frame] pixelFormat:[NSOpenGLView defaultPixelFormat]] autorelease]];

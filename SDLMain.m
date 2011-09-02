@@ -21,7 +21,7 @@ int main (int argc, char **argv) {
 	[pluginPaths setObject:@"mupen64plus-audio-sdl" forKey:AudioString];
 	[pluginPaths setObject:@"mupen64plus-input-sdl" forKey:InputString];
 	[pluginPaths setObject:@"mupen64plus-rsp-hle" forKey:RSPString];
-	[pluginPaths setObject:@"mupen64plus-video-rice" forKey:VideoString];
+	[pluginPaths setObject:@"mupen64plus-video-glide64" forKey:VideoString];
 	[defaultValues setObject:pluginPaths forKey:MALDefaultPluginPathsKey];
 	
 	[defaultValues setObject:NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) forKey:MALDefaultROMFoldersKey];

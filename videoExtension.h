@@ -32,6 +32,7 @@ extern m64p_video_extension_functions extensionFunctions;
 
 extern NSOpenGLView * vidExtOpenGL;
 extern NSOpenGLView * goodGLView;
+extern NSMutableArray * pixelAttributes;
 @class MALGameWindow;
 extern MALGameWindow * malwin;
 

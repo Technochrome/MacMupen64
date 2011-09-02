@@ -28,13 +28,17 @@ NSString * MALMupenEngineStarted = @"MALMupenEngine Started Running";
 @synthesize plugins,mainROM,isRunning;
 -(void) setIsRunning:(BOOL)value {
 	if(value==isRunning) return; //Don't post a notification if it doesn't change
+//	if(![NSThread isMainThread]) {
+//		[self performSelectorOnMainThread:@selector(setIsRunning:) withObject:[NSNumber numberWithBool:value] waitUntilDone:YES];
+//		return;
+//	}
 	[self willChangeValueForKey:@"isRunning"];
 	isRunning=value;
 	[self didChangeValueForKey:@"isRunning"];
 	if(isRunning) {
 		gameWindow = [[MALGameWindow gameWindowWithDelegate:self] retain];
 		malwin = (MALGameWindow*)[gameWindow window];
-		[gameWindow showWindow:self];
+		[gameWindow performSelectorOnMainThread:@selector(showWindow:) withObject:self waitUntilDone:YES];
 		[[NSNotificationCenter defaultCenter] postNotificationName:MALMupenEngineStarted object:self];
 	} else {
 		[gameWindow close];
@@ -87,6 +91,7 @@ NSString * MALMupenEngineStarted = @"MALMupenEngine Started Running";
 			return 13;
 		}
 	}
+	return YES;
 }
 -(BOOL) detachPluginsFromCore {
 	for(int i=1 ; i < [plugins count]; i++) {
@@ -100,7 +105,7 @@ NSString * MALMupenEngineStarted = @"MALMupenEngine Started Running";
 	return (*CoreDoCommand)(M64CMD_ROM_OPEN, (int)[romData length], (unsigned char*)[romData bytes]) == M64ERR_SUCCESS;
 }
 -(void) detachROM {
-	(*CoreDoCommand)(M64CMD_ROM_CLOSE, NULL,NULL);
+	(*CoreDoCommand)(M64CMD_ROM_CLOSE, 0,NULL);
 }
 /*
 if(pluginType != M64PLUGIN_CORE) {
@@ -124,7 +129,7 @@ if(pluginType != M64PLUGIN_CORE) {
 -(void) keyDown:(NSEvent*)event{
 	if([event isARepeat]) return;
 	int a=[event keyCode],b=[[event charactersIgnoringModifiers] characterAtIndex:0];
-	NSLog(@"%d = %c , %d = %c",a,a,b,b);
+//	NSLog(@"%d = %c , %d = %c",a,a,b,b);
 	(*CoreDoCommand)(M64CMD_SEND_SDL_KEYDOWN,MAC_keymap[[event keyCode]], NULL);
 }
 -(void) keyUp:(NSEvent*)event {

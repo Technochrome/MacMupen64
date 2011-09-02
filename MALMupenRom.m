@@ -26,6 +26,8 @@ NSImage * MALDefaultRomImage = nil;
 NSMutableArray * recentlyOpenedROMS = nil;
 NSMutableDictionary * romLists = nil;
 
+void fixSwap(m64p_rom_header * header);
+
 void fixSwap(m64p_rom_header * header) {
 	int loadlength=sizeof(m64p_rom_header);
 	char firstByte = header->init_PI_BSB_DOM1_LAT_REG;
