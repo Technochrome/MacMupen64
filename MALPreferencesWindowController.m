@@ -7,8 +7,68 @@
 //
 
 #import "MALPreferencesWindowController.h"
-#import "MALPreferencePaneController.h"
 #import "MALMainWindowController.h"
+
+
+////////////////// MALPathArrayInserter
+
+@interface MALPathArrayInserter : NSObject {
+	IBOutlet NSArrayController * array;
+	
+	BOOL canRemove;
+}
+@property (readwrite) BOOL canRemove;
+@property (readwrite,retain) id selection;
+-(IBAction) add:(id)sender;
+-(IBAction) remove:(id)sender;
+@end
+
+@implementation MALPathArrayInserter
+@synthesize canRemove;
+-(id) selection {return nil;}
+-(void) setSelection:(id)s {
+	[self setCanRemove:[s count]!=0];
+}
+-(void) awakeFromNib {
+	[self bind:@"selection" toObject:array withKeyPath:@"selectedObjects" 
+	   options:[NSDictionary dictionaryWithObject:[NSNumber numberWithBool:YES] forKey:NSContinuouslyUpdatesValueBindingOption]];
+}
+-(IBAction) add:(id)sender {
+	NSOpenPanel * openPanel = [NSOpenPanel openPanel];
+	
+	[openPanel setCanChooseDirectories:YES];
+	[openPanel setCanChooseFiles:NO];
+	[openPanel setAllowsMultipleSelection:YES];
+	if([openPanel runModalForDirectory:nil file:nil types:nil]
+	   == NSFileHandlingPanelOKButton) {
+		
+		NSArray * urls = [openPanel URLs];
+		for(NSURL *url in urls) [array addObject:[url relativePath]];
+	}
+}
+-(IBAction) remove:(id)sender {
+	[array removeObjectsAtArrangedObjectIndexes:[array selectionIndexes]];
+}
+@end
+
+////////////////// MALPreferencePaneController
+
+@interface MALPreferencePaneController : NSObject {
+	IBOutlet NSToolbarItem * toolbarPane;
+	IBOutlet NSView * pane;
+	NSDictionary * prefs;
+}
+@property (readonly) NSToolbarItem * toolbarPane;
+@property (readonly) NSView * pane;
+@property (readwrite,retain) NSDictionary * prefs;
+@end
+
+@implementation MALPreferencePaneController
+@synthesize toolbarPane,pane,prefs;
+@end
+
+
+////////////////// MALPreferencesWindowController
 
 @implementation MALPreferencesWindowController
 @synthesize prefs;
@@ -34,21 +94,24 @@
 	return self;
 }
 -(void) changePane:(NSToolbarItem*)sender {
+	// Get the preference pane that we're switching to
 	[[self window] setTitle:[sender label]];
 	NSString * ident = [sender itemIdentifier];
 	NSView * pane = [[panes objectForKey:ident] pane];
 	
-	[[[self window] toolbar] setSelectedItemIdentifier:ident];
-	
+	// Get some content size info
 	NSSize oldSize = [[[self window] contentView] frame].size;
 	NSSize newSize = [pane frame].size;
 	NSRect frame = [[self window] frame];
 	
+	// Necessary to keep the top-left in the same place,
+	// the coordinate system is from the bottom-left
 	float yDiff = newSize.height - oldSize.height;
 	frame.size.width += newSize.width - oldSize.width;
 	frame.size.height += yDiff;
 	frame.origin.y -= yDiff;
 	
+	// Swap to the new pane
 	[[self window] setContentView:pane];
 	[[self window] setFrame:frame display:YES animate: YES];
 }

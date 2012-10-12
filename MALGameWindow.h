@@ -14,7 +14,6 @@
 -(void) keyDown:(NSEvent*)event;
 -(void) keyUp:(NSEvent*)event;
 -(void) flagsChanged:(NSEvent*)event;
--(void) windowClosed:(MALGameWindow*)window;
 @end
 
 

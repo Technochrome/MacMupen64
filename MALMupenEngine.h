@@ -13,10 +13,10 @@ extern NSString * MALMupenEngineStarted;
 extern NSString * MALMupenEngineFinished;
 
 @class MALMupenRom,MALMupenCore;
-@interface MALMupenEngine : NSObject <MALGameWindowEventDelegate> {
+@interface MALMupenEngine : NSObject <MALGameWindowEventDelegate,NSWindowDelegate> {
 	NSMutableArray * plugins;
 	NSWindowController * gameWindow;
-	int modFlags;
+	NSUInteger modFlags;
 	BOOL isRunning;
 }
 @property (readwrite, retain) NSMutableArray * plugins;

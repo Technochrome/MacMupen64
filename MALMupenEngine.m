@@ -28,10 +28,7 @@ NSString * MALMupenEngineStarted = @"MALMupenEngine Started Running";
 @synthesize plugins,mainROM,isRunning;
 -(void) setIsRunning:(BOOL)value {
 	if(value==isRunning) return; //Don't post a notification if it doesn't change
-//	if(![NSThread isMainThread]) {
-//		[self performSelectorOnMainThread:@selector(setIsRunning:) withObject:[NSNumber numberWithBool:value] waitUntilDone:YES];
-//		return;
-//	}
+	
 	[self willChangeValueForKey:@"isRunning"];
 	isRunning=value;
 	[self didChangeValueForKey:@"isRunning"];
@@ -70,10 +67,12 @@ NSString * MALMupenEngineStarted = @"MALMupenEngine Started Running";
 	
 	/* call the plugin's initialization function and make sure it starts okay */
 	ptr_PluginStartup PluginStartup = (ptr_PluginStartup) osal_dynlib_getproc([plugin handle], "PluginStartup");
-	if (PluginStartup == NULL)
-	{
+	if (PluginStartup == NULL) {
 		NSLog(@"couldn't find startuphandle");
+		return;
 	}
+	
+	//fixme, don't want to figure out how to handle a plugin of a different archetecture right now.
 	m64p_error rval = (*PluginStartup)([[self core] handle], (void*)[plugin typeString], DebugCallback);  /* DebugCallback is in main.c */
 	if (rval != M64ERR_SUCCESS)
 	{
@@ -107,10 +106,6 @@ NSString * MALMupenEngineStarted = @"MALMupenEngine Started Running";
 -(void) detachROM {
 	(*CoreDoCommand)(M64CMD_ROM_CLOSE, 0,NULL);
 }
-/*
-if(pluginType != M64PLUGIN_CORE) {
-	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(coreDidReload:) name:MALNotificationCoreReloaded object:nil];
-}*/
 -(void) spawnInThreadWithROM:(MALMupenRom*)rom {
 	NSAutoreleasePool * pl = [[NSAutoreleasePool alloc] init];
 	[self setIsRunning:YES];
@@ -128,18 +123,17 @@ if(pluginType != M64PLUGIN_CORE) {
 #pragma mark key events
 -(void) keyDown:(NSEvent*)event{
 	if([event isARepeat]) return;
-	int a=[event keyCode],b=[[event charactersIgnoringModifiers] characterAtIndex:0];
-//	NSLog(@"%d = %c , %d = %c",a,a,b,b);
+//	int a=[event keyCode],b=[[event charactersIgnoringModifiers] characterAtIndex:0];
 	(*CoreDoCommand)(M64CMD_SEND_SDL_KEYDOWN,MAC_keymap[[event keyCode]], NULL);
 }
 -(void) keyUp:(NSEvent*)event {
 	(*CoreDoCommand)(M64CMD_SEND_SDL_KEYUP,MAC_keymap[[event keyCode]], NULL);
 }
 -(void) flagsChanged:(NSEvent*)event {
-	int newFlags = [event modifierFlags];
+	NSUInteger newFlags = [event modifierFlags];
 	// If keydown, there are more flags than previously
 	m64p_command command = (newFlags>modFlags ? M64CMD_SEND_SDL_KEYDOWN : M64CMD_SEND_SDL_KEYUP);
-	int key = (newFlags ^ modFlags);
+	NSUInteger key = (newFlags ^ modFlags);
 	
 	if(key & NSAlphaShiftKeyMask) ; //Caps Lock
 	else if(key & NSShiftKeyMask)
@@ -152,14 +146,14 @@ if(pluginType != M64PLUGIN_CORE) {
 		key = SDLK_LMETA;
 	
 	modFlags = newFlags;
-	(*CoreDoCommand)(command,key,NULL);
+	(*CoreDoCommand)(command,(int)key,NULL);
 } 
--(void) windowClosed:(MALGameWindow *)window {;}
+-(void) windowWillClose:(NSNotification *)notification {
+	(*CoreDoCommand)(M64CMD_STOP,0,0);
+}
 -(void) windowDidMove:(NSNotification *)notification {
-//	(*CoreDoCommand)(M64CMD_PAUSE,0,0); 
 }
 -(void) windowWillMove:(NSNotification *)notification{
-//	(*CoreDoCommand)(M64CMD_PAUSE,0,0); 
 }
 
 #pragma mark initialization
@@ -185,6 +179,6 @@ if(pluginType != M64PLUGIN_CORE) {
 	[NSThread detachNewThreadSelector:@selector(spawnInThreadWithROM:) toTarget:self withObject:rom];
 }
 -(void) takeScreenShot {
-	(*CoreDoCommand)(M64CMD_TAKE_NEXT_SCREENSHOT,NULL,NULL);
+	(*CoreDoCommand)(M64CMD_TAKE_NEXT_SCREENSHOT,0,NULL);
 }
 @end

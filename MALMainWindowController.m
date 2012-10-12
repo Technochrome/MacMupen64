@@ -125,6 +125,8 @@
 	//update this
 	[self setOpenROM:[MALMupenRom mupenROMAtPath:path]];
 	[self startEmulation:self];
+	
+	return YES;
 }
 #pragma mark Notifications
 -(void) emulationFinished:(NSNotification*) notification {

@@ -122,7 +122,7 @@ SDLKey MAC_keymap[256];
 int initialized = 0;
 
 
-void initSDLKeyMap() {
+void initSDLKeyMap(void) {
 	if(initialized == 1) return;
 	
 	/* Map the MAC keysyms */

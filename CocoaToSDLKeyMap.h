@@ -3,9 +3,10 @@
 #ifndef CocoaToSDLKeyMap_h
 #define CocoaToSDLKeyMap_h
 
-#import <SDL/SDL.h>
+#include <OpenGL/OpenGL.h>
+#include <SDL/SDL.h>
 
 extern SDLKey MAC_keymap[256];
-void initSDLKeyMap();
+void initSDLKeyMap(void);
 
 #endif

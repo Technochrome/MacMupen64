@@ -36,6 +36,7 @@ typedef enum {
   } eCheatMode;
 
 void CheatStart(eCheatMode CheatMode, int *CheatNumList, int CheatListLength);
+void CheatParseIni(const char *RomSection);
 
 #endif // #define CHEAT_H
 

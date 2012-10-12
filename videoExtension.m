@@ -263,7 +263,7 @@ typedef struct {
 
 m64p_error VidExt_GL_SetAttribute(m64p_GLattr Attr, int Value)
 {
-    GLAttrMapNode GLAttrMap[] = {
+/*	GLAttrMapNode GLAttrMap[] = {
         { M64P_GL_DOUBLEBUFFER, SDL_GL_DOUBLEBUFFER },
         { M64P_GL_BUFFER_SIZE,  SDL_GL_BUFFER_SIZE },
         { M64P_GL_DEPTH_SIZE,   SDL_GL_DEPTH_SIZE },
@@ -273,9 +273,8 @@ m64p_error VidExt_GL_SetAttribute(m64p_GLattr Attr, int Value)
         { M64P_GL_ALPHA_SIZE,   SDL_GL_ALPHA_SIZE },
         { M64P_GL_SWAP_CONTROL, SDL_GL_SWAP_CONTROL },
         { M64P_GL_MULTISAMPLEBUFFERS, SDL_GL_MULTISAMPLEBUFFERS },
-        { M64P_GL_MULTISAMPLESAMPLES, SDL_GL_MULTISAMPLESAMPLES }};
-    const int mapSize = sizeof(GLAttrMap) / sizeof(GLAttrMapNode);
-    int i;
+        { M64P_GL_MULTISAMPLESAMPLES, SDL_GL_MULTISAMPLESAMPLES }};*/
+//    const int mapSize = sizeof(GLAttrMap) / sizeof(GLAttrMapNode);
 	
 	NSOpenGLPixelFormatAttribute val[2]={0,0};
 	switch (Attr) {
@@ -298,10 +297,7 @@ m64p_error VidExt_GL_SetAttribute(m64p_GLattr Attr, int Value)
 }
 
 m64p_error VidExt_GL_SwapBuffers(void) {
-	NSOpenGLContext * ogc = [vidExtOpenGL openGLContext];
-//	usleep(80000);
-	glFinish();
-	[ogc performSelectorOnMainThread:@selector(flushBuffer) withObject:nil waitUntilDone:YES];
+	[[vidExtOpenGL openGLContext] performSelectorOnMainThread:@selector(flushBuffer) withObject:nil waitUntilDone:YES];
 //	glClear(GL_COLOR_BUFFER_BIT);
     return M64ERR_SUCCESS;
 }

@@ -26,7 +26,7 @@ extern void DebugCallback(void *Context, int level, const char *message);
 
 extern int  g_Verbose;
 
-int TestOtherMain();
+int TestOtherMain(void);
 void configCallback(void* null, const char * SectionName);
 
 #endif /* __MAIN_H__ */

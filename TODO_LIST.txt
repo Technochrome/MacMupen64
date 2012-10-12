@@ -5,5 +5,6 @@ Set up freeze/defrost
 	tree-like freeze viewer
 
 fix the preferences window
+	get the toolbar working correctly
 
 organize and reduce the source files

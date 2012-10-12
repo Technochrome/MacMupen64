@@ -20,9 +20,9 @@ NSString * const MALDefaultPluginPathsKey = @"PluginPaths";
 NSString * const MALDefaultPluginIconPathsKey = @"Plugin icon paths";
 NSString * const MALDefaultKeyBindings = @"KeyBindings";
 
-NSString * const MALApplicationName = @"Mupen64 Plus";
+NSString * const MALApplicationName = @"MacMupen64 Plus";
 
-NSURL * applicationSupportFolder() {
+NSURL * getApplicationSupportFolder(void) {
 	NSFileManager *fileManager = [NSFileManager defaultManager];
 	NSURL * supportFolder = [fileManager URLForDirectory:NSApplicationSupportDirectory inDomain:NSUserDomainMask appropriateForURL:nil create:YES error:NULL];
 	supportFolder = [supportFolder URLByAppendingPathComponent:MALApplicationName];

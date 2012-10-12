@@ -63,7 +63,7 @@ static const char *l_ConfigDirPath = NULL;
 #endif
 
 static int  *l_TestShotList = NULL;      // list of screenshots to take for regression test support
-static int   l_TestShotIdx = 0;          // index of next screenshot frame in list
+//static int   l_TestShotIdx = 0;          // index of next screenshot frame in list
 static int   l_SaveOptions = 0;          // save command-line options in configuration file
 static int   l_CoreCompareMode = 0;      // 0 = disable, 1 = send, 2 = receive
 
@@ -438,7 +438,8 @@ static m64p_error ParseCommandLineFinal(int argc, const char **argv)
     return M64ERR_SUCCESS;
 }
 
-void paramList(m64p_handle* null, const char*name, m64p_type type) {
+void paramList(void* null, const char*name, m64p_type type);
+void paramList(void* null, const char*name, m64p_type type) {
 //	if(type==4) NSLog(@"%s (%s)",name,(*ConfigGetParamString)(*null,name));
 }
 
@@ -454,7 +455,7 @@ void configCallback(void* null, const char * SectionName) {
 
 #import "videoExtension.h"
 
-int TestOtherMain() {
+int TestOtherMain(void) {
 	m64p_error rval;
 	
 	/* Open configuration sections */
@@ -492,10 +493,6 @@ int TestOtherMain() {
 	
 	/* run the game */
 	(*CoreDoCommand)(M64CMD_EXECUTE, 0, NULL);
-	
-
-	/* close the ROM image */
-//	(*CoreDoCommand)(M64CMD_ROM_CLOSE, 0, NULL);
 	
 
 	/* save the configuration file again if --saveoptions was specified, to keep any updated parameters from the core/plugins */

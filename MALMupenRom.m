@@ -58,7 +58,7 @@ void fixSwap(m64p_rom_header * header) {
 #pragma mark Accessors and Setters
 @synthesize gameTitle,MD5,status,players,rumble,netplay,formattedInfo,path,isUsable,image,lastOpened;
 +(NSURL*) recentlyOpenedROMsDataURL {
-	return [applicationSupportFolder() URLByAppendingPathComponent:@"Recently Opened ROMs.xml"];
+	return [getApplicationSupportFolder() URLByAppendingPathComponent:@"Recently Opened ROMs.xml"];
 }
 
 -(NSData*) contents {
@@ -196,8 +196,11 @@ void fixSwap(m64p_rom_header * header) {
 	if(recentlyOpenedROMS==nil) {
 		NSURL * appFolder = [self recentlyOpenedROMsDataURL];
 		NSArray * array = nil;
-		if([[NSFileManager defaultManager] fileExistsAtPath:[appFolder relativePath]])
-			array = [NSKeyedUnarchiver unarchiveObjectWithFile:[appFolder relativePath]];
+		if([[NSFileManager defaultManager] fileExistsAtPath:[appFolder relativePath]]) {
+			id a = [appFolder relativePath];
+//				array = [NSKeyedUnarchiver unarchiveObjectWithFile:a];
+			// MAKE THIS A FLAT FILE
+		}
 		recentlyOpenedROMS = [[NSMutableArray arrayWithArray:array] retain];
 	}
 	return recentlyOpenedROMS;

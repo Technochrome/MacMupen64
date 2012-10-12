@@ -20,4 +20,4 @@ extern NSString * const MALDefaultPluginIconPathsKey;
 extern NSString * const MALApplicationName;
 extern NSString * const MALDefaultKeyBindings;
 
-NSURL * applicationSupportFolder();
+NSURL * getApplicationSupportFolder(void);
