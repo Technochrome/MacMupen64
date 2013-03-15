@@ -7,6 +7,7 @@
 //
 
 #import "MALPreferencesInputController.h"
+#import <MALInput/MALInput.h>
 
 @implementation MALPreferencesInputController
 
@@ -18,11 +19,26 @@
 		
 		[subview setAction:@selector(changeKeyBinding:)];
 		[subview setTarget:self];
+		[subview setButtonType:NSPushOnPushOffButton];
+		[subview setState:0];
 	}
 }
 
 -(IBAction) changeKeyBinding:(id)sender {
-	NSLog(@"Change key:%@",[sender identifier]);
+	if(!currentKeyBinder) {
+		currentKeyBinder = [sender identifier];
+		[sender setState:1];
+		[[MALInputCenter shared] setInputListener:^(MALInputElement* el) {
+			if([el isBoolean] && [el boolValue]) {
+				[sender setTitle:[el description]];
+				[sender setState:0];
+				[[MALInputCenter shared] setInputListener:nil];
+				currentKeyBinder = nil;
+			}
+		}];
+	} else {
+		[sender setState:0];
+	}
 }
 
 @end

@@ -79,6 +79,10 @@
 		2FB388A016F2A5F60023CAAF /* MALPreferencesWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F49517E141102E700D2B2C1 /* MALPreferencesWindowController.m */; };
 		2FB388A116F2A5FA0023CAAF /* MALPreferencesInputController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FB3889D16F2A3A10023CAAF /* MALPreferencesInputController.m */; };
 		2FB388A216F2A9600023CAAF /* Preference Panes.bundle in CopyFiles */ = {isa = PBXBuildFile; fileRef = 2F4951DD14110DF500D2B2C1 /* Preference Panes.bundle */; };
+		2FB388A416F2AC980023CAAF /* MALInput.framework in Resources */ = {isa = PBXBuildFile; fileRef = 2FB388A316F2AC980023CAAF /* MALInput.framework */; };
+		2FB388A516F2ACAE0023CAAF /* MALInput.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 2FB388A316F2AC980023CAAF /* MALInput.framework */; };
+		2FB388A716F2ADF60023CAAF /* MALInput.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2FB388A316F2AC980023CAAF /* MALInput.framework */; };
+		2FB388A816F2AE3F0023CAAF /* MALInput.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2FB388A316F2AC980023CAAF /* MALInput.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -127,6 +131,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				2FB388A516F2ACAE0023CAAF /* MALInput.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -237,6 +242,7 @@
 		2FB3889916F2A1740023CAAF /* 09494148_64Controller_answer_1_small.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 09494148_64Controller_answer_1_small.jpeg; sourceTree = "<group>"; };
 		2FB3889C16F2A3A10023CAAF /* MALPreferencesInputController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MALPreferencesInputController.h; sourceTree = "<group>"; };
 		2FB3889D16F2A3A10023CAAF /* MALPreferencesInputController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MALPreferencesInputController.m; sourceTree = "<group>"; };
+		2FB388A316F2AC980023CAAF /* MALInput.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MALInput.framework; path = ../../../../Library/Developer/Xcode/DerivedData/Products/Products/Debug/MALInput.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -246,6 +252,7 @@
 			files = (
 				2F9FF6C71628B0B400E1821F /* OpenGL.framework in Frameworks */,
 				2F49511A1411019D00D2B2C1 /* Cocoa.framework in Frameworks */,
+				2FB388A716F2ADF60023CAAF /* MALInput.framework in Frameworks */,
 				2F9FF6C81628B20500E1821F /* libSDL-1.2.0.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -255,6 +262,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2F4951DE14110DF500D2B2C1 /* Cocoa.framework in Frameworks */,
+				2FB388A816F2AE3F0023CAAF /* MALInput.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -285,6 +293,7 @@
 		2F4951181411019D00D2B2C1 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				2FB388A316F2AC980023CAAF /* MALInput.framework */,
 				2F9FF6C61628B0B400E1821F /* OpenGL.framework */,
 				2F620B6F161BC87D00A02BAE /* SDL.framework */,
 				2F4951191411019D00D2B2C1 /* Cocoa.framework */,
@@ -614,6 +623,7 @@
 				2F4951BC1411032A00D2B2C1 /* IMTx-virtual-keycodes.pdf in Resources */,
 				2F4951BD1411032A00D2B2C1 /* InfoPlist.strings in Resources */,
 				2F4951BE1411032A00D2B2C1 /* mupen64plus-Info.plist in Resources */,
+				2FB388A416F2AC980023CAAF /* MALInput.framework in Resources */,
 				2F4951BF1411032A00D2B2C1 /* mainWindow.xib in Resources */,
 				2F4951C01411032A00D2B2C1 /* Preferences.xib in Resources */,
 				2F4951C11411032A00D2B2C1 /* GameWindow.xib in Resources */,
@@ -822,6 +832,10 @@
 		2F4951E714110DF600D2B2C1 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../../../Library/Developer/Xcode/DerivedData/Products/Products/Debug\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Preference Panes/Preference Panes-Prefix.pch";
 				INFOPLIST_FILE = "Preference Panes/Preference Panes-Info.plist";
@@ -834,6 +848,10 @@
 		2F4951E814110DF600D2B2C1 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../../../Library/Developer/Xcode/DerivedData/Products/Products/Debug\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Preference Panes/Preference Panes-Prefix.pch";
 				INFOPLIST_FILE = "Preference Panes/Preference Panes-Info.plist";

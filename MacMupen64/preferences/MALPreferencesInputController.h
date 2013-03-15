@@ -10,6 +10,7 @@
 
 @interface MALPreferencesInputController : NSObject {
 	IBOutlet NSView *view;
+	NSString *currentKeyBinder;
 }
 
 @end
