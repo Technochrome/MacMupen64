@@ -117,7 +117,9 @@
 }
 -(void) awakeFromNib {
 	[super awakeFromNib];
-	prefPaneBundle = [[NSBundle bundleWithPath:[[NSBundle mainBundle] pathForResource:@"Preference Panes" ofType:@"bundle"]] retain];
+	NSURL * prefPanesURL = [[[NSBundle mainBundle] builtInPlugInsURL] URLByAppendingPathComponent:@"Preference Panes.bundle"];
+	prefPaneBundle = [[NSBundle bundleWithURL:prefPanesURL] retain];
+	[prefPaneBundle load];
 	NSArray * panePaths = [prefPaneBundle pathsForResourcesOfType:@"nib" inDirectory:nil];
 	
 	NSToolbarItem * toolbarItem = nil;
