@@ -10,7 +10,6 @@
 #import <MALInput/MALInput.h>
 
 @implementation MALPreferencesInputController
-
 -(void) awakeFromNib {
 	// Make the key-binding buttons point to me
 	for(NSButton * subview in [view subviews]) {
@@ -24,7 +23,8 @@
 	}
 }
 
--(IBAction) changeKeyBinding:(id)sender {
+-(IBAction) changeKeyBinding:(NSButton*)sender {
+	NSLog(@"%@,%@",[sender title],[sender identifier]);
 	if(!currentKeyBinder) {
 		currentKeyBinder = [sender identifier];
 		[sender setState:1];
@@ -36,8 +36,8 @@
 				currentKeyBinder = nil;
 			}
 		}];
-	} else {
-		[sender setState:0];
+	} else { // Wrong behaviour. Clicking again should cancel, and clicking another should start that.
+		[sender setState:currentKeyBinder == [sender identifier] ? 1 : 0];
 	}
 }
 

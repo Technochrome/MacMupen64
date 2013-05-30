@@ -77,6 +77,7 @@
 	[prefs release];
 	[paneIdentifiers release];
 	[defaults release];
+	[super dealloc];
 }
 -(id) init {
 	if(self = [super initWithWindowNibName:@"Preferences"]) {
