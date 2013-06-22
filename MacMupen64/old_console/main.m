@@ -78,9 +78,9 @@ static int        l_CheatListLength = 0;
 void DebugCallback(void *Context, int level, const char *message)
 {
 	if (level <= 1)
-		OBJprintf(@"%@ Error: %s\n", (NSString *) Context, message);
+		OBJprintf(@"%@ Error: %s\n", Context, message);
 	else if (level == 2)
-		OBJprintf(@"%@ Warning: %s\n", (NSString *) Context, message);
+		OBJprintf(@"%@ Warning: %s\n", Context, message);
 //	else if (level == 3 || (level == 5 && g_Verbose))
 //		OBJprintf(@"%@: %s\n", (NSString *) Context, message);
 //	else if (level == 4)

@@ -9,8 +9,12 @@
 #import <Foundation/Foundation.h>
 
 @interface MALPreferencesInputController : NSObject {
-	IBOutlet NSView *view;
-	NSString *currentKeyBinder;
+	IBOutlet NSButton *firstButton;
+	IBOutlet NSArrayController *connectedDevicesController;
+	NSButton *currentKeyBinder;
+	
+	NSMutableDictionary *redDefaultKeys;
+	NSMutableDictionary *bindingKeys;
 }
 
 @end

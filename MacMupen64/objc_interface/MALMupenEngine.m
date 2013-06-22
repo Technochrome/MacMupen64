@@ -16,12 +16,15 @@
 #import "core_interface.h"
 #import "osal_dynamiclib.h"
 #import "version.h"
+#import "m64p_plugin.h"
 #import "videoExtension.h"
 
 #import "CocoaToSDLKeyMap.h"
 
 NSString * MALMupenEngineFinished = @"MALMupenEngine Finished Running";
 NSString * MALMupenEngineStarted = @"MALMupenEngine Started Running";
+
+MALMupenEngine * _shared = nil;
 
 @implementation MALMupenEngine
 #pragma mark Accessors and Setters
@@ -50,7 +53,7 @@ NSString * MALMupenEngineStarted = @"MALMupenEngine Started Running";
 -(void) unloadPluginIndex:(int)type {
 	
 }
--(void) loadPluginType:(m64p_plugin_type)type {
+-(int) indexForPluginType:(m64p_plugin_type)type {
 	int index;
 	switch (type) {
 		case M64PLUGIN_CORE: index = 0; break;
@@ -59,7 +62,11 @@ NSString * MALMupenEngineStarted = @"MALMupenEngine Started Running";
 		case M64PLUGIN_INPUT: index = 3; break;
 		case M64PLUGIN_RSP: index = 4; break;
 		default: index = 5; break;
-	} 
+	}
+	return index;
+}
+-(void) loadPluginType:(m64p_plugin_type)type {
+	int index = [self indexForPluginType:type];
 	MALMupenPlugin * plugin = [plugins objectAtIndex:index];
 	[plugin unloadPlugin];
 	[plugin loadPluginWithName:[[[NSUserDefaults standardUserDefaults] objectForKey:MALDefaultPluginPathsKey] objectForKey:pluginStringForType(type)]];
@@ -164,20 +171,54 @@ NSString * MALMupenEngineStarted = @"MALMupenEngine Started Running";
 }
 -(id) init {
 	if(self = [super init]) {
+		_shared = self;
 		initSDLKeyMap();
 		plugins = [[NSMutableArray alloc] initWithCapacity:5];
 		[plugins addObject:[MALMupenCore defaultCore]];
 		modFlags=0;
+		muted = NO;
 		for (int i=1; i<5; i++) [plugins addObject:[[[MALMupenPlugin alloc] init] autorelease]];
 		for (int i=1; i<5; i++) [self loadPluginType:(m64p_plugin_type)i];
 	}
 	return self;
+}
++(MALMupenEngine*) shared {
+	if(!_shared) [[MALMupenEngine alloc] init];
+	return _shared;
 }
 
 #pragma mark API
 -(void) runWithRom:(MALMupenRom *)rom{
 	[NSThread detachNewThreadSelector:@selector(spawnInThreadWithROM:) toTarget:self withObject:rom];
 }
+-(void) setVolume:(int)v {
+	v = MIN(MAX(v,0), 100);
+	if(v == volume && !(muted && volume!=0)) return;
+	if(v != 0) self.muted = NO;
+	
+	MALMupenPlugin * audioPlugin = [plugins objectAtIndex:[self indexForPluginType:M64PLUGIN_AUDIO]];
+	ptr_VolumeSetLevel VolumeSetLevel = osal_dynlib_getproc([audioPlugin handle], "VolumeSetLevel");
+	if (VolumeSetLevel) {
+		VolumeSetLevel(v);
+	}
+	[self willChangeValueForKey:@"volume"];
+	volume = v;
+	[self didChangeValueForKey:@"volume"];
+}
+-(int) volume { return volume; }
+-(void) setMuted:(BOOL)m {
+	if(m == muted) return;
+	MALMupenPlugin * audioPlugin = [plugins objectAtIndex:[self indexForPluginType:M64PLUGIN_AUDIO]];
+	ptr_VolumeMute VolumeMute = osal_dynlib_getproc([audioPlugin handle], "VolumeMute");
+	if (VolumeMute) {
+		VolumeMute();
+	}
+	[self willChangeValueForKey:@"muted"];
+	muted = m;
+	[self didChangeValueForKey:@"muted"];
+}
+-(BOOL) muted { return muted; }
+
 -(void) takeScreenShot {
 	(*CoreDoCommand)(M64CMD_TAKE_NEXT_SCREENSHOT,0,NULL);
 }

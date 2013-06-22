@@ -39,8 +39,7 @@
 	[openPanel setCanChooseDirectories:YES];
 	[openPanel setCanChooseFiles:NO];
 	[openPanel setAllowsMultipleSelection:YES];
-	if([openPanel runModalForDirectory:nil file:nil types:nil]
-	   == NSFileHandlingPanelOKButton) {
+	if([openPanel runModal] == NSFileHandlingPanelOKButton) {
 		
 		NSArray * urls = [openPanel URLs];
 		for(NSURL *url in urls) [array addObject:[url relativePath]];
@@ -134,7 +133,7 @@
 		[toolbarItem setTarget:self];
 		[toolbarItem setAction:@selector(changePane:)];
 		NSString * identifier = [toolbarItem itemIdentifier];
-		NSLog(@"%@",identifier);
+		//NSLog(@"Preference Pane Plugin id: %@",identifier);
 		[panes setObject:pane forKey:identifier];
 		[paneIdentifiers addObject:identifier];
 		[[[self window] toolbar] insertItemWithItemIdentifier:identifier atIndex:0];

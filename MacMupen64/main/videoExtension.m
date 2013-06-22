@@ -149,7 +149,7 @@ m64p_error VidExt_SetVideoMode(int Width, int Height, int BitsPerPixel, int scre
 	
 	NSRect frame = NSMakeRect(0, 0, Width, Height);
 	[malwin setContentSize:frame.size];
-	vidExtOpenGL = [[[NSOpenGLView alloc] initWithFrame:frame pixelFormat:[[[NSOpenGLPixelFormat alloc] initWithAttributes:form] autorelease]] autorelease];
+	vidExtOpenGL = [[NSOpenGLView alloc] initWithFrame:frame pixelFormat:[[NSOpenGLPixelFormat alloc] initWithAttributes:form]];
 	[malwin setOpenGLview:vidExtOpenGL];
 	NSOpenGLContext * ogc = [vidExtOpenGL openGLContext];
 	[ogc makeCurrentContext];

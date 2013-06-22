@@ -20,6 +20,14 @@
 @implementation MALMainWindowController
 #pragma mark accessors
 @synthesize mainWindow,engine,romList,romFolderList;
+
+- (IBAction) increaseVolume:(id)sender {
+	engine.volume = engine.volume + 10;
+}
+- (IBAction) decreaseVolume:(id)sender {
+	engine.volume = engine.volume - 10;
+}
+
 -(MALMupenRom*) openROM {return openROM;}
 -(void) setOpenROM:(id)newROM {
 	if(newROM==nil) return;
@@ -49,7 +57,7 @@
 }
 -(id) init {
 	if(self = [super init]) {
-		engine = [[MALMupenEngine alloc] init];
+		engine = [MALMupenEngine shared];
 		[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(emulationFinished:) name:MALMupenEngineFinished object:engine];
 		allROMs = [[NSCountedSet alloc] init];
 		romList = [[NSMutableArray alloc] init];
@@ -64,6 +72,9 @@
 		 context:NULL];
 	}
 	return self;
+}
+-(void) applicationDidFinishLaunching:(NSNotification *)notification {
+	[romListView becomeFirstResponder];
 }
 
 #pragma mark Rom List Management

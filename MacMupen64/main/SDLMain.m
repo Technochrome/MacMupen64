@@ -1,6 +1,7 @@
 #import <Cocoa/Cocoa.h>
 #import "preferences.h"
 #import "MALMupenPlugin.h"
+#import <MALInput/MALInput.h>
 
 #ifdef main
   #undef main
@@ -19,7 +20,7 @@ int main (int argc, char **argv) {
 	NSMutableDictionary * pluginPaths = [NSMutableDictionary dictionary];
 	[pluginPaths setObject:@"libmupen64plus" forKey:CoreString];
 	[pluginPaths setObject:@"mupen64plus-audio-sdl" forKey:AudioString];
-	[pluginPaths setObject:@"mupen64plus-input-sdl" forKey:InputString];
+	[pluginPaths setObject:@"libmupen64plus-input-MALInput" forKey:InputString];
 	[pluginPaths setObject:@"mupen64plus-rsp-hle" forKey:RSPString];
 	[pluginPaths setObject:@"mupen64plus-video-glide64" forKey:VideoString];
 	[defaultValues setObject:pluginPaths forKey:MALDefaultPluginPathsKey];
@@ -34,7 +35,7 @@ int main (int argc, char **argv) {
 	[iconPaths setObject:@"/Applications/System Preferences.app/Contents/Resources/PrefApp.icns" forKey:CoreString];
 	[defaultValues setObject:iconPaths forKey:MALDefaultPluginIconPathsKey];
 	
-#define KEY(n) [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:(n)],@"keyCode",[NSNumber numberWithInt:0],@"modifierFlags",nil]
+#define KEY(n) [NSDictionary dictionaryWithObjectsAndKeys:@(n),@"keyCode",@0,@"modifierFlags",nil]
 	NSDictionary * keyBindings = [NSDictionary dictionaryWithObjectsAndKeys:
 											KEY(17),@"DPad R",
 											KEY(125),@"DPad L",
@@ -42,7 +43,8 @@ int main (int argc, char **argv) {
 											KEY(119),@"DPad U",nil];
 	[defaultValues setObject:keyBindings forKey:MALDefaultKeyBindings];
 
-
+	[[MALInputCenter shared] startListening];
+	
 	[[NSUserDefaults standardUserDefaults] registerDefaults:defaultValues];
 	[pl drain];
     NSApplicationMain (argc, (char const **)argv);

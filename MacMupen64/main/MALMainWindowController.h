@@ -2,8 +2,9 @@
 #import <Foundation/Foundation.h>
 
 @class MALMupenEngine,MALMupenRom,MALPreferencesWindowController;
-@interface MALMainWindowController : NSObject {
+@interface MALMainWindowController : NSObject <NSApplicationDelegate> {
 	IBOutlet NSWindow * mainWindow;
+	IBOutlet NSTableView * romListView;
 	IBOutlet NSArrayController * romListController;
 	
 	MALPreferencesWindowController * preferencesController;
@@ -21,6 +22,8 @@
 @property (readonly) MALMupenEngine * engine;
 @property (readwrite, retain) NSArray *romFolderList;
 @property (readwrite, retain) NSArray * romList;
+- (IBAction) increaseVolume:(id)sender;
+- (IBAction) decreaseVolume:(id)sender;
 
 - (IBAction) startOpenPanelForROM:(id)sender;
 - (IBAction) startEmulation:(id)sender;

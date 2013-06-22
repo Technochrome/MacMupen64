@@ -12,7 +12,7 @@
 
 @implementation NSSortDescriptor (MALBackporting)
 +(NSSortDescriptor*) sortDescriptorWithKey:(NSString *)key ascending:(BOOL)ascending {
-	return [[[NSSortDescriptor alloc] initWithKey:key ascending:ascending] autorelease];
+	return [[NSSortDescriptor alloc] initWithKey:key ascending:ascending];
 }
 @end
 
