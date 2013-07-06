@@ -74,7 +74,7 @@
 	return self;
 }
 -(void) applicationDidFinishLaunching:(NSNotification *)notification {
-	[romListView becomeFirstResponder];
+	[romListView.window makeFirstResponder:romListView];
 }
 
 #pragma mark Rom List Management

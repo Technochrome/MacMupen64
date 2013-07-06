@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <MALInput/MALInput.h>
 
 @interface MALPreferencesInputController : NSObject {
 	IBOutlet NSButton *firstButton;
@@ -15,6 +16,11 @@
 	
 	NSMutableDictionary *redDefaultKeys;
 	NSMutableDictionary *bindingKeys;
+	NSMutableDictionary *bindingProfiles;
+	MALInputProfile * currentProfile;
+	
+	MALInputDevice * selectedDevice;
 }
+@property (strong, readwrite) MALInputDevice* selectedDevice;
 
 @end

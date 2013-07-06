@@ -32,3 +32,21 @@ NSURL * getApplicationSupportFolder(void) {
 	}
 	return supportFolder;
 }
+
+@implementation MALPreferences : NSObject
+
++(NSURL*) applicationSupportFolder {
+	static NSURL * supportFolder = nil;
+	if(supportFolder) return supportFolder;
+	
+	NSFileManager *fileManager = [NSFileManager defaultManager];
+	supportFolder = [fileManager URLForDirectory:NSApplicationSupportDirectory inDomain:NSUserDomainMask appropriateForURL:nil create:YES error:NULL];
+	supportFolder = [supportFolder URLByAppendingPathComponent:MALApplicationName];
+	NSString * folderPath = [supportFolder relativePath];
+	if ([fileManager fileExistsAtPath:folderPath] == NO) {
+		[fileManager createDirectoryAtPath:folderPath withIntermediateDirectories:YES attributes:nil error:NULL];
+	}
+	return supportFolder;
+}
+
+@end

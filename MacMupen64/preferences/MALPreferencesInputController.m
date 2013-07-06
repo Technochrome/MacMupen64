@@ -8,21 +8,58 @@
 
 #import "MALPreferencesInputController.h"
 #import <MALInput/MALInput.h>
+#import "preferences.h"
 
 BOOL (^isAvailableDevice)(MALInputDevice* );
 
 @implementation MALPreferencesInputController
+-(NSURL*) bindingProfilesURL {
+	return [[NSClassFromString(@"MALPreferences") applicationSupportFolder] URLByAppendingPathComponent:@"keyBindings.plist"];
+}
 -(id) init {
 	if ((self = [super init])) {
 		redDefaultKeys = [[NSMutableDictionary alloc] init];
 		bindingKeys = [[NSMutableDictionary alloc] init];
+		bindingProfiles = [[NSMutableDictionary alloc] initWithContentsOfURL:[self bindingProfilesURL]];
+		if(!bindingProfiles) bindingProfiles = [[NSMutableDictionary alloc] init];
 		isAvailableDevice = [^BOOL(MALInputDevice * device) {
+			return device.location == 0;
+			
 			// show specific gamepads, generic non-gamepads (keyboard, mouse, etc.)
-			return ([device.deviceID isEqualToString:@"Gamepad"] ? device.location != 0 : device.location == 0);
+			//return ([device.deviceID isEqualToString:@"Gamepad"] ? device.location != 0 : device.location == 0);
 		} copy];
 	}
 	return self;
 }
+
+-(MALInputDevice*) n64Controller {
+	static MALInputDevice * device = nil;
+	if(device) return device;
+	device = [[MALInputDevice alloc] init];
+	
+#define directional(name) name ".up" , name ".down", name ".left", name ".right"
+	for (NSString * path in @[@"a",@"b", @"l",@"r",@"z", @"start",  directional(@"c"), directional(@"dpad"), directional(@"joy")])
+		[device setElement:[MALOutputElement boolElement] forPath:path];
+#undef directional
+	
+	[device setElement:[MALOutputElement joyElement] forPath:@"joy.x"];
+	[device setElement:[MALOutputElement joyElement] forPath:@"joy.y"];
+	
+	return device;
+}
+
+-(MALInputDevice*) selectedDevice {
+	return selectedDevice;
+}
+-(void) setSelectedDevice:(MALInputDevice *)sd {
+	if(sd == selectedDevice) return;
+	NSLog(@"change selected device: %@", [sd name]);
+	selectedDevice = sd;
+	[currentProfile release];
+	currentProfile = [[MALInputProfile profileWithOutputDevice:[self n64Controller]] retain];
+	[currentProfile loadBindings:bindingProfiles[sd.name]];
+}
+
 -(void) awakeFromNib {
 	// Make the key-binding buttons point to me
 	for(NSButton * subview in [[firstButton superview] subviews]) {
@@ -64,6 +101,8 @@ BOOL (^isAvailableDevice)(MALInputDevice* );
 												  [connectedDevicesController removeObject:device];
 												  NSLog(@"disconnect: %@",device.name);
 											  }];
+	
+	[self bind:@"selectedDevice" toObject:connectedDevicesController withKeyPath:@"selection.self" options:nil];
 }
 
 -(IBAction) changeKeyBinding:(NSButton*)sender {
@@ -72,11 +111,19 @@ BOOL (^isAvailableDevice)(MALInputDevice* );
 	if(currentKeyBinder != sender) {
 		currentKeyBinder = sender;
 		[sender setState:1];
+		
 		[[MALInputCenter shared] setInputListener:^(MALInputElement* el) {
 			if([el isBoolean] && [el boolValue] && ![[el fullID] isEqualToString:@"Mouse~left"]) {
 				[self->currentKeyBinder setTitle:[el elementID]];
 				[self->currentKeyBinder setState:0];
 				[[MALInputCenter shared] setInputListener:nil];
+				
+				[self->currentProfile setInput:el
+										forKey:[self->currentKeyBinder.identifier stringByReplacingOccurrencesOfString:@"controller." withString:@""]];
+				NSLog(@"%@",selectedDevice.name);
+				bindingProfiles[selectedDevice.name] = [currentProfile bindingsByID];
+				NSLog(@"%@",bindingProfiles);
+				
 				self->currentKeyBinder = nil;
 			}
 		}];

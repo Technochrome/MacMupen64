@@ -188,6 +188,14 @@ MALMupenEngine * _shared = nil;
 }
 
 #pragma mark API
+
+#define pluginFunction(plugin,func,argv...) {\
+	MALMupenPlugin * p = [plugins objectAtIndex:[self indexForPluginType:plugin]]; \
+	ptr_##func func = osal_dynlib_getproc([p handle], #func); \
+	if (func) { \
+		func(argv); \
+	} }
+
 -(void) runWithRom:(MALMupenRom *)rom{
 	[NSThread detachNewThreadSelector:@selector(spawnInThreadWithROM:) toTarget:self withObject:rom];
 }
@@ -196,11 +204,8 @@ MALMupenEngine * _shared = nil;
 	if(v == volume && !(muted && volume!=0)) return;
 	if(v != 0) self.muted = NO;
 	
-	MALMupenPlugin * audioPlugin = [plugins objectAtIndex:[self indexForPluginType:M64PLUGIN_AUDIO]];
-	ptr_VolumeSetLevel VolumeSetLevel = osal_dynlib_getproc([audioPlugin handle], "VolumeSetLevel");
-	if (VolumeSetLevel) {
-		VolumeSetLevel(v);
-	}
+	pluginFunction(M64PLUGIN_AUDIO, VolumeSetLevel, volume)
+	
 	[self willChangeValueForKey:@"volume"];
 	volume = v;
 	[self didChangeValueForKey:@"volume"];
@@ -208,11 +213,9 @@ MALMupenEngine * _shared = nil;
 -(int) volume { return volume; }
 -(void) setMuted:(BOOL)m {
 	if(m == muted) return;
-	MALMupenPlugin * audioPlugin = [plugins objectAtIndex:[self indexForPluginType:M64PLUGIN_AUDIO]];
-	ptr_VolumeMute VolumeMute = osal_dynlib_getproc([audioPlugin handle], "VolumeMute");
-	if (VolumeMute) {
-		VolumeMute();
-	}
+	
+	pluginFunction(M64PLUGIN_AUDIO, VolumeMute);
+	
 	[self willChangeValueForKey:@"muted"];
 	muted = m;
 	[self didChangeValueForKey:@"muted"];
