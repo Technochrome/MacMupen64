@@ -46,7 +46,7 @@ NSURL * getApplicationSupportFolder(void) {
 	if ([fileManager fileExistsAtPath:folderPath] == NO) {
 		[fileManager createDirectoryAtPath:folderPath withIntermediateDirectories:YES attributes:nil error:NULL];
 	}
-	return supportFolder;
+	return [supportFolder retain];
 }
 
 @end

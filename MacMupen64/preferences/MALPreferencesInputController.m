@@ -54,10 +54,20 @@ BOOL (^isAvailableDevice)(MALInputDevice* );
 -(void) setSelectedDevice:(MALInputDevice *)sd {
 	if(sd == selectedDevice) return;
 	NSLog(@"change selected device: %@", [sd name]);
+	
 	selectedDevice = sd;
 	[currentProfile release];
+	for(id key in redDefaultKeys) {
+		[bindingKeys[key] setAttributedTitle:redDefaultKeys[key]];
+	}
+	
 	currentProfile = [[MALInputProfile profileWithOutputDevice:[self n64Controller]] retain];
 	[currentProfile loadBindings:bindingProfiles[sd.name]];
+	
+	for(id key in [currentProfile boundKeys]) {
+		[bindingKeys[[NSString stringWithFormat:@"controller.%@",key]]
+		 setTitle:[MALInputElement elementIDFromFullID:[currentProfile inputIDForKey:key]]];
+	}
 }
 
 -(void) awakeFromNib {
@@ -120,9 +130,9 @@ BOOL (^isAvailableDevice)(MALInputDevice* );
 				
 				[self->currentProfile setInput:el
 										forKey:[self->currentKeyBinder.identifier stringByReplacingOccurrencesOfString:@"controller." withString:@""]];
-				NSLog(@"%@",selectedDevice.name);
+				
 				bindingProfiles[selectedDevice.name] = [currentProfile bindingsByID];
-				NSLog(@"%@",bindingProfiles);
+				[bindingProfiles writeToURL:[self bindingProfilesURL] atomically:YES];
 				
 				self->currentKeyBinder = nil;
 			}
