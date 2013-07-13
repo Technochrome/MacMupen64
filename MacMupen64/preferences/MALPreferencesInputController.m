@@ -23,6 +23,7 @@ BOOL (^isAvailableDevice)(MALInputDevice* );
 		bindingProfiles = [[NSMutableDictionary alloc] initWithContentsOfURL:[self bindingProfilesURL]];
 		if(!bindingProfiles) bindingProfiles = [[NSMutableDictionary alloc] init];
 		isAvailableDevice = [^BOOL(MALInputDevice * device) {
+			if([device.name isEqualToString:@"Mouse"]) return NO;
 			return device.location == 0;
 			
 			// show specific gamepads, generic non-gamepads (keyboard, mouse, etc.)
@@ -53,7 +54,6 @@ BOOL (^isAvailableDevice)(MALInputDevice* );
 }
 -(void) setSelectedDevice:(MALInputDevice *)sd {
 	if(sd == selectedDevice) return;
-	NSLog(@"change selected device: %@", [sd name]);
 	
 	selectedDevice = sd;
 	[currentProfile release];
@@ -64,9 +64,20 @@ BOOL (^isAvailableDevice)(MALInputDevice* );
 	currentProfile = [[MALInputProfile profileWithOutputDevice:[self n64Controller]] retain];
 	[currentProfile loadBindings:bindingProfiles[sd.name]];
 	
-	for(id key in [currentProfile boundKeys]) {
+#define titleForKey(key) [MALInputElement elementIDFromFullID:[currentProfile inputIDForKey:key]]
+	
+	for(NSString * key in [currentProfile boundKeys]) {
 		[bindingKeys[[NSString stringWithFormat:@"controller.%@",key]]
-		 setTitle:[MALInputElement elementIDFromFullID:[currentProfile inputIDForKey:key]]];
+		 setTitle:titleForKey(key)];
+	}
+	
+	for(NSArray * joy in @[@[@"joy.x", @"controller.joy.up", @"controller.joy.down"], @[@"joy.y", @"controller.joy.left", @"controller.joy.right"]]) {
+		if([[currentProfile boundKeys] containsObject:joy[0]]) {
+			[bindingKeys[joy[1]] setTitle:titleForKey(joy[0])];
+			[bindingKeys[joy[2]] setHidden:YES];
+		} else {
+			[bindingKeys[joy[2]] setHidden:NO];
+		}
 	}
 }
 
@@ -115,6 +126,7 @@ BOOL (^isAvailableDevice)(MALInputDevice* );
 	[self bind:@"selectedDevice" toObject:connectedDevicesController withKeyPath:@"selection.self" options:nil];
 }
 
+
 -(IBAction) changeKeyBinding:(NSButton*)sender {
 	[currentKeyBinder setState:0];
 	
@@ -123,19 +135,42 @@ BOOL (^isAvailableDevice)(MALInputDevice* );
 		[sender setState:1];
 		
 		[[MALInputCenter shared] setInputListener:^(MALInputElement* el) {
-			if([el isBoolean] && [el boolValue] && ![[el fullID] isEqualToString:@"Mouse~left"] && el.generalDevice == selectedDevice) {
-				[self->currentKeyBinder setTitle:[el elementID]];
-				[self->currentKeyBinder setState:0];
-				[[MALInputCenter shared] setInputListener:nil];
-				
-				[self->currentProfile setInput:el
-										forKey:[self->currentKeyBinder.identifier stringByReplacingOccurrencesOfString:@"controller." withString:@""]];
-				
-				bindingProfiles[selectedDevice.name] = [currentProfile bindingsByID];
-				[bindingProfiles writeToURL:[self bindingProfilesURL] atomically:YES];
-				
-				self->currentKeyBinder = nil;
+			if(el.generalDevice != selectedDevice) return;
+			if(! [el boolValue]) return;
+			
+			NSString * inputKey = [currentKeyBinder.identifier stringByReplacingOccurrencesOfString:@"controller." withString:@""];
+			
+			// Handle the joystick binders
+			if([currentKeyBinder.identifier rangeOfString:@"joy"].location != NSNotFound) {
+				BOOL hidden = [el isBoolean] ? NO : YES;
+				NSString * dominantKey, * subKey, *floatKey;
+				if([currentKeyBinder.identifier hasSuffix:@"up"] || [currentKeyBinder.identifier hasSuffix:@"down"]) {
+					dominantKey = @"controller.joy.up";
+					subKey = @"controller.joy.down";
+					floatKey = @"joy.y";
+				} else {
+					dominantKey = @"controller.joy.left";
+					subKey = @"controller.joy.right";
+					floatKey = @"joy.x";
+				}
+				[bindingKeys[subKey] setHidden:hidden];
+				if(hidden == YES) {
+					currentKeyBinder = bindingKeys[dominantKey];
+					inputKey = floatKey;
+				} else {
+					[currentProfile setInput:nil forKey:floatKey];
+				}
 			}
+			
+			[currentKeyBinder setTitle:[el elementID]];
+			[currentKeyBinder setState:0];
+			[currentProfile setInput:el forKey:inputKey];
+			
+			bindingProfiles[selectedDevice.name] = [currentProfile bindingsByID];
+			[bindingProfiles writeToURL:[self bindingProfilesURL] atomically:YES];
+			
+			currentKeyBinder = nil;
+			[[MALInputCenter shared] setInputListener:nil];
 		}];
 	} else { // Wrong behaviour. Clicking again should cancel, and clicking another should start that.
 		currentKeyBinder = nil;
