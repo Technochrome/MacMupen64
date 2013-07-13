@@ -113,7 +113,7 @@ BOOL (^isAvailableDevice)(MALInputDevice* );
 		[sender setState:1];
 		
 		[[MALInputCenter shared] setInputListener:^(MALInputElement* el) {
-			if([el isBoolean] && [el boolValue] && ![[el fullID] isEqualToString:@"Mouse~left"]) {
+			if([el isBoolean] && [el boolValue] && ![[el fullID] isEqualToString:@"Mouse~left"] && el.generalDevice == selectedDevice) {
 				[self->currentKeyBinder setTitle:[el elementID]];
 				[self->currentKeyBinder setState:0];
 				[[MALInputCenter shared] setInputListener:nil];
