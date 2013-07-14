@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2F294B961792313200355455 /* MacMupen.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F294B951792313200355455 /* MacMupen.framework */; };
 		2F3B4BCF175F0F0E007FC4D6 /* MALInput.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F3B4BCE175F0F0D007FC4D6 /* MALInput.framework */; };
 		2F810733175979F5007099AB /* autoconfig.c in Sources */ = {isa = PBXBuildFile; fileRef = 2F810728175979F5007099AB /* autoconfig.c */; };
 		2F810734175979F5007099AB /* autoconfig.h in Headers */ = {isa = PBXBuildFile; fileRef = 2F810729175979F5007099AB /* autoconfig.h */; };
@@ -22,13 +23,14 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		2F2B7C98176EB22C0001D2A5 /* m64p_common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file; name = m64p_common.h; path = ../../MacMupen64/API/m64p_common.h; sourceTree = "<group>"; };
-		2F2B7C99176EB22C0001D2A5 /* m64p_config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file; name = m64p_config.h; path = ../../MacMupen64/API/m64p_config.h; sourceTree = "<group>"; };
-		2F2B7C9A176EB22C0001D2A5 /* m64p_debugger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file; name = m64p_debugger.h; path = ../../MacMupen64/API/m64p_debugger.h; sourceTree = "<group>"; };
-		2F2B7C9B176EB22C0001D2A5 /* m64p_frontend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file; name = m64p_frontend.h; path = ../../MacMupen64/API/m64p_frontend.h; sourceTree = "<group>"; };
-		2F2B7C9C176EB22C0001D2A5 /* m64p_plugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file; name = m64p_plugin.h; path = ../../MacMupen64/API/m64p_plugin.h; sourceTree = "<group>"; };
-		2F2B7C9D176EB22C0001D2A5 /* m64p_types.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file; name = m64p_types.h; path = ../../MacMupen64/API/m64p_types.h; sourceTree = "<group>"; };
-		2F2B7C9E176EB22C0001D2A5 /* m64p_vidext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file; name = m64p_vidext.h; path = ../../MacMupen64/API/m64p_vidext.h; sourceTree = "<group>"; };
+		2F294B951792313200355455 /* MacMupen.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MacMupen.framework; path = ../../../../../../Library/Developer/Xcode/DerivedData/Products/Products/Debug/MacMupen.framework; sourceTree = "<group>"; };
+		2F2B7C98176EB22C0001D2A5 /* m64p_common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = m64p_common.h; path = ../../MacMupen64/API/m64p_common.h; sourceTree = "<group>"; };
+		2F2B7C99176EB22C0001D2A5 /* m64p_config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = m64p_config.h; path = ../../MacMupen64/API/m64p_config.h; sourceTree = "<group>"; };
+		2F2B7C9A176EB22C0001D2A5 /* m64p_debugger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = m64p_debugger.h; path = ../../MacMupen64/API/m64p_debugger.h; sourceTree = "<group>"; };
+		2F2B7C9B176EB22C0001D2A5 /* m64p_frontend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = m64p_frontend.h; path = ../../MacMupen64/API/m64p_frontend.h; sourceTree = "<group>"; };
+		2F2B7C9C176EB22C0001D2A5 /* m64p_plugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = m64p_plugin.h; path = ../../MacMupen64/API/m64p_plugin.h; sourceTree = "<group>"; };
+		2F2B7C9D176EB22C0001D2A5 /* m64p_types.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = m64p_types.h; path = ../../MacMupen64/API/m64p_types.h; sourceTree = "<group>"; };
+		2F2B7C9E176EB22C0001D2A5 /* m64p_vidext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = m64p_vidext.h; path = ../../MacMupen64/API/m64p_vidext.h; sourceTree = "<group>"; };
 		2F3B4BCE175F0F0D007FC4D6 /* MALInput.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MALInput.framework; path = ../../../../../../Library/Developer/Xcode/DerivedData/Products/Products/Debug/MALInput.framework; sourceTree = "<group>"; };
 		2F8107121759791B007099AB /* libmupen64plus-input-MALInput.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = "libmupen64plus-input-MALInput.dylib"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2F810728175979F5007099AB /* autoconfig.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = autoconfig.c; path = ../src/autoconfig.c; sourceTree = "<group>"; };
@@ -49,6 +51,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2F294B961792313200355455 /* MacMupen.framework in Frameworks */,
 				2F81074217597B8C007099AB /* SDL.framework in Frameworks */,
 				2F3B4BCF175F0F0E007FC4D6 /* MALInput.framework in Frameworks */,
 			);
@@ -60,6 +63,7 @@
 		2F8107091759791B007099AB = {
 			isa = PBXGroup;
 			children = (
+				2F294B951792313200355455 /* MacMupen.framework */,
 				2F810727175979DE007099AB /* API */,
 				2F81073E175979FB007099AB /* Plugin */,
 				2F8107131759791B007099AB /* Products */,

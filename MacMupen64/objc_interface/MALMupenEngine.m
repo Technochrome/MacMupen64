@@ -19,10 +19,8 @@
 #import "m64p_plugin.h"
 #import "videoExtension.h"
 
-#import "CocoaToSDLKeyMap.h"
-
-NSString * MALMupenEngineFinished = @"MALMupenEngine Finished Running";
-NSString * MALMupenEngineStarted = @"MALMupenEngine Started Running";
+NSString *const MALMupenEngineFinished = @"MALMupenEngine Finished Running";
+NSString *const MALMupenEngineStarted = @"MALMupenEngine Started Running";
 
 MALMupenEngine * _shared = nil;
 
@@ -36,7 +34,7 @@ MALMupenEngine * _shared = nil;
 	isRunning=value;
 	[self didChangeValueForKey:@"isRunning"];
 	if(isRunning) {
-		gameWindow = [[MALGameWindow gameWindowWithDelegate:self] retain];
+		gameWindow = [[MALGameWindow gameWindow] retain];
 		malwin = (MALGameWindow*)[gameWindow window];
 		[gameWindow performSelectorOnMainThread:@selector(showWindow:) withObject:self waitUntilDone:YES];
 		[[NSNotificationCenter defaultCenter] postNotificationName:MALMupenEngineStarted object:self];
@@ -128,33 +126,6 @@ MALMupenEngine * _shared = nil;
 	[pl drain];
 }
 #pragma mark key events
--(void) keyDown:(NSEvent*)event{
-	if([event isARepeat]) return;
-//	int a=[event keyCode],b=[[event charactersIgnoringModifiers] characterAtIndex:0];
-	(*CoreDoCommand)(M64CMD_SEND_SDL_KEYDOWN,MAC_keymap[[event keyCode]], NULL);
-}
--(void) keyUp:(NSEvent*)event {
-	(*CoreDoCommand)(M64CMD_SEND_SDL_KEYUP,MAC_keymap[[event keyCode]], NULL);
-}
--(void) flagsChanged:(NSEvent*)event {
-	NSUInteger newFlags = [event modifierFlags];
-	// If keydown, there are more flags than previously
-	m64p_command command = (newFlags>modFlags ? M64CMD_SEND_SDL_KEYDOWN : M64CMD_SEND_SDL_KEYUP);
-	NSUInteger key = (newFlags ^ modFlags);
-	
-	if(key & NSAlphaShiftKeyMask) ; //Caps Lock
-	else if(key & NSShiftKeyMask)
-		key = SDLK_LSHIFT;
-	else if(key & NSControlKeyMask)
-		key = SDLK_LCTRL;
-	else if(key & NSAlternateKeyMask)
-		key = SDLK_LALT;
-	else if(key & NSCommandKeyMask)
-		key = SDLK_LMETA;
-	
-	modFlags = newFlags;
-	(*CoreDoCommand)(command,(int)key,NULL);
-} 
 -(void) windowWillClose:(NSNotification *)notification {
 	(*CoreDoCommand)(M64CMD_STOP,0,0);
 }
@@ -172,10 +143,8 @@ MALMupenEngine * _shared = nil;
 -(id) init {
 	if(self = [super init]) {
 		_shared = self;
-		initSDLKeyMap();
 		plugins = [[NSMutableArray alloc] initWithCapacity:5];
 		[plugins addObject:[MALMupenCore defaultCore]];
-		modFlags=0;
 		muted = NO;
 		for (int i=1; i<5; i++) [plugins addObject:[[[MALMupenPlugin alloc] init] autorelease]];
 		for (int i=1; i<5; i++) [self loadPluginType:(m64p_plugin_type)i];

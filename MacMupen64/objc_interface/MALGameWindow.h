@@ -10,18 +10,9 @@
 
 @class MALGameWindow;
 
-@protocol MALGameWindowEventDelegate
--(void) keyDown:(NSEvent*)event;
--(void) keyUp:(NSEvent*)event;
--(void) flagsChanged:(NSEvent*)event;
-@end
-
-
 @interface MALGameWindow : NSWindow {
 	NSOpenGLView * openGLview;
-	id<MALGameWindowEventDelegate> keyDelegate;
 }
 @property (readwrite, retain) NSOpenGLView * openGLview;
-@property (readwrite, assign) id<MALGameWindowEventDelegate> keyDelegate;
-+(NSWindowController*) gameWindowWithDelegate:(id<MALGameWindowEventDelegate>)delegate;
++(NSWindowController*) gameWindow;
 @end

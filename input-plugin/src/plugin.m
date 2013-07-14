@@ -39,6 +39,7 @@
 #include "osal_dynamiclib.h"
 
 #import <Foundation/Foundation.h>
+#import <MacMupen/MALMupenEngine.h>
 
 #ifdef __linux__
 #include <unistd.h>
@@ -81,8 +82,6 @@ ptr_ConfigGetUserCachePath      ConfigGetUserCachePath = NULL;
 
 /* global data definitions */
 SController controller[4];   // 4 controllers
-
-Class MALMupenEngine = nil;
 
 /* static data definitions */
 static void (*l_DebugCallback)(void *, int, const char *) = NULL;
@@ -826,8 +825,7 @@ EXPORT void CALL RomClosed(void)
 *******************************************************************/
 EXPORT int CALL RomOpen(void)
 {
-	MALMupenEngine = [NSClassFromString(@"MALMupenEngine") performSelector:@selector(shared)];
-	NSArray * controllerBindings = [MALMupenEngine performSelector:@selector(controllerBindings)];
+	NSArray * controllerBindings = [[MALMupenEngine shared] controllerBindings];
 	
     int i;
 

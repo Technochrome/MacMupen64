@@ -22,20 +22,14 @@ NSString * const MALDefaultKeyBindings = @"KeyBindings";
 
 NSString * const MALApplicationName = @"MacMupen64 Plus";
 
+
+NSString * const RSPString = @"RSP";
+NSString * const VideoString = @"Video";
+NSString * const AudioString = @"Audio";
+NSString * const InputString = @"Input";
+NSString * const CoreString = @"Core";
+
 NSURL * getApplicationSupportFolder(void) {
-	NSFileManager *fileManager = [NSFileManager defaultManager];
-	NSURL * supportFolder = [fileManager URLForDirectory:NSApplicationSupportDirectory inDomain:NSUserDomainMask appropriateForURL:nil create:YES error:NULL];
-	supportFolder = [supportFolder URLByAppendingPathComponent:MALApplicationName];
-	NSString * folderPath = [supportFolder relativePath];
-	if ([fileManager fileExistsAtPath:folderPath] == NO) {
-		[fileManager createDirectoryAtPath:folderPath withIntermediateDirectories:YES attributes:nil error:NULL];
-	}
-	return supportFolder;
-}
-
-@implementation MALPreferences : NSObject
-
-+(NSURL*) applicationSupportFolder {
 	static NSURL * supportFolder = nil;
 	if(supportFolder) return supportFolder;
 	
@@ -48,5 +42,3 @@ NSURL * getApplicationSupportFolder(void) {
 	}
 	return [supportFolder retain];
 }
-
-@end

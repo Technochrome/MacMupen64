@@ -10,12 +10,6 @@
 
 #include "m64p_types.h"
 
-extern NSString * RSPString;
-extern NSString * VideoString;
-extern NSString * AudioString;
-extern NSString * InputString;
-extern NSString * CoreString;
-
 NSString * pluginStringForType(m64p_plugin_type type);
 
 @interface MALMupenPlugin : NSObject {

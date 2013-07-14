@@ -18,12 +18,6 @@
 #import "preferences.h"
 #import "osal_dynamiclib.h"
 
-NSString * RSPString = @"RSP";
-NSString * VideoString = @"Video";
-NSString * AudioString = @"Audio";
-NSString * InputString = @"Input";
-NSString * CoreString = @"Core";
-
 NSString * pluginStringForType(m64p_plugin_type type) {
 	switch(type) {
 		case M64PLUGIN_RSP: return RSPString;

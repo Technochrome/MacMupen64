@@ -22,8 +22,9 @@ extern NSString * const MALDefaultKeyBindings;
 
 extern NSURL * getApplicationSupportFolder(void);
 
-@interface MALPreferences : NSObject
-
-+(NSURL*) applicationSupportFolder;
-
-@end
+// Plugin strings
+extern NSString * const RSPString;
+extern NSString * const VideoString;
+extern NSString * const AudioString;
+extern NSString * const InputString;
+extern NSString * const CoreString;

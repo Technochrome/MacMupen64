@@ -7,6 +7,32 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2F294B6B179224C900355455 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F4951191411019D00D2B2C1 /* Cocoa.framework */; };
+		2F294B71179224C900355455 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2F294B6F179224C900355455 /* InfoPlist.strings */; };
+		2F294B7D179225F800355455 /* MALGameWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F495189141102FD00D2B2C1 /* MALGameWindow.m */; };
+		2F294B7E179225F800355455 /* core_interface.c in Sources */ = {isa = PBXBuildFile; fileRef = 2F495169141102CB00D2B2C1 /* core_interface.c */; };
+		2F294B7F179225F800355455 /* MALMupenEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F49516C141102CB00D2B2C1 /* MALMupenEngine.m */; };
+		2F294B80179225F800355455 /* MALMupenPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F49516E141102CB00D2B2C1 /* MALMupenPlugin.m */; };
+		2F294B81179225F800355455 /* MALMupenCore.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F495170141102CB00D2B2C1 /* MALMupenCore.m */; };
+		2F294B82179225F800355455 /* MALMupenRom.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F495172141102CB00D2B2C1 /* MALMupenRom.m */; };
+		2F294B831792260500355455 /* MALGameWindow.h in Headers */ = {isa = PBXBuildFile; fileRef = 2F495188141102FD00D2B2C1 /* MALGameWindow.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2F294B841792260500355455 /* core_interface.h in Headers */ = {isa = PBXBuildFile; fileRef = 2F49516A141102CB00D2B2C1 /* core_interface.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2F294B851792260500355455 /* MALMupenEngine.h in Headers */ = {isa = PBXBuildFile; fileRef = 2F49516B141102CB00D2B2C1 /* MALMupenEngine.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2F294B861792260500355455 /* MALMupenPlugin.h in Headers */ = {isa = PBXBuildFile; fileRef = 2F49516D141102CB00D2B2C1 /* MALMupenPlugin.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2F294B871792260500355455 /* MALMupenCore.h in Headers */ = {isa = PBXBuildFile; fileRef = 2F49516F141102CB00D2B2C1 /* MALMupenCore.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2F294B881792260500355455 /* MALMupenRom.h in Headers */ = {isa = PBXBuildFile; fileRef = 2F495171141102CB00D2B2C1 /* MALMupenRom.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2F294B891792264F00355455 /* callbacks.c in Sources */ = {isa = PBXBuildFile; fileRef = 2F495137141101F300D2B2C1 /* callbacks.c */; };
+		2F294B8A179226E100355455 /* cheat.c in Sources */ = {isa = PBXBuildFile; fileRef = 2F4951441411021600D2B2C1 /* cheat.c */; };
+		2F294B8B179226E100355455 /* compare_core.c in Sources */ = {isa = PBXBuildFile; fileRef = 2F4951461411021600D2B2C1 /* compare_core.c */; };
+		2F294B8C179226E100355455 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F4951481411021600D2B2C1 /* main.m */; };
+		2F294B8D179226E100355455 /* osal_dynamiclib_unix.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F49514B1411021600D2B2C1 /* osal_dynamiclib_unix.m */; };
+		2F294B8E1792270500355455 /* videoExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F4951551411023300D2B2C1 /* videoExtension.m */; };
+		2F294B8F1792272400355455 /* MacMupen.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F294B6A179224C900355455 /* MacMupen.framework */; };
+		2F294B901792273300355455 /* MacMupen.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 2F294B6A179224C900355455 /* MacMupen.framework */; };
+		2F294B9117922BD600355455 /* preferences.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F495180141102E700D2B2C1 /* preferences.m */; };
+		2F294B9217922C1000355455 /* libSDL-1.2.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F49519B1411032A00D2B2C1 /* libSDL-1.2.0.dylib */; };
+		2F294B9317922C1800355455 /* libSDL-1.2.0.dylib in Resources */ = {isa = PBXBuildFile; fileRef = 2F49519B1411032A00D2B2C1 /* libSDL-1.2.0.dylib */; };
+		2F294B94179230D500355455 /* MacMupen.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F294B6A179224C900355455 /* MacMupen.framework */; };
 		2F2B7C88176EAB250001D2A5 /* Volume33PercentTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 2F2B7C83176EAB250001D2A5 /* Volume33PercentTemplate.pdf */; };
 		2F2B7C89176EAB250001D2A5 /* Volume66PercentTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 2F2B7C84176EAB250001D2A5 /* Volume66PercentTemplate.pdf */; };
 		2F2B7C8A176EAB250001D2A5 /* Volume100PercentTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 2F2B7C85176EAB250001D2A5 /* Volume100PercentTemplate.pdf */; };
@@ -19,24 +45,8 @@
 		2F4951241411019D00D2B2C1 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2F4951221411019D00D2B2C1 /* InfoPlist.strings */; };
 		2F49512A1411019D00D2B2C1 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 2F4951281411019D00D2B2C1 /* Credits.rtf */; };
 		2F4951301411019D00D2B2C1 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2F49512E1411019D00D2B2C1 /* MainMenu.xib */; };
-		2F495142141101F300D2B2C1 /* callbacks.c in Sources */ = {isa = PBXBuildFile; fileRef = 2F495137141101F300D2B2C1 /* callbacks.c */; };
-		2F49514E1411021700D2B2C1 /* cheat.c in Sources */ = {isa = PBXBuildFile; fileRef = 2F4951441411021600D2B2C1 /* cheat.c */; };
-		2F49514F1411021700D2B2C1 /* compare_core.c in Sources */ = {isa = PBXBuildFile; fileRef = 2F4951461411021600D2B2C1 /* compare_core.c */; };
-		2F4951501411021700D2B2C1 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F4951481411021600D2B2C1 /* main.m */; };
-		2F4951511411021700D2B2C1 /* osal_dynamiclib_unix.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F49514B1411021600D2B2C1 /* osal_dynamiclib_unix.m */; };
 		2F4951561411023300D2B2C1 /* SDLMain.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F4951531411023300D2B2C1 /* SDLMain.m */; };
-		2F4951571411023300D2B2C1 /* videoExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F4951551411023300D2B2C1 /* videoExtension.m */; };
-		2F49515E1411029F00D2B2C1 /* CocoaToSDLKeyMap.c in Sources */ = {isa = PBXBuildFile; fileRef = 2F4951591411029F00D2B2C1 /* CocoaToSDLKeyMap.c */; };
-		2F49515F1411029F00D2B2C1 /* MALKeyGrabber.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F49515B1411029F00D2B2C1 /* MALKeyGrabber.m */; };
-		2F4951601411029F00D2B2C1 /* MALKeyboardView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F49515D1411029F00D2B2C1 /* MALKeyboardView.m */; };
-		2F495173141102CC00D2B2C1 /* core_interface.c in Sources */ = {isa = PBXBuildFile; fileRef = 2F495169141102CB00D2B2C1 /* core_interface.c */; };
-		2F495174141102CC00D2B2C1 /* MALMupenEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F49516C141102CB00D2B2C1 /* MALMupenEngine.m */; };
-		2F495175141102CC00D2B2C1 /* MALMupenPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F49516E141102CB00D2B2C1 /* MALMupenPlugin.m */; };
-		2F495176141102CC00D2B2C1 /* MALMupenCore.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F495170141102CB00D2B2C1 /* MALMupenCore.m */; };
-		2F495177141102CC00D2B2C1 /* MALMupenRom.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F495172141102CB00D2B2C1 /* MALMupenRom.m */; };
-		2F495184141102E700D2B2C1 /* preferences.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F495180141102E700D2B2C1 /* preferences.m */; };
 		2F49518C141102FD00D2B2C1 /* MALArrayController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F495187141102FD00D2B2C1 /* MALArrayController.m */; };
-		2F49518D141102FD00D2B2C1 /* MALGameWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F495189141102FD00D2B2C1 /* MALGameWindow.m */; };
 		2F49518E141102FD00D2B2C1 /* MALMainWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F49518B141102FD00D2B2C1 /* MALMainWindowController.m */; };
 		2F4951A91411032A00D2B2C1 /* PluginListPane.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2F4951901411032A00D2B2C1 /* PluginListPane.xib */; };
 		2F4951AA1411032A00D2B2C1 /* ROMListPane.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2F4951911411032A00D2B2C1 /* ROMListPane.xib */; };
@@ -155,6 +165,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				2F294B901792273300355455 /* MacMupen.framework in CopyFiles */,
 				2FB388A516F2ACAE0023CAAF /* MALInput.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -162,6 +173,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		2F294B6A179224C900355455 /* MacMupen.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MacMupen.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2F294B6E179224C900355455 /* MacMupen-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MacMupen-Info.plist"; sourceTree = "<group>"; };
+		2F294B70179224C900355455 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		2F294B72179224C900355455 /* MacMupen-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MacMupen-Prefix.pch"; sourceTree = "<group>"; };
 		2F2B7C83176EAB250001D2A5 /* Volume33PercentTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = Volume33PercentTemplate.pdf; sourceTree = "<group>"; };
 		2F2B7C84176EAB250001D2A5 /* Volume66PercentTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = Volume66PercentTemplate.pdf; sourceTree = "<group>"; };
 		2F2B7C85176EAB250001D2A5 /* Volume100PercentTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = Volume100PercentTemplate.pdf; sourceTree = "<group>"; };
@@ -203,14 +218,8 @@
 		2F49514C1411021600D2B2C1 /* osal_preproc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = osal_preproc.h; sourceTree = "<group>"; };
 		2F49514D1411021600D2B2C1 /* version.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = version.h; sourceTree = "<group>"; };
 		2F4951531411023300D2B2C1 /* SDLMain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDLMain.m; sourceTree = "<group>"; };
-		2F4951541411023300D2B2C1 /* videoExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = videoExtension.h; sourceTree = "<group>"; };
-		2F4951551411023300D2B2C1 /* videoExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = videoExtension.m; sourceTree = "<group>"; };
-		2F4951581411029F00D2B2C1 /* CocoaToSDLKeyMap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CocoaToSDLKeyMap.h; sourceTree = "<group>"; };
-		2F4951591411029F00D2B2C1 /* CocoaToSDLKeyMap.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = CocoaToSDLKeyMap.c; sourceTree = "<group>"; };
-		2F49515A1411029F00D2B2C1 /* MALKeyGrabber.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MALKeyGrabber.h; sourceTree = "<group>"; };
-		2F49515B1411029F00D2B2C1 /* MALKeyGrabber.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MALKeyGrabber.m; sourceTree = "<group>"; };
-		2F49515C1411029F00D2B2C1 /* MALKeyboardView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MALKeyboardView.h; sourceTree = "<group>"; };
-		2F49515D1411029F00D2B2C1 /* MALKeyboardView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MALKeyboardView.m; sourceTree = "<group>"; };
+		2F4951541411023300D2B2C1 /* videoExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = videoExtension.h; path = ../main/videoExtension.h; sourceTree = "<group>"; };
+		2F4951551411023300D2B2C1 /* videoExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = videoExtension.m; path = ../main/videoExtension.m; sourceTree = "<group>"; };
 		2F495162141102BF00D2B2C1 /* OBJprintf.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBJprintf.h; sourceTree = "<group>"; };
 		2F495163141102BF00D2B2C1 /* MALAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MALAdditions.h; sourceTree = "<group>"; };
 		2F495164141102BF00D2B2C1 /* MALAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MALAdditions.m; sourceTree = "<group>"; };
@@ -228,8 +237,8 @@
 		2F495172141102CB00D2B2C1 /* MALMupenRom.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MALMupenRom.m; sourceTree = "<group>"; };
 		2F49517D141102E700D2B2C1 /* MALPreferencesWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MALPreferencesWindowController.h; sourceTree = "<group>"; };
 		2F49517E141102E700D2B2C1 /* MALPreferencesWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MALPreferencesWindowController.m; sourceTree = "<group>"; };
-		2F49517F141102E700D2B2C1 /* preferences.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = preferences.h; sourceTree = "<group>"; };
-		2F495180141102E700D2B2C1 /* preferences.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = preferences.m; sourceTree = "<group>"; };
+		2F49517F141102E700D2B2C1 /* preferences.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = preferences.h; path = ../preferences/preferences.h; sourceTree = "<group>"; };
+		2F495180141102E700D2B2C1 /* preferences.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = preferences.m; path = ../preferences/preferences.m; sourceTree = "<group>"; };
 		2F495186141102FD00D2B2C1 /* MALArrayController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MALArrayController.h; sourceTree = "<group>"; };
 		2F495187141102FD00D2B2C1 /* MALArrayController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MALArrayController.m; sourceTree = "<group>"; };
 		2F495188141102FD00D2B2C1 /* MALGameWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MALGameWindow.h; sourceTree = "<group>"; };
@@ -276,10 +285,20 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		2F294B66179224C900355455 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2F294B6B179224C900355455 /* Cocoa.framework in Frameworks */,
+				2F294B9217922C1000355455 /* libSDL-1.2.0.dylib in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		2F4951121411019D00D2B2C1 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2F294B8F1792272400355455 /* MacMupen.framework in Frameworks */,
 				2F9FF6C71628B0B400E1821F /* OpenGL.framework in Frameworks */,
 				2F49511A1411019D00D2B2C1 /* Cocoa.framework in Frameworks */,
 				2FB388A716F2ADF60023CAAF /* MALInput.framework in Frameworks */,
@@ -291,6 +310,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2F294B94179230D500355455 /* MacMupen.framework in Frameworks */,
 				2F4951DE14110DF500D2B2C1 /* Cocoa.framework in Frameworks */,
 				2FB388A816F2AE3F0023CAAF /* MALInput.framework in Frameworks */,
 			);
@@ -299,6 +319,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2F294B6D179224C900355455 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				2F294B6E179224C900355455 /* MacMupen-Info.plist */,
+				2F294B6F179224C900355455 /* InfoPlist.strings */,
+				2F294B72179224C900355455 /* MacMupen-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			path = ../../MacMupen;
+			sourceTree = "<group>";
+		};
 		2F2B7C90176EAB290001D2A5 /* Volume */ = {
 			isa = PBXGroup;
 			children = (
@@ -347,6 +378,7 @@
 			children = (
 				2F4951151411019D00D2B2C1 /* MacMupen64.app */,
 				2F4951DD14110DF500D2B2C1 /* Preference Panes.bundle */,
+				2F294B6A179224C900355455 /* MacMupen.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -377,13 +409,10 @@
 			isa = PBXGroup;
 			children = (
 				2F4951271411019D00D2B2C1 /* MacMupen64-Prefix.pch */,
-				2F495143141101F800D2B2C1 /* API */,
-				2F495161141102A500D2B2C1 /* Input */,
 				2F9FF6C31628AB4400E1821F /* MALlib */,
 				2F495185141102EC00D2B2C1 /* Preferences Window */,
 				2F49518F1411030200D2B2C1 /* Main Window */,
-				2F495178141102D000D2B2C1 /* Game Engine */,
-				2F4951521411021C00D2B2C1 /* Old Console SRC */,
+				2F495178141102D000D2B2C1 /* MacMupen Framework */,
 			);
 			path = MacMupen64;
 			sourceTree = "<group>";
@@ -424,7 +453,8 @@
 				2F2B7C97176EB2250001D2A5 /* m64p_vidext.h */,
 				2F495141141101F300D2B2C1 /* vidext.h */,
 			);
-			path = API;
+			name = API;
+			path = ../API;
 			sourceTree = "<group>";
 		};
 		2F4951521411021C00D2B2C1 /* Old Console SRC */ = {
@@ -442,25 +472,18 @@
 				2F49514D1411021600D2B2C1 /* version.h */,
 			);
 			name = "Old Console SRC";
-			path = old_console;
+			path = ../old_console;
 			sourceTree = "<group>";
 		};
-		2F495161141102A500D2B2C1 /* Input */ = {
+		2F495178141102D000D2B2C1 /* MacMupen Framework */ = {
 			isa = PBXGroup;
 			children = (
-				2F4951581411029F00D2B2C1 /* CocoaToSDLKeyMap.h */,
-				2F4951591411029F00D2B2C1 /* CocoaToSDLKeyMap.c */,
-				2F49515A1411029F00D2B2C1 /* MALKeyGrabber.h */,
-				2F49515B1411029F00D2B2C1 /* MALKeyGrabber.m */,
-				2F49515C1411029F00D2B2C1 /* MALKeyboardView.h */,
-				2F49515D1411029F00D2B2C1 /* MALKeyboardView.m */,
-			);
-			path = Input;
-			sourceTree = "<group>";
-		};
-		2F495178141102D000D2B2C1 /* Game Engine */ = {
-			isa = PBXGroup;
-			children = (
+				2F49517F141102E700D2B2C1 /* preferences.h */,
+				2F495180141102E700D2B2C1 /* preferences.m */,
+				2F4951541411023300D2B2C1 /* videoExtension.h */,
+				2F4951551411023300D2B2C1 /* videoExtension.m */,
+				2F4951521411021C00D2B2C1 /* Old Console SRC */,
+				2F495143141101F800D2B2C1 /* API */,
 				2F495188141102FD00D2B2C1 /* MALGameWindow.h */,
 				2F495189141102FD00D2B2C1 /* MALGameWindow.m */,
 				2F495169141102CB00D2B2C1 /* core_interface.c */,
@@ -473,8 +496,9 @@
 				2F495170141102CB00D2B2C1 /* MALMupenCore.m */,
 				2F495171141102CB00D2B2C1 /* MALMupenRom.h */,
 				2F495172141102CB00D2B2C1 /* MALMupenRom.m */,
+				2F294B6D179224C900355455 /* Supporting Files */,
 			);
-			name = "Game Engine";
+			name = "MacMupen Framework";
 			path = objc_interface;
 			sourceTree = "<group>";
 		};
@@ -483,8 +507,6 @@
 			children = (
 				2F49517D141102E700D2B2C1 /* MALPreferencesWindowController.h */,
 				2F49517E141102E700D2B2C1 /* MALPreferencesWindowController.m */,
-				2F49517F141102E700D2B2C1 /* preferences.h */,
-				2F495180141102E700D2B2C1 /* preferences.m */,
 				2FB3889C16F2A3A10023CAAF /* MALPreferencesInputController.h */,
 				2FB3889D16F2A3A10023CAAF /* MALPreferencesInputController.m */,
 			);
@@ -500,8 +522,6 @@
 				2F49518A141102FD00D2B2C1 /* MALMainWindowController.h */,
 				2F49518B141102FD00D2B2C1 /* MALMainWindowController.m */,
 				2F4951531411023300D2B2C1 /* SDLMain.m */,
-				2F4951541411023300D2B2C1 /* videoExtension.h */,
-				2F4951551411023300D2B2C1 /* videoExtension.m */,
 			);
 			name = "Main Window";
 			path = main;
@@ -596,7 +616,41 @@
 		};
 /* End PBXGroup section */
 
+/* Begin PBXHeadersBuildPhase section */
+		2F294B67179224C900355455 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2F294B831792260500355455 /* MALGameWindow.h in Headers */,
+				2F294B841792260500355455 /* core_interface.h in Headers */,
+				2F294B851792260500355455 /* MALMupenEngine.h in Headers */,
+				2F294B861792260500355455 /* MALMupenPlugin.h in Headers */,
+				2F294B871792260500355455 /* MALMupenCore.h in Headers */,
+				2F294B881792260500355455 /* MALMupenRom.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
 /* Begin PBXNativeTarget section */
+		2F294B69179224C900355455 /* MacMupen */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2F294B7B179224CA00355455 /* Build configuration list for PBXNativeTarget "MacMupen" */;
+			buildPhases = (
+				2F294B65179224C900355455 /* Sources */,
+				2F294B66179224C900355455 /* Frameworks */,
+				2F294B67179224C900355455 /* Headers */,
+				2F294B68179224C900355455 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MacMupen;
+			productName = MacMupen;
+			productReference = 2F294B6A179224C900355455 /* MacMupen.framework */;
+			productType = "com.apple.product-type.framework";
+		};
 		2F4951141411019D00D2B2C1 /* MacMupen64 */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2F4951331411019D00D2B2C1 /* Build configuration list for PBXNativeTarget "MacMupen64" */;
@@ -667,6 +721,7 @@
 			targets = (
 				2F4951141411019D00D2B2C1 /* MacMupen64 */,
 				2F4951DC14110DF500D2B2C1 /* Preference Panes */,
+				2F294B69179224C900355455 /* MacMupen */,
 			);
 		};
 /* End PBXProject section */
@@ -696,6 +751,15 @@
 /* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
+		2F294B68179224C900355455 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2F294B71179224C900355455 /* InfoPlist.strings in Resources */,
+				2F294B9317922C1800355455 /* libSDL-1.2.0.dylib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		2F4951131411019D00D2B2C1 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -748,30 +812,34 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		2F294B65179224C900355455 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2F294B7D179225F800355455 /* MALGameWindow.m in Sources */,
+				2F294B7E179225F800355455 /* core_interface.c in Sources */,
+				2F294B7F179225F800355455 /* MALMupenEngine.m in Sources */,
+				2F294B80179225F800355455 /* MALMupenPlugin.m in Sources */,
+				2F294B81179225F800355455 /* MALMupenCore.m in Sources */,
+				2F294B82179225F800355455 /* MALMupenRom.m in Sources */,
+				2F294B891792264F00355455 /* callbacks.c in Sources */,
+				2F294B8A179226E100355455 /* cheat.c in Sources */,
+				2F294B8B179226E100355455 /* compare_core.c in Sources */,
+				2F294B8C179226E100355455 /* main.m in Sources */,
+				2F294B8D179226E100355455 /* osal_dynamiclib_unix.m in Sources */,
+				2F294B8E1792270500355455 /* videoExtension.m in Sources */,
+				2F294B9117922BD600355455 /* preferences.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		2F4951111411019D00D2B2C1 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				2F9FF6C41628B06500E1821F /* MALAdditions.m in Sources */,
 				2F9FF6C51628B06500E1821F /* MALBackporting.m in Sources */,
-				2F495142141101F300D2B2C1 /* callbacks.c in Sources */,
-				2F49514E1411021700D2B2C1 /* cheat.c in Sources */,
-				2F49514F1411021700D2B2C1 /* compare_core.c in Sources */,
-				2F4951501411021700D2B2C1 /* main.m in Sources */,
-				2F4951511411021700D2B2C1 /* osal_dynamiclib_unix.m in Sources */,
 				2F4951561411023300D2B2C1 /* SDLMain.m in Sources */,
-				2F4951571411023300D2B2C1 /* videoExtension.m in Sources */,
-				2F49515E1411029F00D2B2C1 /* CocoaToSDLKeyMap.c in Sources */,
-				2F49515F1411029F00D2B2C1 /* MALKeyGrabber.m in Sources */,
-				2F4951601411029F00D2B2C1 /* MALKeyboardView.m in Sources */,
-				2F495173141102CC00D2B2C1 /* core_interface.c in Sources */,
-				2F495174141102CC00D2B2C1 /* MALMupenEngine.m in Sources */,
-				2F495175141102CC00D2B2C1 /* MALMupenPlugin.m in Sources */,
-				2F495176141102CC00D2B2C1 /* MALMupenCore.m in Sources */,
-				2F495177141102CC00D2B2C1 /* MALMupenRom.m in Sources */,
-				2F495184141102E700D2B2C1 /* preferences.m in Sources */,
 				2F49518C141102FD00D2B2C1 /* MALArrayController.m in Sources */,
-				2F49518D141102FD00D2B2C1 /* MALGameWindow.m in Sources */,
 				2F49518E141102FD00D2B2C1 /* MALMainWindowController.m in Sources */,
 				2FB388A016F2A5F60023CAAF /* MALPreferencesWindowController.m in Sources */,
 			);
@@ -799,6 +867,14 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		2F294B6F179224C900355455 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2F294B70179224C900355455 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
 		2F4951221411019D00D2B2C1 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -834,6 +910,78 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		2F294B76179224CA00355455 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COMBINE_HIDPI_IMAGES = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+					"\"$(SRCROOT)/../../../../Library/Developer/Xcode/DerivedData/Products/Products/Debug\"",
+					/Users/rovolo/Library/Developer/Xcode/DerivedData/Products/Products/Debug,
+					/Library/Frameworks,
+				);
+				FRAMEWORK_VERSION = A;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "MacMupen/MacMupen-Prefix.pch";
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				INFOPLIST_FILE = "MacMupen/MacMupen-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/resources/plugins\"",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = framework;
+			};
+			name = Debug;
+		};
+		2F294B77179224CA00355455 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COMBINE_HIDPI_IMAGES = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+					"\"$(SRCROOT)/../../../../Library/Developer/Xcode/DerivedData/Products/Products/Debug\"",
+					/Users/rovolo/Library/Developer/Xcode/DerivedData/Products/Products/Debug,
+					/Library/Frameworks,
+				);
+				FRAMEWORK_VERSION = A;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "MacMupen/MacMupen-Prefix.pch";
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				INFOPLIST_FILE = "MacMupen/MacMupen-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/resources/plugins\"",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = framework;
+			};
+			name = Release;
+		};
 		2F4951311411019D00D2B2C1 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -855,7 +1003,8 @@
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				IBC_WARNINGS = NO;
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
 			};
@@ -876,7 +1025,8 @@
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				IBC_WARNINGS = NO;
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				SDKROOT = macosx;
 			};
 			name = Release;
@@ -968,6 +1118,14 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		2F294B7B179224CA00355455 /* Build configuration list for PBXNativeTarget "MacMupen" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2F294B76179224CA00355455 /* Debug */,
+				2F294B77179224CA00355455 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
 		2F49510F1411019D00D2B2C1 /* Build configuration list for PBXProject "MacMupen64" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

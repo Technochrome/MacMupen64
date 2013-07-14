@@ -8,7 +8,7 @@
 
 #import "MALMainWindowController.h"
 #import "preferences.h"
-#import "MALMupenEngine.h"
+#import <MacMupen/MALMupenEngine.h>
 #import "MALPreferencesWindowController.h"
 #import "MALMupenRom.h"
 

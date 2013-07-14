@@ -9,14 +9,13 @@
 #import <Cocoa/Cocoa.h>
 #import "MALGameWindow.h"
 
-extern NSString * MALMupenEngineStarted;
-extern NSString * MALMupenEngineFinished;
+extern NSString * const MALMupenEngineStarted;
+extern NSString * const MALMupenEngineFinished;
 
 @class MALMupenRom,MALMupenCore;
-@interface MALMupenEngine : NSObject <MALGameWindowEventDelegate,NSWindowDelegate> {
+@interface MALMupenEngine : NSObject {
 	NSMutableArray * plugins;
 	NSWindowController * gameWindow;
-	NSUInteger modFlags;
 	BOOL isRunning, muted;
 	int volume;
 }

@@ -197,7 +197,7 @@ void fixSwap(m64p_rom_header * header) {
 		NSURL * appFolder = [self recentlyOpenedROMsDataURL];
 		NSArray * array = nil;
 		if([[NSFileManager defaultManager] fileExistsAtPath:[appFolder relativePath]]) {
-			id a = [appFolder relativePath];
+//			id a = [appFolder relativePath];
 //				array = [NSKeyedUnarchiver unarchiveObjectWithFile:a];
 			// MAKE THIS A FLAT FILE
 		}

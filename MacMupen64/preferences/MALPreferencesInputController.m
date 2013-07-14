@@ -14,7 +14,7 @@ BOOL (^isAvailableDevice)(MALInputDevice* );
 
 @implementation MALPreferencesInputController
 -(NSURL*) bindingProfilesURL {
-	return [[NSClassFromString(@"MALPreferences") applicationSupportFolder] URLByAppendingPathComponent:@"keyBindings.plist"];
+	return [getApplicationSupportFolder() URLByAppendingPathComponent:@"keyBindings.plist"];
 }
 -(id) init {
 	if ((self = [super init])) {
