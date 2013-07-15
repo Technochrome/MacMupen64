@@ -13,9 +13,9 @@
 +(NSSortDescriptor*) sortDescriptorWithKey:(NSString *)key ascending:(BOOL)ascending;
 @end
 
-@interface NSURL (MALBackporting)
--(NSURL*) URLByAppendingPathComponent:(NSString*)component;
-@end
+//@interface NSURL (MALBackporting)
+//-(NSURL*) URLByAppendingPathComponent:(NSString*)component;
+//@end
 
 /*
 @interface NSFileManager (MALBackporting)

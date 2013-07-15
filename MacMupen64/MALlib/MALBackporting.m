@@ -17,13 +17,13 @@
 @end
 
 
-@implementation NSURL (MALBackporting)
--(NSURL*) URLByAppendingPathComponent:(NSString*)component {
-	NSString * path = [self absoluteString];
-	path = [path stringByAppendingFormat:@"/%@",[component stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
-	return [NSURL URLWithString:path];
-}
-@end
+//@implementation NSURL (MALBackporting)
+//-(NSURL*) URLByAppendingPathComponent:(NSString*)component {
+//	NSString * path = [self absoluteString];
+//	path = [path stringByAppendingFormat:@"/%@",[component stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+//	return [NSURL URLWithString:path];
+//}
+//@end
 
 /*
 @implementation NSFileManager (MALBackporting)

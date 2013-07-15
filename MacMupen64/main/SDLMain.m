@@ -9,6 +9,8 @@
 int main (int argc, char **argv) {
 	NSAutoreleasePool * pl = [[NSAutoreleasePool alloc] init];
 	
+	initializePaths();
+	
 //	LiDTS_CopyTranslateHotKey(0);
 	
 	NSMutableDictionary * defaultValues = [NSMutableDictionary dictionary];

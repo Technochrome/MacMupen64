@@ -379,31 +379,6 @@ EXPORT void CALL ControllerCommand(int Control, unsigned char *Command)
                 unsigned int dwAddress = (Command[3] << 8) + (Command[4] & 0xE0);
               if (dwAddress == PAK_IO_RUMBLE && *Data)
                     DebugMessage(M64MSG_VERBOSE, "Triggering rumble pack.");
-#ifdef __linux__
-                struct input_event play;
-                if( dwAddress == PAK_IO_RUMBLE && controller[Control].event_joystick != 0)
-                {
-                    if( *Data )
-                    {
-                        play.type = EV_FF;
-                        play.code = ffeffect[Control].id;
-                        play.value = 1;
-
-                        if (write(controller[Control].event_joystick, (const void*) &play, sizeof(play)) == -1)
-                            perror("Error starting rumble effect");
-
-                    }
-                    else
-                    {
-                        play.type = EV_FF;
-                        play.code = ffeffect[Control].id;
-                        play.value = 0;
-
-                        if (write(controller[Control].event_joystick, (const void*) &play, sizeof(play)) == -1)
-                            perror("Error stopping rumble effect");
-                    }
-                }
-#endif //__linux__
                 Data[32] = DataCRC( Data, 32 );
             }
             break;
@@ -433,48 +408,52 @@ EXPORT void CALL ControllerCommand(int Control, unsigned char *Command)
             the controller state.
   output:   none
 *******************************************************************/
-EXPORT void CALL GetKeys( int Control, BUTTONS *Keys )
+EXPORT void CALL GetKeys( int controllerNumber, BUTTONS *Keys )
 {
     static int mousex_residual = 0;
     static int mousey_residual = 0;
     int b, axis_val;
     SDL_Event event;
     unsigned char mstate;
+	int Control = controllerNumber;
+	
+	NSArray * controllers = [[MALMupenEngine shared] controllerBindings];
+	
+	Keys->Value = 0;
+	
+	if(controllerNumber < [controllers count]) {
+		MALInputDevice * controller = controllers[controllerNumber];
+		
+		NSArray * buttons = @[@"dpad.right",@"dpad.left",@"dpad.down",@"dpad.up",
+						@"start",@"z",@"b",@"a",
+						@"c.right",@"c.left",@"c.down",@"c.up",
+						@"r",@"l"];
+		
+		for(int button = 0; button < [buttons count]; button++) {
+			if([controller.elements[buttons[button]] boolValue])
+				Keys->Value |= button_bits[button];
+		}
+		
+		for(NSArray * joy in @[@[@"joy.x", @"controller.joy.up", @"controller.joy.down"], @[@"joy.y", @"controller.joy.left", @"controller.joy.right"]]) {
+			if(controller.elements[joy[0]]) {
+//				float 
+			}
+		}
+	} else {
+		Keys->Value = 0;
+	}
+	
+	return;
 
     // Handle keyboard input first
-    doSdlKeys(SDL_GetKeyState(NULL));
-    doSdlKeys(myKeyState);
+//    doSdlKeys(SDL_GetKeyState(NULL));
+//    doSdlKeys(myKeyState);
 
     // read joystick state
-    SDL_JoystickUpdate();
+//    SDL_JoystickUpdate();
 
     if( controller[Control].device >= 0 )
     {
-        for( b = 0; b < 16; b++ )
-        {
-            if( controller[Control].button[b].button >= 0 )
-                if( SDL_JoystickGetButton( controller[Control].joystick, controller[Control].button[b].button ) )
-                    controller[Control].buttons.Value |= button_bits[b];
-
-            if( controller[Control].button[b].axis >= 0 )
-            {
-                int deadzone = controller[Control].button[b].axis_deadzone;
-                axis_val = SDL_JoystickGetAxis( controller[Control].joystick, controller[Control].button[b].axis );
-                if (deadzone < 0)
-                    deadzone = 6000; /* default */
-                if( (controller[Control].button[b].axis_dir < 0) && (axis_val <= -deadzone) )
-                    controller[Control].buttons.Value |= button_bits[b];
-                else if( (controller[Control].button[b].axis_dir > 0) && (axis_val >= deadzone) )
-                    controller[Control].buttons.Value |= button_bits[b];
-            }
-
-            if( controller[Control].button[b].hat >= 0 )
-            {
-                if( controller[Control].button[b].hat_pos > 0 )
-                    if( SDL_JoystickGetHat( controller[Control].joystick, controller[Control].button[b].hat ) & controller[Control].button[b].hat_pos )
-                        controller[Control].buttons.Value |= button_bits[b];
-            }
-        }
         for( b = 0; b < 2; b++ )
         {
             /* from the N64 func ref: The 3D Stick data is of type signed char and in the range between -80 and +80 */
@@ -585,148 +564,12 @@ EXPORT void CALL GetKeys( int Control, BUTTONS *Keys )
 #endif
     *Keys = controller[Control].buttons;
 
-    /* handle mempack / rumblepak switching (only if rumble is active on joystick) */
-#ifdef __linux__
-    if (controller[Control].event_joystick != 0)
-    {
-        struct input_event play;
-        static unsigned int SwitchPackTime[4] = {0, 0, 0, 0}, SwitchPackType[4] = {0, 0, 0, 0};
-        // when the user switches packs, we should mimick the act of removing 1 pack, and then inserting another 1 second later
-        if (controller[Control].buttons.Value & button_bits[14])
-        {
-            SwitchPackTime[Control] = SDL_GetTicks();         // time at which the 'switch pack' command was given
-            SwitchPackType[Control] = PLUGIN_MEMPAK;          // type of new pack to insert
-            controller[Control].control->Plugin = PLUGIN_NONE;// remove old pack
-            play.type = EV_FF;
-            play.code = ffweak[Control].id;
-            play.value = 1;
-            if (write(controller[Control].event_joystick, (const void*) &play, sizeof(play)) == -1)
-                perror("Error starting rumble effect");
-        }
-        if (controller[Control].buttons.Value & button_bits[15])
-        {
-            SwitchPackTime[Control] = SDL_GetTicks();         // time at which the 'switch pack' command was given
-            SwitchPackType[Control] = PLUGIN_RAW;             // type of new pack to insert
-            controller[Control].control->Plugin = PLUGIN_NONE;// remove old pack
-            play.type = EV_FF;
-            play.code = ffstrong[Control].id;
-            play.value = 1;
-            if (write(controller[Control].event_joystick, (const void*) &play, sizeof(play)) == -1)
-                perror("Error starting rumble effect");
-        }
-        // handle inserting new pack if the time has arrived
-        if (SwitchPackTime[Control] != 0 && (SDL_GetTicks() - SwitchPackTime[Control]) >= 1000)
-        {
-            controller[Control].control->Plugin = SwitchPackType[Control];
-            SwitchPackTime[Control] = 0;
-        }
-    }
-#endif /* __linux__ */
 
     controller[Control].buttons.Value = 0;
 }
 
 static void InitiateRumble(int cntrl)
 {
-#ifdef __linux__
-    DIR* dp;
-    struct dirent* ep;
-    unsigned long features[4];
-    char temp[128];
-    char temp2[128];
-    int iFound = 0;
-
-    controller[cntrl].event_joystick = 0;
-
-    sprintf(temp,"/sys/class/input/js%d/device", controller[cntrl].device);
-    dp = opendir(temp);
-
-    if(dp==NULL)
-        return;
-
-    while ((ep=readdir(dp)))
-        {
-        if (strncmp(ep->d_name, "event",5)==0)
-            {
-            sprintf(temp, "/dev/input/%s", ep->d_name);
-            iFound = 1;
-            break;
-            }
-        else if(strncmp(ep->d_name,"input:event", 11)==0)
-            {
-            sscanf(ep->d_name, "input:%s", temp2);
-            sprintf(temp, "/dev/input/%s", temp2);
-            iFound = 1;
-            break;
-            }
-        else if(strncmp(ep->d_name,"input:input", 11)==0)
-            {
-            strcat(temp, "/");
-            strcat(temp, ep->d_name);
-            closedir (dp);
-            dp = opendir(temp);
-            if(dp==NULL)
-                return;
-            }
-       }
-
-    closedir(dp);
-
-    if (!iFound)
-    {
-        DebugMessage(M64MSG_WARNING, "Couldn't find input event for rumble support.");
-        return;
-    }
-
-    controller[cntrl].event_joystick = open(temp, O_RDWR);
-    if(controller[cntrl].event_joystick==-1)
-        {
-        DebugMessage(M64MSG_WARNING, "Couldn't open device file '%s' for rumble support.", temp);
-        controller[cntrl].event_joystick = 0;
-        return;
-        }
-
-    if(ioctl(controller[cntrl].event_joystick, EVIOCGBIT(EV_FF, sizeof(unsigned long) * 4), features)==-1)
-        {
-        DebugMessage(M64MSG_WARNING, "Linux kernel communication failed for force feedback (rumble).\n");
-        controller[cntrl].event_joystick = 0;
-        return;
-        }
-
-    if(!test_bit(FF_RUMBLE, features))
-        {
-        DebugMessage(M64MSG_WARNING, "No rumble supported on N64 joystick #%i", cntrl + 1);
-        controller[cntrl].event_joystick = 0;
-        return;
-        }
-
-    ffeffect[cntrl].type = FF_RUMBLE;
-    ffeffect[cntrl].id = -1;
-    ffeffect[cntrl].u.rumble.strong_magnitude = 0xFFFF;
-    ffeffect[cntrl].u.rumble.weak_magnitude = 0xFFFF;
-
-    ioctl(controller[cntrl].event_joystick, EVIOCSFF, &ffeffect[cntrl]);
-
-    ffstrong[cntrl].type = FF_RUMBLE;
-    ffstrong[cntrl].id = -1;
-    ffstrong[cntrl].u.rumble.strong_magnitude = 0xFFFF;
-    ffstrong[cntrl].u.rumble.weak_magnitude = 0x0000;
-    ffstrong[cntrl].replay.length = 500;
-    ffstrong[cntrl].replay.delay = 0;
-
-    ioctl(controller[cntrl].event_joystick, EVIOCSFF, &ffstrong[cntrl]);
-
-    ffweak[cntrl].type = FF_RUMBLE;
-    ffweak[cntrl].id = -1;
-    ffweak[cntrl].u.rumble.strong_magnitude = 0x0000;
-    ffweak[cntrl].u.rumble.weak_magnitude = 0xFFFF;
-    ffweak[cntrl].replay.length = 500;
-    ffweak[cntrl].replay.delay = 0;
-
-    ioctl(controller[cntrl].event_joystick, EVIOCSFF, &ffweak[cntrl]);
-
-    DebugMessage(M64MSG_INFO, "Rumble activated on N64 joystick #%i", cntrl + 1);
-#endif /* __linux__ */
 }
 
 /******************************************************************
@@ -825,7 +668,6 @@ EXPORT void CALL RomClosed(void)
 *******************************************************************/
 EXPORT int CALL RomOpen(void)
 {
-	NSArray * controllerBindings = [[MALMupenEngine shared] controllerBindings];
 	
     int i;
 

@@ -57,9 +57,6 @@ void fixSwap(m64p_rom_header * header) {
 @implementation MALMupenRom
 #pragma mark Accessors and Setters
 @synthesize gameTitle,MD5,status,players,rumble,netplay,formattedInfo,path,isUsable,image,lastOpened;
-+(NSURL*) recentlyOpenedROMsDataURL {
-	return [getApplicationSupportFolder() URLByAppendingPathComponent:@"Recently Opened ROMs.xml"];
-}
 
 -(NSData*) contents {
 	if(contents==nil) {
@@ -75,7 +72,7 @@ void fixSwap(m64p_rom_header * header) {
 		[[NSNotificationCenter defaultCenter] postNotificationName:MALMupenRomNewROMOpened object:self];
 	}
 	lastOpened = [[NSDate date] retain];
-	[NSKeyedArchiver archiveRootObject:recentlyOpenedROMS toFile:[[MALMupenRom recentlyOpenedROMsDataURL] relativePath]];
+	[NSKeyedArchiver archiveRootObject:recentlyOpenedROMS toFile:[MALRecentlyOpenedRomsFile relativePath]];
 	[self didChangeValueForKey:@"lastOpened"];
 	return contents;
 }
@@ -194,7 +191,7 @@ void fixSwap(m64p_rom_header * header) {
 #pragma mark recently opened roms
 +(NSArray*) recentlyOpenedROMs {
 	if(recentlyOpenedROMS==nil) {
-		NSURL * appFolder = [self recentlyOpenedROMsDataURL];
+		NSURL * appFolder = MALRecentlyOpenedRomsFile;
 		NSArray * array = nil;
 		if([[NSFileManager defaultManager] fileExistsAtPath:[appFolder relativePath]]) {
 //			id a = [appFolder relativePath];

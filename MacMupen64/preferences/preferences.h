@@ -20,7 +20,10 @@ extern NSString * const MALDefaultPluginIconPathsKey;
 extern NSString * const MALApplicationName;
 extern NSString * const MALDefaultKeyBindings;
 
-extern NSURL * getApplicationSupportFolder(void);
+extern NSURL * MALKeybindingsFile;
+extern NSURL * MALRecentlyOpenedRomsFile;
+
+extern void initializePaths(void);
 
 // Plugin strings
 extern NSString * const RSPString;

@@ -22,6 +22,9 @@ NSString * const MALDefaultKeyBindings = @"KeyBindings";
 
 NSString * const MALApplicationName = @"MacMupen64 Plus";
 
+NSURL * MALKeybindingsFile;
+NSURL * MALRecentlyOpenedRomsFile;
+
 
 NSString * const RSPString = @"RSP";
 NSString * const VideoString = @"Video";
@@ -29,10 +32,8 @@ NSString * const AudioString = @"Audio";
 NSString * const InputString = @"Input";
 NSString * const CoreString = @"Core";
 
-NSURL * getApplicationSupportFolder(void) {
-	static NSURL * supportFolder = nil;
-	if(supportFolder) return supportFolder;
-	
+void initializePaths(void) {
+	NSURL * supportFolder = nil;
 	NSFileManager *fileManager = [NSFileManager defaultManager];
 	supportFolder = [fileManager URLForDirectory:NSApplicationSupportDirectory inDomain:NSUserDomainMask appropriateForURL:nil create:YES error:NULL];
 	supportFolder = [supportFolder URLByAppendingPathComponent:MALApplicationName];
@@ -40,5 +41,7 @@ NSURL * getApplicationSupportFolder(void) {
 	if ([fileManager fileExistsAtPath:folderPath] == NO) {
 		[fileManager createDirectoryAtPath:folderPath withIntermediateDirectories:YES attributes:nil error:NULL];
 	}
-	return [supportFolder retain];
+	
+	MALKeybindingsFile = [[supportFolder URLByAppendingPathComponent:@"keyBindings.plist"] retain];
+	MALRecentlyOpenedRomsFile = [[supportFolder URLByAppendingPathComponent:@"Recently Opened ROMs.plist"] retain];
 }

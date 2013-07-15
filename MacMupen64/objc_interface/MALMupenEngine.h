@@ -8,13 +8,14 @@
 
 #import <Cocoa/Cocoa.h>
 #import "MALGameWindow.h"
+#import <MALInput/MALInput.h>
 
 extern NSString * const MALMupenEngineStarted;
 extern NSString * const MALMupenEngineFinished;
 
 @class MALMupenRom,MALMupenCore;
 @interface MALMupenEngine : NSObject {
-	NSMutableArray * plugins;
+	NSMutableArray * plugins,*controllerBindings;
 	NSWindowController * gameWindow;
 	BOOL isRunning, muted;
 	int volume;
@@ -27,6 +28,8 @@ extern NSString * const MALMupenEngineFinished;
 
 @property (readwrite) BOOL muted;
 @property (readwrite) int volume;
+
++(MALInputDevice*) n64Controller;
 
 -(void) runWithRom:(MALMupenRom*)rom;
 -(void) takeScreenShot;

@@ -33,6 +33,7 @@
 		2F294B9217922C1000355455 /* libSDL-1.2.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F49519B1411032A00D2B2C1 /* libSDL-1.2.0.dylib */; };
 		2F294B9317922C1800355455 /* libSDL-1.2.0.dylib in Resources */ = {isa = PBXBuildFile; fileRef = 2F49519B1411032A00D2B2C1 /* libSDL-1.2.0.dylib */; };
 		2F294B94179230D500355455 /* MacMupen.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F294B6A179224C900355455 /* MacMupen.framework */; };
+		2F294B97179346CE00355455 /* MALInput.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F41A31A175FCD920003B333 /* MALInput.framework */; };
 		2F2B7C88176EAB250001D2A5 /* Volume33PercentTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 2F2B7C83176EAB250001D2A5 /* Volume33PercentTemplate.pdf */; };
 		2F2B7C89176EAB250001D2A5 /* Volume66PercentTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 2F2B7C84176EAB250001D2A5 /* Volume66PercentTemplate.pdf */; };
 		2F2B7C8A176EAB250001D2A5 /* Volume100PercentTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 2F2B7C85176EAB250001D2A5 /* Volume100PercentTemplate.pdf */; };
@@ -60,7 +61,6 @@
 		2F4951B81411032A00D2B2C1 /* mupen64plus-rsp-hle.dylib in Resources */ = {isa = PBXBuildFile; fileRef = 2F49519F1411032A00D2B2C1 /* mupen64plus-rsp-hle.dylib */; };
 		2F4951BB1411032A00D2B2C1 /* mupen64plus-video-rice.dylib in Resources */ = {isa = PBXBuildFile; fileRef = 2F4951A21411032A00D2B2C1 /* mupen64plus-video-rice.dylib */; };
 		2F4951BD1411032A00D2B2C1 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2F4951A41411032A00D2B2C1 /* InfoPlist.strings */; };
-		2F4951BE1411032A00D2B2C1 /* mupen64plus-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2F4951A51411032A00D2B2C1 /* mupen64plus-Info.plist */; };
 		2F4951BF1411032A00D2B2C1 /* mainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2F4951A61411032A00D2B2C1 /* mainWindow.xib */; };
 		2F4951C01411032A00D2B2C1 /* Preferences.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2F4951A71411032A00D2B2C1 /* Preferences.xib */; };
 		2F4951C11411032A00D2B2C1 /* GameWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2F4951A81411032A00D2B2C1 /* GameWindow.xib */; };
@@ -261,7 +261,6 @@
 		2F49519F1411032A00D2B2C1 /* mupen64plus-rsp-hle.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.bundle"; path = "mupen64plus-rsp-hle.dylib"; sourceTree = "<group>"; };
 		2F4951A21411032A00D2B2C1 /* mupen64plus-video-rice.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.bundle"; path = "mupen64plus-video-rice.dylib"; sourceTree = "<group>"; };
 		2F4951A41411032A00D2B2C1 /* InfoPlist.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = InfoPlist.strings; sourceTree = "<group>"; };
-		2F4951A51411032A00D2B2C1 /* mupen64plus-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "mupen64plus-Info.plist"; sourceTree = "<group>"; };
 		2F4951A61411032A00D2B2C1 /* mainWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = mainWindow.xib; sourceTree = "<group>"; };
 		2F4951A71411032A00D2B2C1 /* Preferences.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Preferences.xib; sourceTree = "<group>"; };
 		2F4951A81411032A00D2B2C1 /* GameWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GameWindow.xib; sourceTree = "<group>"; };
@@ -289,6 +288,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2F294B97179346CE00355455 /* MALInput.framework in Frameworks */,
 				2F294B6B179224C900355455 /* Cocoa.framework in Frameworks */,
 				2F294B9217922C1000355455 /* libSDL-1.2.0.dylib in Frameworks */,
 			);
@@ -428,7 +428,6 @@
 				2F6663E516FFFF0F00AD360B /* n64ControllerBig.png */,
 				2FB3889916F2A1740023CAAF /* 09494148_64Controller_answer_1_small.jpeg */,
 				2F4951A41411032A00D2B2C1 /* InfoPlist.strings */,
-				2F4951A51411032A00D2B2C1 /* mupen64plus-Info.plist */,
 				2F4951211411019D00D2B2C1 /* MacMupen64-Info.plist */,
 				2F4951221411019D00D2B2C1 /* InfoPlist.strings */,
 				2F4951281411019D00D2B2C1 /* Credits.rtf */,
@@ -779,7 +778,6 @@
 				2F4951B81411032A00D2B2C1 /* mupen64plus-rsp-hle.dylib in Resources */,
 				2F4951BB1411032A00D2B2C1 /* mupen64plus-video-rice.dylib in Resources */,
 				2F4951BD1411032A00D2B2C1 /* InfoPlist.strings in Resources */,
-				2F4951BE1411032A00D2B2C1 /* mupen64plus-Info.plist in Resources */,
 				2FB388A416F2AC980023CAAF /* MALInput.framework in Resources */,
 				2F4951BF1411032A00D2B2C1 /* mainWindow.xib in Resources */,
 				2F4951C01411032A00D2B2C1 /* Preferences.xib in Resources */,
@@ -936,6 +934,7 @@
 				GCC_PREFIX_HEADER = "MacMupen/MacMupen-Prefix.pch";
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				INFOPLIST_FILE = "MacMupen/MacMupen-Info.plist";
+				INSTALL_PATH = " @executable_path/../Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/resources/plugins\"",
@@ -972,6 +971,7 @@
 				GCC_PREFIX_HEADER = "MacMupen/MacMupen-Prefix.pch";
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				INFOPLIST_FILE = "MacMupen/MacMupen-Info.plist";
+				INSTALL_PATH = " @executable_path/../Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/resources/plugins\"",

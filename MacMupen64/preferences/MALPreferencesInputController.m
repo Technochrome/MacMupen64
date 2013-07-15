@@ -8,19 +8,17 @@
 
 #import "MALPreferencesInputController.h"
 #import <MALInput/MALInput.h>
+#import <MacMupen/MALMupenEngine.h>
 #import "preferences.h"
 
 BOOL (^isAvailableDevice)(MALInputDevice* );
 
 @implementation MALPreferencesInputController
--(NSURL*) bindingProfilesURL {
-	return [getApplicationSupportFolder() URLByAppendingPathComponent:@"keyBindings.plist"];
-}
 -(id) init {
 	if ((self = [super init])) {
 		redDefaultKeys = [[NSMutableDictionary alloc] init];
 		bindingKeys = [[NSMutableDictionary alloc] init];
-		bindingProfiles = [[NSMutableDictionary alloc] initWithContentsOfURL:[self bindingProfilesURL]];
+		bindingProfiles = [[NSMutableDictionary alloc] initWithContentsOfURL:MALKeybindingsFile];
 		if(!bindingProfiles) bindingProfiles = [[NSMutableDictionary alloc] init];
 		isAvailableDevice = [^BOOL(MALInputDevice * device) {
 			if([device.name isEqualToString:@"Mouse"]) return NO;
@@ -61,7 +59,7 @@ BOOL (^isAvailableDevice)(MALInputDevice* );
 		[bindingKeys[key] setAttributedTitle:redDefaultKeys[key]];
 	}
 	
-	currentProfile = [[MALInputProfile profileWithOutputDevice:[self n64Controller]] retain];
+	currentProfile = [[MALInputProfile profileWithOutputDevice:[MALMupenEngine n64Controller]] retain];
 	[currentProfile loadBindings:bindingProfiles[sd.name]];
 	
 #define titleForKey(key) [MALInputElement elementIDFromFullID:[currentProfile inputIDForKey:key]]
@@ -167,7 +165,7 @@ BOOL (^isAvailableDevice)(MALInputDevice* );
 			[currentProfile setInput:el forKey:inputKey];
 			
 			bindingProfiles[selectedDevice.name] = [currentProfile bindingsByID];
-			[bindingProfiles writeToURL:[self bindingProfilesURL] atomically:YES];
+			[bindingProfiles writeToURL:MALKeybindingsFile atomically:YES];
 			
 			currentKeyBinder = nil;
 			[[MALInputCenter shared] setInputListener:nil];

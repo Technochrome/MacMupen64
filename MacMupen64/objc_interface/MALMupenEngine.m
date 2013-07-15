@@ -24,9 +24,14 @@ NSString *const MALMupenEngineStarted = @"MALMupenEngine Started Running";
 
 MALMupenEngine * _shared = nil;
 
+@interface MALMupenEngine()
+@property (readwrite) NSArray * controllerBindings;
+
+@end
+
 @implementation MALMupenEngine
 #pragma mark Accessors and Setters
-@synthesize plugins,mainROM,isRunning;
+@synthesize plugins,mainROM,isRunning,controllerBindings=controllerBindings;
 -(void) setIsRunning:(BOOL)value {
 	if(value==isRunning) return; //Don't post a notification if it doesn't change
 	
@@ -111,6 +116,21 @@ MALMupenEngine * _shared = nil;
 -(void) detachROM {
 	(*CoreDoCommand)(M64CMD_ROM_CLOSE, 0,NULL);
 }
+-(void) attachControllers {
+	MALInputCenter * inputCenter = [MALInputCenter shared];
+	NSArray * availableControllers = [[inputCenter gamepads] arrayByAddingObject:[inputCenter keyboard]];
+	NSDictionary * bindingProfiles = [[NSMutableDictionary alloc] initWithContentsOfURL:MALKeybindingsFile];
+	self.controllerBindings = [NSMutableArray array];
+	
+	for (MALInputDevice * device in availableControllers) {
+		MALInputProfile * profile = [MALInputProfile profileWithOutputDevice:[MALMupenEngine n64Controller]];
+		[profile loadBindings:bindingProfiles[device.name]];
+		NSLog(@"%@",device);
+		MALInputDevice * outputDevice = [[MALInputCenter shared] addDeviceAtPath:[NSString stringWithFormat:@"controller(%d)",(int)[controllerBindings count]] usingProfile:profile withDevices:@[device]];
+		[controllerBindings addObject:outputDevice];
+	}
+}
+
 -(void) spawnInThreadWithROM:(MALMupenRom*)rom {
 	NSAutoreleasePool * pl = [[NSAutoreleasePool alloc] init];
 	[self setIsRunning:YES];
@@ -118,6 +138,7 @@ MALMupenEngine * _shared = nil;
 	(*ConfigListSections)(NULL,configCallback);
 	[self attachROM:rom];
 	[self attachPluginsToCore];
+	[self attachControllers];
 	TestOtherMain();
 	[self detachPluginsFromCore];
 	[self detachROM];
@@ -126,6 +147,22 @@ MALMupenEngine * _shared = nil;
 	[pl drain];
 }
 #pragma mark key events
++(MALInputDevice*) n64Controller {
+	static MALInputDevice * device = nil;
+	if(device) return device;
+	device = [[MALInputDevice alloc] init];
+	
+#define directional(name) name ".up" , name ".down", name ".left", name ".right"
+	for (NSString * path in @[@"a",@"b", @"l",@"r",@"z", @"start",  directional(@"c"), directional(@"dpad"), directional(@"joy")])
+		[device setElement:[MALOutputElement boolElement] forPath:path];
+#undef directional
+	
+	[device setElement:[MALOutputElement joyElement] forPath:@"joy.x"];
+	[device setElement:[MALOutputElement joyElement] forPath:@"joy.y"];
+	
+	return device;
+}
+
 -(void) windowWillClose:(NSNotification *)notification {
 	(*CoreDoCommand)(M64CMD_STOP,0,0);
 }
