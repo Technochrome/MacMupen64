@@ -400,6 +400,8 @@ EXPORT void CALL ControllerCommand(int Control, unsigned char *Command)
         }
 }
 
+const int n64joystickRange = 79;
+
 /******************************************************************
   Function: GetKeys
   Purpose:  To get the current state of the controllers buttons.
@@ -428,17 +430,19 @@ EXPORT void CALL GetKeys( int controllerNumber, BUTTONS *Keys )
 						@"start",@"z",@"b",@"a",
 						@"c.right",@"c.left",@"c.down",@"c.up",
 						@"r",@"l"];
+		NSDictionary * el = controller.elements;
 		
 		for(int button = 0; button < [buttons count]; button++) {
-			if([controller.elements[buttons[button]] boolValue])
+			if([el[buttons[button]] boolValue])
 				Keys->Value |= button_bits[button];
 		}
 		
-		for(NSArray * joy in @[@[@"joy.x", @"controller.joy.up", @"controller.joy.down"], @[@"joy.y", @"controller.joy.left", @"controller.joy.right"]]) {
-			if(controller.elements[joy[0]]) {
-//				float 
-			}
-		}
+#define joy(el) @"joy." el
+#define CLAMP(x, low, high) MIN(MAX(x,low),high)
+		Keys->X_AXIS = n64joystickRange * CLAMP([el[joy(@"right")] floatValue] - [el[joy(@"left")] floatValue],-1,1);
+		Keys->Y_AXIS = n64joystickRange * CLAMP([el[joy(   @"up")] floatValue] - [el[joy(@"down")] floatValue],-1,1);
+		
+#undef joy
 	} else {
 		Keys->Value = 0;
 	}

@@ -68,15 +68,6 @@ BOOL (^isAvailableDevice)(MALInputDevice* );
 		[bindingKeys[[NSString stringWithFormat:@"controller.%@",key]]
 		 setTitle:titleForKey(key)];
 	}
-	
-	for(NSArray * joy in @[@[@"joy.x", @"controller.joy.up", @"controller.joy.down"], @[@"joy.y", @"controller.joy.left", @"controller.joy.right"]]) {
-		if([[currentProfile boundKeys] containsObject:joy[0]]) {
-			[bindingKeys[joy[1]] setTitle:titleForKey(joy[0])];
-			[bindingKeys[joy[2]] setHidden:YES];
-		} else {
-			[bindingKeys[joy[2]] setHidden:NO];
-		}
-	}
 }
 
 -(void) awakeFromNib {
@@ -137,28 +128,6 @@ BOOL (^isAvailableDevice)(MALInputDevice* );
 			if(! [el boolValue]) return;
 			
 			NSString * inputKey = [currentKeyBinder.identifier stringByReplacingOccurrencesOfString:@"controller." withString:@""];
-			
-			// Handle the joystick binders
-			if([currentKeyBinder.identifier rangeOfString:@"joy"].location != NSNotFound) {
-				BOOL hidden = [el isBoolean] ? NO : YES;
-				NSString * dominantKey, * subKey, *floatKey;
-				if([currentKeyBinder.identifier hasSuffix:@"up"] || [currentKeyBinder.identifier hasSuffix:@"down"]) {
-					dominantKey = @"controller.joy.up";
-					subKey = @"controller.joy.down";
-					floatKey = @"joy.y";
-				} else {
-					dominantKey = @"controller.joy.left";
-					subKey = @"controller.joy.right";
-					floatKey = @"joy.x";
-				}
-				[bindingKeys[subKey] setHidden:hidden];
-				if(hidden == YES) {
-					currentKeyBinder = bindingKeys[dominantKey];
-					inputKey = floatKey;
-				} else {
-					[currentProfile setInput:nil forKey:floatKey];
-				}
-			}
 			
 			[currentKeyBinder setTitle:[el elementID]];
 			[currentKeyBinder setState:0];

@@ -153,12 +153,11 @@ MALMupenEngine * _shared = nil;
 	device = [[MALInputDevice alloc] init];
 	
 #define directional(name) name ".up" , name ".down", name ".left", name ".right"
-	for (NSString * path in @[@"a",@"b", @"l",@"r",@"z", @"start",  directional(@"c"), directional(@"dpad"), directional(@"joy")])
+	for (NSString * path in @[@"a",@"b", @"l",@"r",@"z", @"start",  directional(@"c"), directional(@"dpad")])
 		[device setElement:[MALOutputElement boolElement] forPath:path];
+	for (NSString * path in @[directional(@"joy")])
+		[device setElement:[MALOutputElement joyElement] forPath:path];
 #undef directional
-	
-	[device setElement:[MALOutputElement joyElement] forPath:@"joy.x"];
-	[device setElement:[MALOutputElement joyElement] forPath:@"joy.y"];
 	
 	return device;
 }

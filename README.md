@@ -1,0 +1,1 @@
+Right now I'm having trouble building a standalone version (framework search paths), but soon I'll have a link up for downloading.
