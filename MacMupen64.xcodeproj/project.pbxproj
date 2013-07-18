@@ -934,7 +934,7 @@
 				GCC_PREFIX_HEADER = "MacMupen/MacMupen-Prefix.pch";
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				INFOPLIST_FILE = "MacMupen/MacMupen-Info.plist";
-				INSTALL_PATH = " @executable_path/../Frameworks";
+				INSTALL_PATH = "@executable_path/../Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/resources/plugins\"",
@@ -971,7 +971,7 @@
 				GCC_PREFIX_HEADER = "MacMupen/MacMupen-Prefix.pch";
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				INFOPLIST_FILE = "MacMupen/MacMupen-Info.plist";
-				INSTALL_PATH = " @executable_path/../Frameworks";
+				INSTALL_PATH = "@executable_path/../Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/resources/plugins\"",

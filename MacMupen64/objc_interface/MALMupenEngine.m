@@ -126,7 +126,7 @@ MALMupenEngine * _shared = nil;
 		MALInputProfile * profile = [MALInputProfile profileWithOutputDevice:[MALMupenEngine n64Controller]];
 		[profile loadBindings:bindingProfiles[device.name]];
 		NSLog(@"%@",device);
-		MALInputDevice * outputDevice = [[MALInputCenter shared] addDeviceAtPath:[NSString stringWithFormat:@"controller(%d)",(int)[controllerBindings count]] usingProfile:profile withDevices:@[device]];
+		MALInputDevice * outputDevice = [[MALInputCenter shared] deviceUsingProfile:profile withDevices:@[device]];
 		[controllerBindings addObject:outputDevice];
 	}
 }

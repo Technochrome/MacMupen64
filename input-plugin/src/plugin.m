@@ -238,7 +238,7 @@ EXPORT void CALL ControllerCommand(int Control, unsigned char *Command)
         }
 }
 
-const int n64joystickRange = 79;
+const int n64joystickRange = 80;
 
 /******************************************************************
   Function: GetKeys
