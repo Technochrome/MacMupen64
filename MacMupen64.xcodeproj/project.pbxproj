@@ -1125,6 +1125,7 @@
 				2F294B77179224CA00355455 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		2F49510F1411019D00D2B2C1 /* Build configuration list for PBXProject "MacMupen64" */ = {
 			isa = XCConfigurationList;
