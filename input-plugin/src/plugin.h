@@ -24,8 +24,6 @@
 #ifndef __PLUGIN_H__
 #define __PLUGIN_H__
 
-#include <SDL/SDL.h>
-
 #define M64P_PLUGIN_PROTOTYPES 1
 #include "m64p_plugin.h"
 #include "m64p_config.h"
@@ -44,93 +42,8 @@
 
 #define PAK_IO_RUMBLE       0xC000      // the address where rumble-commands are sent to
 
-enum EButton
-{
-    R_DPAD          = 0,
-    L_DPAD,
-    D_DPAD,
-    U_DPAD,
-    START_BUTTON,
-    Z_TRIG,
-    B_BUTTON,
-    A_BUTTON,
-    R_CBUTTON,
-    L_CBUTTON,
-    D_CBUTTON,
-    U_CBUTTON,
-    R_TRIG,
-    L_TRIG,
-    MEMPAK,
-    RUMBLEPAK,
-    X_AXIS,
-    Y_AXIS,
-    NUM_BUTTONS
-};
-
-typedef struct
-{
-    int button;         // button index; -1 if notassigned
-    SDLKey key;         // sdl keysym; SDLK_UNKNOWN if not assigned
-    int axis, axis_dir; // aixs + direction (i.e. 0, 1 = X Axis +; 0, -1 = X Axis -); -1 if notassigned
-    int axis_deadzone;  // -1 for default, or >= 0 for custom value
-    int hat, hat_pos;   // hat + hat position; -1 if not assigned
-    int mouse;          // mouse button
-} SButtonMap;
-
-typedef struct
-{
-    int button_a, button_b;         // up/down or left/right; -1 if not assigned
-    SDLKey key_a, key_b;            // up/down or left/right; SDLK_UNKNOWN if not assigned
-    int axis_a, axis_b;             // axis index; -1 if not assigned
-    int axis_dir_a, axis_dir_b;     // direction (1 = X+, 0, -1 = X-)
-    int hat, hat_pos_a, hat_pos_b;  // hat + hat position up/down and left/right; -1 if not assigned
-} SAxisMap;
-
-typedef struct
-{
-    CONTROL *control;               // pointer to CONTROL struct in Core library
-    BUTTONS buttons;
-
-    // mappings
-    SButtonMap    button[16];       // 14 buttons; in the order of EButton + mempak/rumblepak switches
-    SAxisMap      axis[2];          // 2 axis
-    int           device;           // joystick device; -1 = keyboard; -2 = none
-    int           mouse;            // mouse enabled: 0 = no; 1 = yes
-    SDL_Joystick *joystick;         // SDL joystick device
-    int           event_joystick;   // the /dev/input/eventX device for force feeback
-    int           axis_deadzone[2]; // minimum absolute value before analog movement is recognized
-    int           axis_peak[2];     // highest analog value returned by SDL, used for scaling
-    float         mouse_sens[2];    // mouse sensitivity
-} SController;
-
-/* global data definitions */
-extern SController controller[4];   // 4 controllers
-
 /* global function definitions */
 extern void DebugMessage(int level, const char *message, ...);
-
-/* declarations of pointers to Core config functions */
-extern ptr_ConfigListSections     ConfigListSections;
-extern ptr_ConfigOpenSection      ConfigOpenSection;
-extern ptr_ConfigDeleteSection    ConfigDeleteSection;
-extern ptr_ConfigListParameters   ConfigListParameters;
-extern ptr_ConfigSaveFile         ConfigSaveFile;
-extern ptr_ConfigSetParameter     ConfigSetParameter;
-extern ptr_ConfigGetParameter     ConfigGetParameter;
-extern ptr_ConfigGetParameterHelp ConfigGetParameterHelp;
-extern ptr_ConfigSetDefaultInt    ConfigSetDefaultInt;
-extern ptr_ConfigSetDefaultFloat  ConfigSetDefaultFloat;
-extern ptr_ConfigSetDefaultBool   ConfigSetDefaultBool;
-extern ptr_ConfigSetDefaultString ConfigSetDefaultString;
-extern ptr_ConfigGetParamInt      ConfigGetParamInt;
-extern ptr_ConfigGetParamFloat    ConfigGetParamFloat;
-extern ptr_ConfigGetParamBool     ConfigGetParamBool;
-extern ptr_ConfigGetParamString   ConfigGetParamString;
-
-extern ptr_ConfigGetSharedDataFilepath ConfigGetSharedDataFilepath;
-extern ptr_ConfigGetUserConfigPath     ConfigGetUserConfigPath;
-extern ptr_ConfigGetUserDataPath       ConfigGetUserDataPath;
-extern ptr_ConfigGetUserCachePath      ConfigGetUserCachePath;
 
 #endif // __PLUGIN_H__
 
