@@ -11,6 +11,7 @@
 			<array>
 				<string>z64</string>
 				<string>n64</string>
+				<string>v64</string>
 			</array>
 			<key>CFBundleTypeIconFile</key>
 			<string>mupen64plus_rom</string>

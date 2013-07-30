@@ -1,6 +1,8 @@
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
- *   Mupen64plus-input-sdl - plugin.h                                      *
+ *   Mupen64plus-input-MALInput - plugin.h                                 *
  *   Mupen64Plus homepage: http://code.google.com/p/mupen64plus/           *
+ *   MacMupen homepage: https://github.com/Technochrome/MacMupen64/        *
+ *   Copyright (C) 2013 John Pender                                        *
  *   Copyright (C) 2008-2009 Richard Goedeken                              *
  *   Copyright (C) 2008 Tillin9                                            *
  *   Copyright (C) 2002 Blight                                             *

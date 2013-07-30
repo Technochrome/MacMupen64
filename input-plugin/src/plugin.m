@@ -1,6 +1,8 @@
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
- *   Mupen64plus-input-sdl - plugin.c                                      *
+ *   Mupen64plus-input-MALInput - plugin.c                                 *
  *   Mupen64Plus homepage: http://code.google.com/p/mupen64plus/           *
+ *   MacMupen homepage: https://github.com/Technochrome/MacMupen64/        *
+ *   Copyright (C) 2013 John Pender                                        *
  *   Copyright (C) 2008-2011 Richard Goedeken                              *
  *   Copyright (C) 2008 Tillin9                                            *
  *   Copyright (C) 2002 Blight                                             *
@@ -136,23 +138,14 @@ EXPORT m64p_error CALL PluginShutdown(void)
 
 EXPORT m64p_error CALL PluginGetVersion(m64p_plugin_type *PluginType, int *PluginVersion, int *APIVersion, const char **PluginNamePtr, int *Capabilities)
 {
-    /* set version info */
-    if (PluginType != NULL)
-        *PluginType = M64PLUGIN_INPUT;
-
-    if (PluginVersion != NULL)
-        *PluginVersion = PLUGIN_VERSION;
-
-    if (APIVersion != NULL)
-        *APIVersion = INPUT_PLUGIN_API_VERSION;
-    
-    if (PluginNamePtr != NULL)
-        *PluginNamePtr = PLUGIN_NAME;
-
-    if (Capabilities != NULL)
-    {
-        *Capabilities = 0;
-    }
+#define safeSet(ref,value) if(ref != NULL) *ref = value
+	
+	safeSet(PluginType,    M64PLUGIN_INPUT);
+	safeSet(PluginVersion, PLUGIN_VERSION);
+	safeSet(APIVersion,    INPUT_PLUGIN_API_VERSION);
+	safeSet(PluginNamePtr, PLUGIN_NAME);
+	safeSet(Capabilities,  0);
+	
                     
     return M64ERR_SUCCESS;
 }
@@ -267,6 +260,7 @@ EXPORT void CALL GetKeys( int controllerNumber, BUTTONS *Keys ) {
 			if([el[buttons[button]] boolValue])
 				Keys->Value |= button_bits[button];
 		}
+//		NSLog(@"%@",el);
 		
 #define joy(el) @"joy." el
 #define CLAMP(x, low, high) MIN(MAX(x,low),high)
@@ -335,6 +329,14 @@ EXPORT void CALL RomClosed(void)
 *******************************************************************/
 EXPORT int CALL RomOpen(void)
 {
+	if(NO) {
+		[[MALInputCenter shared] setInputListener:^(MALInputElement* el) {
+			if([[MALInputElement deviceIDFromFullID:el.fullID] isEqualToString:@"Key"]) {
+				NSLog(@"%@",el);
+				NSLog(@"%@",el->generalDevice);
+			}
+		}];
+	}
     romopen = 1;
     return 1;
 }
