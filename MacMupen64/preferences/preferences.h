@@ -16,6 +16,8 @@ extern NSString * const MALDefaultROMFoldersKey;
 extern NSString * const MALDefaultPluginPathsKey;
 extern NSString * const MALDefaultPluginIconPathsKey;
 
+extern NSString * const MALDefaultVolumeKey;
+
 //other strings
 extern NSString * const MALApplicationName;
 extern NSString * const MALDefaultKeyBindings;

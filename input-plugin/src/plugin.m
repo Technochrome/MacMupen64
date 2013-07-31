@@ -333,7 +333,6 @@ EXPORT int CALL RomOpen(void)
 		[[MALInputCenter shared] setInputListener:^(MALInputElement* el) {
 			if([[MALInputElement deviceIDFromFullID:el.fullID] isEqualToString:@"Key"]) {
 				NSLog(@"%@",el);
-				NSLog(@"%@",el->generalDevice);
 			}
 		}];
 	}

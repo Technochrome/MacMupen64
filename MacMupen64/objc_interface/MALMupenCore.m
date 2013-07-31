@@ -64,7 +64,7 @@ MALMupenCore * lastMade=nil;
         printf("            Includes support for r4300 Core Comparison.\n");
 	
 	if(getCoreFunctionPointers(pluginHandle) != M64ERR_SUCCESS) return isUsable = NO;
-	if((*CoreStartup)(CONSOLE_API_VERSION, NULL, NULL, [self typeString], DebugCallback, NULL, NULL) != M64ERR_SUCCESS) {
+	if((*CoreStartup)(CONSOLE_UI_VERSION, NULL, NULL, [self typeString], DebugCallback, NULL, NULL) != M64ERR_SUCCESS) {
 		[self removePlugin];
 		return isUsable = NO;
 	}

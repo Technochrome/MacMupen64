@@ -15,6 +15,7 @@ NSString * const MALDefaultOpenPanelDirectoryKey = @"OpenPanel Directory";
 NSString * const MALDefaultROMExtensionsKey = @"Valid ROM Extensions";
 
 NSString * const MALDefaultROMFoldersKey = @"ROMFolders";
+NSString * const MALDefaultVolumeKey = @"volume";
 
 NSString * const MALDefaultPluginPathsKey = @"PluginPaths";
 NSString * const MALDefaultPluginIconPathsKey = @"Plugin icon paths";

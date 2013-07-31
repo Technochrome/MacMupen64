@@ -16,8 +16,7 @@ int main (int argc, char **argv) {
 	NSMutableDictionary * defaultValues = [NSMutableDictionary dictionary];
 	[defaultValues setObject:[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject]
 					  forKey:MALDefaultOpenPanelDirectoryKey];
-	[defaultValues setObject:[NSArray arrayWithObjects:@"z64",@"n64",@"v64",nil]
-					  forKey:MALDefaultROMExtensionsKey];
+	defaultValues[MALDefaultROMExtensionsKey] = @[@"z64",@"n64",@"v64"];
 	
 	NSMutableDictionary * pluginPaths = [NSMutableDictionary dictionary];
 	[pluginPaths setObject:@"libmupen64plus" forKey:CoreString];
@@ -37,13 +36,8 @@ int main (int argc, char **argv) {
 	[iconPaths setObject:@"/Applications/System Preferences.app/Contents/Resources/PrefApp.icns" forKey:CoreString];
 	[defaultValues setObject:iconPaths forKey:MALDefaultPluginIconPathsKey];
 	
-#define KEY(n) [NSDictionary dictionaryWithObjectsAndKeys:@(n),@"keyCode",@0,@"modifierFlags",nil]
-	NSDictionary * keyBindings = [NSDictionary dictionaryWithObjectsAndKeys:
-											KEY(17),@"DPad R",
-											KEY(125),@"DPad L",
-											KEY(115),@"DPad D",
-											KEY(119),@"DPad U",nil];
-	[defaultValues setObject:keyBindings forKey:MALDefaultKeyBindings];
+	defaultValues[MALDefaultVolumeKey] = @100;
+	
 
 	[[MALInputCenter shared] startListening];
 	

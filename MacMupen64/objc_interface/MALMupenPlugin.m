@@ -102,6 +102,7 @@ NSString * pluginStringForType(m64p_plugin_type type) {
 	//try to open the plugin at the given filepath
 	if(osal_dynlib_open(&pluginHandle, [libraryPath UTF8String]) != M64ERR_SUCCESS || pluginHandle == NULL) {
 		[self setIsUsable:NO];
+		NSLog(@"FIXME %s", __PRETTY_FUNCTION__);
 		return NO;
 	}
 	
