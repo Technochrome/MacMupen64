@@ -12,8 +12,10 @@
 extern NSString * MALNotificationCoreLoaded;
 extern NSString * MALNotificationCoreUnloaded; 
 
-@interface MALMupenCore : MALMupenPlugin {
-}
+@class MALMupenEngine;
+@interface MALMupenCore : MALMupenPlugin {}
+
+@property (assign) MALMupenEngine *engine;
 +(MALMupenCore*) lastMadeCore;
 +(MALMupenCore*) defaultCore;
 -(BOOL) loadDefaultCore;

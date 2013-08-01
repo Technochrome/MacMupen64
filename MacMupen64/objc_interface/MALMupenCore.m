@@ -18,6 +18,7 @@
 #include "version.h"
 
 #import "MALMupenCore.h"
+#import "MALMupenEngine.h"
 #import "preferences.h"
 
 #import "core_interface.h"
@@ -28,11 +29,37 @@ NSString * MALNotificationCoreLoaded = @"MALMupenCore Loaded";
 NSString * MALNotificationCoreUnloaded = @"MALMupenCore Unloaded";
 MALMupenCore * lastMade=nil;
 
+void CoreStateCallback(void *Context, m64p_core_param param_type, int new_value);
+
 @implementation MALMupenCore
+@synthesize engine;
 #pragma mark dealloc & init
 -(id) init {
 	if(self=[super init]) lastMade=self;
 	return self;
+}
+void CoreStateCallback(void *Context, m64p_core_param param_type, int new_value) {
+	MALMupenCore * core = Context;
+	
+	switch (param_type) {
+		case M64CORE_EMU_STATE:
+			switch (new_value) {
+				case 1: //stopped
+					break;
+				case 2: //running
+					core.engine.volume = core.engine.volume;
+				case 3: //paused
+				default:
+					break;
+			}
+			break;
+		case M64CORE_SAVESTATE_SLOT:
+		case M64CORE_SPEED_FACTOR:
+		case M64CORE_SPEED_LIMITER:
+		case M64CORE_VIDEO_MODE:
+		default:
+			break;
+	}
 }
 -(BOOL) loadPluginWithPath:(NSString*)libraryPath {
 	if([super loadPluginWithPath:libraryPath] == NO) return NO;
@@ -64,7 +91,7 @@ MALMupenCore * lastMade=nil;
         printf("            Includes support for r4300 Core Comparison.\n");
 	
 	if(getCoreFunctionPointers(pluginHandle) != M64ERR_SUCCESS) return isUsable = NO;
-	if((*CoreStartup)(CONSOLE_UI_VERSION, NULL, NULL, [self typeString], DebugCallback, NULL, NULL) != M64ERR_SUCCESS) {
+	if((*CoreStartup)(CONSOLE_UI_VERSION, NULL, NULL, [self typeString], DebugCallback, self, CoreStateCallback) != M64ERR_SUCCESS) {
 		[self removePlugin];
 		return isUsable = NO;
 	}

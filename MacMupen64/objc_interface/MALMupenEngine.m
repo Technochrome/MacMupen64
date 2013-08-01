@@ -185,6 +185,8 @@ MALMupenEngine * _shared = nil;
 		for (int i=1; i<5; i++) [plugins addObject:[[[MALMupenPlugin alloc] init] autorelease]];
 		for (int i=1; i<5; i++) [self loadPluginType:(m64p_plugin_type)i];
 		
+		self.core.engine = self;
+		
 		[self bind:@"volume" toObject:[NSUserDefaultsController sharedUserDefaultsController] withKeyPath:@"values.volume" options:nil];
 	}
 	return self;
@@ -208,11 +210,12 @@ MALMupenEngine * _shared = nil;
 }
 -(void) setVolume:(int)v {
 	v = MIN(MAX(v,0), 100);
-	if(v == volume && !(muted && volume!=0)) return;
-	if(v != 0) self.muted = NO;
+	self.muted = NO;
 	
 //	(*CoreDoCommand)(M64CMD_CORE_STATE_SET,M64CORE);
 	pluginFunction(M64PLUGIN_AUDIO, VolumeSetLevel, v)
+	
+	if(v == volume) return;
 	
 	[self willChangeValueForKey:@"volume"];
 	volume = v;
