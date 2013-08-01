@@ -84,7 +84,6 @@
 	if([allROMs countForObject:rom]==1) {
 		OBJprintf(@"- ");
 		[romListController performSelectorOnMainThread:@selector(addObject:) withObject:rom waitUntilDone:YES];
-//		[romListController addObject:rom];
 	} else OBJprintf(@"+ ");
 	OBJprintf(@"%p %@\n",rom,[rom path]);
 }
@@ -224,5 +223,11 @@
 }
 - (IBAction) takeScreenShot:(id)sender {
 	[engine takeScreenShot];
+}
+- (IBAction) freeze:(id)sender {
+	[engine freeze];
+}
+- (IBAction) defrost:(id)sender {
+	[engine defrost];
 }
 @end

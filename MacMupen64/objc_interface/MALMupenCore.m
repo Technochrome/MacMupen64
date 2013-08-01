@@ -44,13 +44,9 @@ void CoreStateCallback(void *Context, m64p_core_param param_type, int new_value)
 	switch (param_type) {
 		case M64CORE_EMU_STATE:
 			switch (new_value) {
-				case 1: //stopped
-					break;
-				case 2: //running
-					core.engine.volume = core.engine.volume;
-				case 3: //paused
-				default:
-					break;
+				case 1: [core.engine emulationStopped]; break;
+				case 2: [core.engine emulationStarted]; break;
+				case 3: [core.engine emulationPaused];  break;
 			}
 			break;
 		case M64CORE_SAVESTATE_SLOT:

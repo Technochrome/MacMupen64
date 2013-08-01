@@ -58,6 +58,18 @@ void fixSwap(m64p_rom_header * header) {
 #pragma mark Accessors and Setters
 @synthesize gameTitle,MD5,status,players,rumble,netplay,formattedInfo,path,isUsable,image,lastOpened;
 
+-(NSURL*) freezesPath {
+	NSURL * folder = [MALFreezesFolder URLByAppendingPathComponent:self.gameTitle];
+	
+	NSString * folderPath = [folder relativePath];
+	NSFileManager *fileManager = [NSFileManager defaultManager];
+	if ( ![fileManager fileExistsAtPath:folderPath] ) {
+		[fileManager createDirectoryAtPath:folderPath withIntermediateDirectories:YES attributes:nil error:NULL];
+	}
+	
+	return folder;
+}
+
 -(NSData*) contents {
 	if(contents==nil) {
 		NSFileHandle * fh = [NSFileHandle fileHandleForReadingAtPath:[path relativePath]];
@@ -154,32 +166,6 @@ void fixSwap(m64p_rom_header * header) {
 	retVal = [[[self alloc] initWithURL:url] autorelease];
 	return retVal;
 }
-/*
--(IBAction) loadImageFromAmazon:(id)sender {
-	NSString * AWS_ID = @"AKIAIHU2SO2MSH2NIEGA";
-	NSString * searchString = @"Mario%20Kart";
-	NSString * urlString = [NSString stringWithFormat:
-							@"http://ecs.amazonaws.com/onca/xml?"
-							@"Service=AWSECommerceService&"
-							@"AWSAccessKeyId=%@&"
-							@"Operation=ItemSearch&"
-							@"SearchIndex=Books&"
-							@"Keywords=%@&"
-							@"Version=2007-07-16",
-							AWS_ID, searchString];
-	NSLog(@"%@",urlString);
-	NSURL * url = [NSURL URLWithString:urlString];
-	NSURLRequest * urlRequest = [NSURLRequest requestWithURL:url cachePolicy:NSURLRequestReturnCacheDataElseLoad timeoutInterval:30];
-	
-	NSData * urlData;
-	NSURLResponse * response;
-	NSError * error;
-	urlData = [NSURLConnection sendSynchronousRequest:urlRequest returningResponse:&response error:&error];
-	if(!urlData) NSLog(@"No response");
-	NSLog(@"%@",response);
-	NSXMLDocument * doc = [[NSXMLDocument alloc] initWithData:urlData options:0 error:&error];
-	NSLog(@"doc = %@",doc);
-}*/
 -(NSUInteger) hash {
 	NSUInteger result = [[[self MD5] substringToIndex:sizeof(NSUInteger)*2] hexIntegerValue];
 	return result;

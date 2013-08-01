@@ -365,31 +365,6 @@ EXPORT m64p_error CALL VidExt_GL_SetAttribute(m64p_GLattr Attr, int Value)
     return M64ERR_INPUT_INVALID;
 }
 
-EXPORT m64p_error CALL VidExt_GL_GetAttribute(m64p_GLattr Attr, int *pValue)
-{
-    int i;
-	
-    /* call video extension override if necessary */
-    if (l_VideoExtensionActive)
-        return (*l_ExternalVideoFuncTable.VidExtFuncGLGetAttr)(Attr, pValue);
-	
-    if (!SDL_WasInit(SDL_INIT_VIDEO))
-        return M64ERR_NOT_INIT;
-	
-    for (i = 0; i < mapSize; i++)
-    {
-        if (GLAttrMap[i].m64Attr == Attr)
-        {
-            int NewValue = 0;
-            if (SDL_GL_GetAttribute(GLAttrMap[i].sdlAttr, &NewValue) != 0)
-                return M64ERR_SYSTEM_FAIL;
-            *pValue = NewValue;
-            return M64ERR_SUCCESS;
-        }
-    }
-	
-    return M64ERR_INPUT_INVALID;
-}
 
 EXPORT m64p_error CALL VidExt_GL_SwapBuffers(void)
 {
@@ -430,6 +405,8 @@ m64p_error VidExt_Init(void) {
 
 m64p_error VidExt_Quit(void)
 {
+	NSLog(@"Quit help");
+	
     /* call video extension override if necessary */
     if (l_VideoExtensionActive)
     {
@@ -447,6 +424,7 @@ m64p_error VidExt_Quit(void)
     l_pScreen = NULL;
     l_VideoOutputActive = 0;
     StateChanged(M64CORE_VIDEO_MODE, M64VIDEO_NONE);
+	
 	
     return M64ERR_SUCCESS;
 }
@@ -635,20 +613,7 @@ typedef struct {
 } GLAttrMapNode;
 
 m64p_error VidExt_GL_SetAttribute(m64p_GLattr Attr, int Value)
-{
-/*	GLAttrMapNode GLAttrMap[] = {
-        { M64P_GL_DOUBLEBUFFER, SDL_GL_DOUBLEBUFFER },
-        { M64P_GL_BUFFER_SIZE,  SDL_GL_BUFFER_SIZE },
-        { M64P_GL_DEPTH_SIZE,   SDL_GL_DEPTH_SIZE },
-        { M64P_GL_RED_SIZE,     SDL_GL_RED_SIZE },
-        { M64P_GL_GREEN_SIZE,   SDL_GL_GREEN_SIZE },
-        { M64P_GL_BLUE_SIZE,    SDL_GL_BLUE_SIZE },
-        { M64P_GL_ALPHA_SIZE,   SDL_GL_ALPHA_SIZE },
-        { M64P_GL_SWAP_CONTROL, SDL_GL_SWAP_CONTROL },
-        { M64P_GL_MULTISAMPLEBUFFERS, SDL_GL_MULTISAMPLEBUFFERS },
-        { M64P_GL_MULTISAMPLESAMPLES, SDL_GL_MULTISAMPLESAMPLES }};*/
-//    const int mapSize = sizeof(GLAttrMap) / sizeof(GLAttrMapNode);
-	
+{	
 	NSOpenGLPixelFormatAttribute val[2]={0,0};
 	switch (Attr) {
 		case M64P_GL_DOUBLEBUFFER:
@@ -669,6 +634,45 @@ m64p_error VidExt_GL_SetAttribute(m64p_GLattr Attr, int Value)
 	return M64ERR_SUCCESS;
 }
 
+m64p_error VidExt_GL_GetAttribute(m64p_GLattr Attr, int *pValue)
+{
+	GLAttrMapNode GLAttrMap[] = {
+	 { M64P_GL_DOUBLEBUFFER, SDL_GL_DOUBLEBUFFER },
+	 { M64P_GL_BUFFER_SIZE,  SDL_GL_BUFFER_SIZE },
+	 { M64P_GL_DEPTH_SIZE,   SDL_GL_DEPTH_SIZE },
+	 { M64P_GL_RED_SIZE,     SDL_GL_RED_SIZE },
+	 { M64P_GL_GREEN_SIZE,   SDL_GL_GREEN_SIZE },
+	 { M64P_GL_BLUE_SIZE,    SDL_GL_BLUE_SIZE },
+	 { M64P_GL_ALPHA_SIZE,   SDL_GL_ALPHA_SIZE },
+	 { M64P_GL_SWAP_CONTROL, SDL_GL_SWAP_CONTROL },
+	 { M64P_GL_MULTISAMPLEBUFFERS, SDL_GL_MULTISAMPLEBUFFERS },
+	 { M64P_GL_MULTISAMPLESAMPLES, SDL_GL_MULTISAMPLESAMPLES }};
+	const int mapSize = sizeof(GLAttrMap) / sizeof(GLAttrMapNode);
+	
+    int i;
+	
+    /* call video extension override if necessary */
+    if (l_VideoExtensionActive)
+        return (*l_ExternalVideoFuncTable.VidExtFuncGLGetAttr)(Attr, pValue);
+	
+    if (!SDL_WasInit(SDL_INIT_VIDEO))
+        return M64ERR_NOT_INIT;
+	
+    for (i = 0; i < mapSize; i++)
+    {
+        if (GLAttrMap[i].m64Attr == Attr)
+        {
+            int NewValue = 0;
+            if (SDL_GL_GetAttribute(GLAttrMap[i].sdlAttr, &NewValue) != 0)
+                return M64ERR_SYSTEM_FAIL;
+            *pValue = NewValue;
+            return M64ERR_SUCCESS;
+        }
+    }
+	
+    return M64ERR_INPUT_INVALID;
+}
+
 m64p_error VidExt_GL_SwapBuffers(void) {
 	[[vidExtOpenGL openGLContext] performSelectorOnMainThread:@selector(flushBuffer) withObject:nil waitUntilDone:YES];
 //	glClear(GL_COLOR_BUFFER_BIT);
@@ -676,13 +680,14 @@ m64p_error VidExt_GL_SwapBuffers(void) {
 }
 
 m64p_video_extension_functions extensionFunctions = {
-	.Functions = 9,
+	.Functions = 10,
 	.VidExtFuncInit = VidExt_Init,
 	.VidExtFuncQuit = VidExt_Quit,
 	.VidExtFuncListModes = VidExt_ListFullscreenModes,
 	.VidExtFuncSetMode = VidExt_SetVideoMode,
 	.VidExtFuncGLGetProc = VidExt_GL_GetProcAddress,
 	.VidExtFuncGLSetAttr = VidExt_GL_SetAttribute,
+	.VidExtFuncGLGetAttr = VidExt_GL_GetAttribute,
 	.VidExtFuncGLSwapBuf = VidExt_GL_SwapBuffers,
 	.VidExtFuncSetCaption = VidExt_SetCaption,
 	.VidExtFuncToggleFS = VidExt_ToggleFullScreen

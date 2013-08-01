@@ -30,6 +30,30 @@ MALMupenEngine * _shared = nil;
 @end
 
 @implementation MALMupenEngine
+-(NSString*) autosaveLocation {
+	return [[self.mainROM.freezesPath URLByAppendingPathComponent:@"Autosave.n64_freeze"] relativePath];
+}
+-(void) frameCallback {
+	if(shouldDefrost && [[NSFileManager defaultManager] fileExistsAtPath:[self autosaveLocation]]) {
+		(*CoreDoCommand)(M64CMD_STATE_LOAD,0,(void*)[[self autosaveLocation] UTF8String]);
+		shouldDefrost = NO;
+	}
+	if ( framesUntilStop > 0) {
+		framesUntilStop--;
+	} else if(framesUntilStop == 0) {
+		[malwin close];
+		(*CoreDoCommand)(M64CMD_STOP,0,0);
+	}
+}
+-(void) emulationStarted {
+	self.volume = volume;
+}
+-(void) emulationStopped {
+	[malwin close];
+}
+-(void) emulationPaused {
+	
+}
 #pragma mark Accessors and Setters
 @synthesize plugins,mainROM,isRunning,controllerBindings=controllerBindings;
 -(void) setIsRunning:(BOOL)value {
@@ -41,6 +65,7 @@ MALMupenEngine * _shared = nil;
 	if(isRunning) {
 		gameWindow = [[MALGameWindow gameWindow] retain];
 		malwin = (MALGameWindow*)[gameWindow window];
+		[malwin setDelegate:self];
 		[gameWindow performSelectorOnMainThread:@selector(showWindow:) withObject:self waitUntilDone:YES];
 		[[NSNotificationCenter defaultCenter] postNotificationName:MALMupenEngineStarted object:self];
 	} else {
@@ -111,10 +136,15 @@ MALMupenEngine * _shared = nil;
 }
 -(BOOL) attachROM:(MALMupenRom*)rom {
 	NSData * romData = [rom contents];
+	self.mainROM = rom;
 	return (*CoreDoCommand)(M64CMD_ROM_OPEN, (int)[romData length], (unsigned char*)[romData bytes]) == M64ERR_SUCCESS;
 }
 -(void) detachROM {
 	(*CoreDoCommand)(M64CMD_ROM_CLOSE, 0,NULL);
+}
+-(void) stopEmulation {
+	(*CoreDoCommand)(M64CMD_STATE_SAVE,1,(void*)[[self autosaveLocation] UTF8String]);
+	framesUntilStop = 1;
 }
 -(void) attachControllers {
 	MALInputCenter * inputCenter = [MALInputCenter shared];
@@ -133,6 +163,8 @@ MALMupenEngine * _shared = nil;
 
 -(void) spawnInThreadWithROM:(MALMupenRom*)rom {
 	NSAutoreleasePool * pl = [[NSAutoreleasePool alloc] init];
+	shouldDefrost = YES;
+	framesUntilStop = -1;
 	[self setIsRunning:YES];
 	
 	(*ConfigListSections)(NULL,configCallback);
@@ -162,8 +194,15 @@ MALMupenEngine * _shared = nil;
 	return device;
 }
 
+-(BOOL) windowShouldClose:(id)sender {
+	if(isRunning) {
+		[self stopEmulation];
+		return NO;
+	} else {
+		return YES;
+	}
+}
 -(void) windowWillClose:(NSNotification *)notification {
-	(*CoreDoCommand)(M64CMD_STOP,0,0);
 }
 -(void) windowDidMove:(NSNotification *)notification {
 }
@@ -176,6 +215,10 @@ MALMupenEngine * _shared = nil;
 	[plugins release]; plugins = nil;
 	[super dealloc];
 }
+
+void frameCallback(unsigned int FrameIndex) {
+	[[MALMupenEngine shared] frameCallback];
+}
 -(id) init {
 	if(self = [super init]) {
 		_shared = self;
@@ -186,6 +229,7 @@ MALMupenEngine * _shared = nil;
 		for (int i=1; i<5; i++) [self loadPluginType:(m64p_plugin_type)i];
 		
 		self.core.engine = self;
+		(*CoreDoCommand)(M64CMD_SET_FRAME_CALLBACK,0,frameCallback);
 		
 		[self bind:@"volume" toObject:[NSUserDefaultsController sharedUserDefaultsController] withKeyPath:@"values.volume" options:nil];
 	}
@@ -233,7 +277,12 @@ MALMupenEngine * _shared = nil;
 	[self didChangeValueForKey:@"muted"];
 }
 -(BOOL) muted { return muted; }
-
+-(void) freeze {
+	(*CoreDoCommand)(M64CMD_STATE_SAVE,1,(void*)[[self autosaveLocation] UTF8String]);
+}
+-(void) defrost {
+	(*CoreDoCommand)(M64CMD_STATE_LOAD,0,(void*)[[self autosaveLocation] UTF8String]);
+}
 -(void) takeScreenShot {
 	(*CoreDoCommand)(M64CMD_TAKE_NEXT_SCREENSHOT,0,NULL);
 }

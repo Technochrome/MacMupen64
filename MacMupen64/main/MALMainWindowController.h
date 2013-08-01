@@ -29,6 +29,8 @@
 - (IBAction) startEmulation:(id)sender;
 - (IBAction) openPreferencesWindow:(id)sender;
 - (IBAction) takeScreenShot:(id)sender;
+- (IBAction) freeze:(id)sender;
+- (IBAction) defrost:(id)sender;
 @end
 
 /*

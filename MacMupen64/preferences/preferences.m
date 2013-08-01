@@ -25,6 +25,7 @@ NSString * const MALApplicationName = @"MacMupen64 Plus";
 
 NSURL * MALKeybindingsFile;
 NSURL * MALRecentlyOpenedRomsFile;
+NSURL * MALFreezesFolder;
 
 
 NSString * const RSPString = @"RSP";
@@ -45,4 +46,5 @@ void initializePaths(void) {
 	
 	MALKeybindingsFile = [[supportFolder URLByAppendingPathComponent:@"keyBindings.plist"] retain];
 	MALRecentlyOpenedRomsFile = [[supportFolder URLByAppendingPathComponent:@"Recently Opened ROMs.plist"] retain];
+	MALFreezesFolder = [[supportFolder URLByAppendingPathComponent:@"Freezes"] retain];
 }

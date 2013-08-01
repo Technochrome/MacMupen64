@@ -26,6 +26,7 @@ extern NSString * const MALMupenRomNewROMOpened;
 @property (readonly) NSData * contents;
 @property (readwrite, retain) NSImage * image;
 @property (readwrite, copy) NSURL * path;
+@property (readonly) NSURL * freezesPath;
 @property (readwrite, retain) NSString *gameTitle, *MD5;
 @property (readwrite, retain) NSAttributedString * formattedInfo;
 @property (readwrite) int status,players;
