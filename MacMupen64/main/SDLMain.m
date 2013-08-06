@@ -20,10 +20,10 @@ int main (int argc, char **argv) {
 	
 	NSMutableDictionary * pluginPaths = [NSMutableDictionary dictionary];
 	[pluginPaths setObject:@"libmupen64plus" forKey:CoreString];
-	[pluginPaths setObject:@"mupen64plus-audio-sdl" forKey:AudioString];
 	[pluginPaths setObject:@"libmupen64plus-input-MALInput" forKey:InputString];
+	[pluginPaths setObject:@"mupen64plus-audio-sdl" forKey:AudioString];
 	[pluginPaths setObject:@"mupen64plus-rsp-hle" forKey:RSPString];
-	[pluginPaths setObject:@"mupen64plus-video-glide64" forKey:VideoString];
+	[pluginPaths setObject:@"mupen64plus-video-rice" forKey:VideoString];
 	[defaultValues setObject:pluginPaths forKey:MALDefaultPluginPathsKey];
 	
 	[defaultValues setObject:NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) forKey:MALDefaultROMFoldersKey];

@@ -1,0 +1,3 @@
+[submodule "mupen64plus-upstream"]
+	path = mupen64plus-upstream
+	url = https://github.com/Technochrome/Mupen64upstream.git

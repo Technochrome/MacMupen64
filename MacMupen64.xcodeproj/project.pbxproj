@@ -7,6 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2F281A8717ACB4F3004EE8AA /* mupen64plus.cht in Resources */ = {isa = PBXBuildFile; fileRef = 2F281A7F17ACB480004EE8AA /* mupen64plus.cht */; };
+		2F281A8817ACB4F3004EE8AA /* mupen64plus.ini in Resources */ = {isa = PBXBuildFile; fileRef = 2F281A8017ACB480004EE8AA /* mupen64plus.ini */; };
+		2F281A8917ACB4F3004EE8AA /* mupencheat.txt in Resources */ = {isa = PBXBuildFile; fileRef = 2F281A8117ACB480004EE8AA /* mupencheat.txt */; };
+		2F281A8A17ACB4F3004EE8AA /* RiceVideoLinux.ini in Resources */ = {isa = PBXBuildFile; fileRef = 2F281A8217ACB480004EE8AA /* RiceVideoLinux.ini */; };
+		2F281AFC17ACE0C4004EE8AA /* mupen64plus-upstream.xcodeproj in Resources */ = {isa = PBXBuildFile; fileRef = 2F281AFB17ACE0C4004EE8AA /* mupen64plus-upstream.xcodeproj */; };
+		2F281B1217ACE89A004EE8AA /* libmupen64plus.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 2F281B1117ACE89A004EE8AA /* libmupen64plus.dylib */; };
+		2F281B5F17B0B006004EE8AA /* mupen64plus-audio-sdl.dylib in Resources */ = {isa = PBXBuildFile; fileRef = 2F281B5C17B0B006004EE8AA /* mupen64plus-audio-sdl.dylib */; };
+		2F281B6017B0B006004EE8AA /* mupen64plus-rsp-hle.dylib in Resources */ = {isa = PBXBuildFile; fileRef = 2F281B5D17B0B006004EE8AA /* mupen64plus-rsp-hle.dylib */; };
+		2F281B6117B0B006004EE8AA /* mupen64plus-video-rice.dylib in Resources */ = {isa = PBXBuildFile; fileRef = 2F281B5E17B0B006004EE8AA /* mupen64plus-video-rice.dylib */; };
+		2F281B6217B0B1AB004EE8AA /* mupen64plus-audio-sdl.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 2F281B5C17B0B006004EE8AA /* mupen64plus-audio-sdl.dylib */; };
+		2F281B6317B0B1AD004EE8AA /* mupen64plus-rsp-hle.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 2F281B5D17B0B006004EE8AA /* mupen64plus-rsp-hle.dylib */; };
+		2F281B6417B0B1B1004EE8AA /* mupen64plus-video-rice.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 2F281B5E17B0B006004EE8AA /* mupen64plus-video-rice.dylib */; };
 		2F294B6B179224C900355455 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F4951191411019D00D2B2C1 /* Cocoa.framework */; };
 		2F294B71179224C900355455 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2F294B6F179224C900355455 /* InfoPlist.strings */; };
 		2F294B7D179225F800355455 /* MALGameWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F495189141102FD00D2B2C1 /* MALGameWindow.m */; };
@@ -48,11 +60,7 @@
 		2F49518E141102FD00D2B2C1 /* MALMainWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F49518B141102FD00D2B2C1 /* MALMainWindowController.m */; };
 		2F4951A91411032A00D2B2C1 /* PluginListPane.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2F4951901411032A00D2B2C1 /* PluginListPane.xib */; };
 		2F4951AA1411032A00D2B2C1 /* ROMListPane.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2F4951911411032A00D2B2C1 /* ROMListPane.xib */; };
-		2F4951AB1411032A00D2B2C1 /* InputAutoCfg.ini in Resources */ = {isa = PBXBuildFile; fileRef = 2F4951921411032A00D2B2C1 /* InputAutoCfg.ini */; };
-		2F4951AC1411032A00D2B2C1 /* RiceVideoLinux.ini in Resources */ = {isa = PBXBuildFile; fileRef = 2F4951931411032A00D2B2C1 /* RiceVideoLinux.ini */; };
 		2F4951AD1411032A00D2B2C1 /* font.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2F4951941411032A00D2B2C1 /* font.ttf */; };
-		2F4951AE1411032A00D2B2C1 /* mupen64plus.cht in Resources */ = {isa = PBXBuildFile; fileRef = 2F4951951411032A00D2B2C1 /* mupen64plus.cht */; };
-		2F4951AF1411032A00D2B2C1 /* mupen64plus.ini in Resources */ = {isa = PBXBuildFile; fileRef = 2F4951961411032A00D2B2C1 /* mupen64plus.ini */; };
 		2F4951B11411032A00D2B2C1 /* mupen64plus_rom.icns in Resources */ = {isa = PBXBuildFile; fileRef = 2F4951981411032A00D2B2C1 /* mupen64plus_rom.icns */; };
 		2F4951BD1411032A00D2B2C1 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2F4951A41411032A00D2B2C1 /* InfoPlist.strings */; };
 		2F4951BF1411032A00D2B2C1 /* mainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2F4951A61411032A00D2B2C1 /* mainWindow.xib */; };
@@ -63,13 +71,9 @@
 		2F4951E414110DF600D2B2C1 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2F4951E214110DF600D2B2C1 /* InfoPlist.strings */; };
 		2F4951E914110E2D00D2B2C1 /* PluginListPane.xib in Sources */ = {isa = PBXBuildFile; fileRef = 2F4951901411032A00D2B2C1 /* PluginListPane.xib */; };
 		2F4951EA14110E2F00D2B2C1 /* ROMListPane.xib in Sources */ = {isa = PBXBuildFile; fileRef = 2F4951911411032A00D2B2C1 /* ROMListPane.xib */; };
-		2F4951F61411381C00D2B2C1 /* Glide64.ini in Resources */ = {isa = PBXBuildFile; fileRef = 2F4951F51411381C00D2B2C1 /* Glide64.ini */; };
 		2F6663E616FFFF0F00AD360B /* n64ControllerBig.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F6663E516FFFF0F00AD360B /* n64ControllerBig.png */; };
-		2F768BE817A8A76A00E8CD2A /* mupen64plus-audio-sdl.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 2F768BE017A8A75400E8CD2A /* mupen64plus-audio-sdl.dylib */; };
-		2F768BE917A8A76C00E8CD2A /* mupen64plus-rsp-hle.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 2F768BE117A8A75400E8CD2A /* mupen64plus-rsp-hle.dylib */; };
 		2F768BEA17A8A76E00E8CD2A /* mupen64plus-video-arachnoid.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 2F768BE217A8A75400E8CD2A /* mupen64plus-video-arachnoid.dylib */; };
 		2F768BEB17A8A77000E8CD2A /* mupen64plus-video-glide64.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 2F768BE317A8A75400E8CD2A /* mupen64plus-video-glide64.dylib */; };
-		2F768BEE17A8A7BF00E8CD2A /* libmupen64plus.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 2F768BEC17A8A7A600E8CD2A /* libmupen64plus.dylib */; };
 		2F9FF6C41628B06500E1821F /* MALAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F495164141102BF00D2B2C1 /* MALAdditions.m */; };
 		2F9FF6C51628B06500E1821F /* MALBackporting.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F495166141102BF00D2B2C1 /* MALBackporting.m */; };
 		2F9FF6C71628B0B400E1821F /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F9FF6C61628B0B400E1821F /* OpenGL.framework */; };
@@ -130,6 +134,34 @@
 			remoteGlobalIDString = 2F4951DC14110DF500D2B2C1;
 			remoteInfo = "Preference Panes";
 		};
+		2FF8AD9317B0CFA40060F0E9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2F281AFB17ACE0C4004EE8AA /* mupen64plus-upstream.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 2FF8AD8417B0CFA30060F0E9;
+			remoteInfo = "rsp-hle";
+		};
+		2FF8AD9517B0CFA40060F0E9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2F281AFB17ACE0C4004EE8AA /* mupen64plus-upstream.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 2FF8AD8517B0CFA30060F0E9;
+			remoteInfo = "audio-sdl";
+		};
+		2FF8AD9717B0CFA40060F0E9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2F281AFB17ACE0C4004EE8AA /* mupen64plus-upstream.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 2FF8AD8617B0CFA30060F0E9;
+			remoteInfo = mupen64plus;
+		};
+		2FF8AD9917B0CFA40060F0E9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2F281AFB17ACE0C4004EE8AA /* mupen64plus-upstream.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 2FF8AD8717B0CFA30060F0E9;
+			remoteInfo = "video-rice";
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -140,11 +172,12 @@
 			dstSubfolderSpec = 13;
 			files = (
 				2FB388A216F2A9600023CAAF /* Preference Panes.bundle in CopyFiles */,
-				2F768BE817A8A76A00E8CD2A /* mupen64plus-audio-sdl.dylib in CopyFiles */,
-				2F768BE917A8A76C00E8CD2A /* mupen64plus-rsp-hle.dylib in CopyFiles */,
+				2F281B1217ACE89A004EE8AA /* libmupen64plus.dylib in CopyFiles */,
+				2F281B6217B0B1AB004EE8AA /* mupen64plus-audio-sdl.dylib in CopyFiles */,
+				2F281B6317B0B1AD004EE8AA /* mupen64plus-rsp-hle.dylib in CopyFiles */,
+				2F281B6417B0B1B1004EE8AA /* mupen64plus-video-rice.dylib in CopyFiles */,
 				2F768BEB17A8A77000E8CD2A /* mupen64plus-video-glide64.dylib in CopyFiles */,
 				2F768BEA17A8A76E00E8CD2A /* mupen64plus-video-arachnoid.dylib in CopyFiles */,
-				2F768BEE17A8A7BF00E8CD2A /* libmupen64plus.dylib in CopyFiles */,
 				2F3B4BCB17598E1D007FC4D6 /* libmupen64plus-input-MALInput.dylib in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -175,6 +208,15 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		2F281A7F17ACB480004EE8AA /* mupen64plus.cht */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = mupen64plus.cht; path = "mupen64plus-upstream/-products/share/mupen64plus/mupen64plus.cht"; sourceTree = SOURCE_ROOT; };
+		2F281A8017ACB480004EE8AA /* mupen64plus.ini */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = mupen64plus.ini; path = "mupen64plus-upstream/-products/share/mupen64plus/mupen64plus.ini"; sourceTree = SOURCE_ROOT; };
+		2F281A8117ACB480004EE8AA /* mupencheat.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = mupencheat.txt; path = "mupen64plus-upstream/-products/share/mupen64plus/mupencheat.txt"; sourceTree = SOURCE_ROOT; };
+		2F281A8217ACB480004EE8AA /* RiceVideoLinux.ini */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = RiceVideoLinux.ini; path = "mupen64plus-upstream/-products/share/mupen64plus/RiceVideoLinux.ini"; sourceTree = SOURCE_ROOT; };
+		2F281AFB17ACE0C4004EE8AA /* mupen64plus-upstream.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "mupen64plus-upstream.xcodeproj"; path = "mupen64plus-upstream/mupen64plus-upstream.xcodeproj"; sourceTree = "<group>"; };
+		2F281B1117ACE89A004EE8AA /* libmupen64plus.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; name = libmupen64plus.dylib; path = "../../mupen64plus-upstream/-products/lib/libmupen64plus.dylib"; sourceTree = "<group>"; };
+		2F281B5C17B0B006004EE8AA /* mupen64plus-audio-sdl.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.bundle"; name = "mupen64plus-audio-sdl.dylib"; path = "../../mupen64plus-upstream/-products/lib/mupen64plus/mupen64plus-audio-sdl.dylib"; sourceTree = "<group>"; };
+		2F281B5D17B0B006004EE8AA /* mupen64plus-rsp-hle.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.bundle"; name = "mupen64plus-rsp-hle.dylib"; path = "../../mupen64plus-upstream/-products/lib/mupen64plus/mupen64plus-rsp-hle.dylib"; sourceTree = "<group>"; };
+		2F281B5E17B0B006004EE8AA /* mupen64plus-video-rice.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.bundle"; name = "mupen64plus-video-rice.dylib"; path = "../../mupen64plus-upstream/-products/lib/mupen64plus/mupen64plus-video-rice.dylib"; sourceTree = "<group>"; };
 		2F294B6A179224C900355455 /* MacMupen.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MacMupen.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2F294B6E179224C900355455 /* MacMupen-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MacMupen-Info.plist"; sourceTree = "<group>"; };
 		2F294B70179224C900355455 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -237,11 +279,7 @@
 		2F49518B141102FD00D2B2C1 /* MALMainWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MALMainWindowController.m; sourceTree = "<group>"; };
 		2F4951901411032A00D2B2C1 /* PluginListPane.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PluginListPane.xib; sourceTree = "<group>"; };
 		2F4951911411032A00D2B2C1 /* ROMListPane.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ROMListPane.xib; sourceTree = "<group>"; };
-		2F4951921411032A00D2B2C1 /* InputAutoCfg.ini */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = InputAutoCfg.ini; sourceTree = "<group>"; };
-		2F4951931411032A00D2B2C1 /* RiceVideoLinux.ini */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = RiceVideoLinux.ini; sourceTree = "<group>"; };
-		2F4951941411032A00D2B2C1 /* font.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = font.ttf; sourceTree = "<group>"; };
-		2F4951951411032A00D2B2C1 /* mupen64plus.cht */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = mupen64plus.cht; sourceTree = "<group>"; };
-		2F4951961411032A00D2B2C1 /* mupen64plus.ini */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = mupen64plus.ini; sourceTree = "<group>"; };
+		2F4951941411032A00D2B2C1 /* font.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = font.ttf; path = "../mupen64plus-upstream/-products/share/mupen64plus/font.ttf"; sourceTree = "<group>"; };
 		2F4951981411032A00D2B2C1 /* mupen64plus_rom.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = mupen64plus_rom.icns; sourceTree = "<group>"; };
 		2F4951A41411032A00D2B2C1 /* InfoPlist.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = InfoPlist.strings; sourceTree = "<group>"; };
 		2F4951A61411032A00D2B2C1 /* mainWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = mainWindow.xib; sourceTree = "<group>"; };
@@ -252,15 +290,11 @@
 		2F4951E114110DF600D2B2C1 /* Preference Panes-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Preference Panes-Info.plist"; sourceTree = "<group>"; };
 		2F4951E314110DF600D2B2C1 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		2F4951E514110DF600D2B2C1 /* Preference Panes-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Preference Panes-Prefix.pch"; sourceTree = "<group>"; };
-		2F4951F51411381C00D2B2C1 /* Glide64.ini */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Glide64.ini; sourceTree = "<group>"; };
 		2F4951FD14113EEC00D2B2C1 /* TODO_LIST.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = TODO_LIST.txt; sourceTree = "<group>"; };
 		2F620B6F161BC87D00A02BAE /* SDL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL.framework; path = ../../../../../../Library/Frameworks/SDL.framework; sourceTree = SOURCE_ROOT; };
 		2F6663E516FFFF0F00AD360B /* n64ControllerBig.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = n64ControllerBig.png; sourceTree = "<group>"; };
-		2F768BE017A8A75400E8CD2A /* mupen64plus-audio-sdl.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.bundle"; path = "mupen64plus-audio-sdl.dylib"; sourceTree = "<group>"; };
-		2F768BE117A8A75400E8CD2A /* mupen64plus-rsp-hle.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.bundle"; path = "mupen64plus-rsp-hle.dylib"; sourceTree = "<group>"; };
 		2F768BE217A8A75400E8CD2A /* mupen64plus-video-arachnoid.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.bundle"; path = "mupen64plus-video-arachnoid.dylib"; sourceTree = "<group>"; };
 		2F768BE317A8A75400E8CD2A /* mupen64plus-video-glide64.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.bundle"; path = "mupen64plus-video-glide64.dylib"; sourceTree = "<group>"; };
-		2F768BEC17A8A7A600E8CD2A /* libmupen64plus.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.bundle"; path = libmupen64plus.dylib; sourceTree = "<group>"; };
 		2F768BEF17A8A8DF00E8CD2A /* libfreetype.6.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libfreetype.6.dylib; sourceTree = "<group>"; };
 		2F768BF017A8A8DF00E8CD2A /* libpng12.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libpng12.0.dylib; sourceTree = "<group>"; };
 		2F768BF117A8A8DF00E8CD2A /* libSDL-1.2.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = "libSDL-1.2.0.dylib"; sourceTree = "<group>"; };
@@ -362,6 +396,7 @@
 		2F49510A1411019D00D2B2C1 = {
 			isa = PBXGroup;
 			children = (
+				2F281AFB17ACE0C4004EE8AA /* mupen64plus-upstream.xcodeproj */,
 				2F3B4BCC17599C66007FC4D6 /* MALHid.xcodeproj */,
 				2F3B4BC817598DE6007FC4D6 /* mupen64plus-input-MALInput.xcodeproj */,
 				2F4951FD14113EEC00D2B2C1 /* TODO_LIST.txt */,
@@ -529,15 +564,16 @@
 		2F4951D314110AA000D2B2C1 /* Plugins */ = {
 			isa = PBXGroup;
 			children = (
+				2F281B5C17B0B006004EE8AA /* mupen64plus-audio-sdl.dylib */,
+				2F281B5D17B0B006004EE8AA /* mupen64plus-rsp-hle.dylib */,
+				2F281B5E17B0B006004EE8AA /* mupen64plus-video-rice.dylib */,
+				2F768BE217A8A75400E8CD2A /* mupen64plus-video-arachnoid.dylib */,
+				2F768BE317A8A75400E8CD2A /* mupen64plus-video-glide64.dylib */,
+				2F281B1117ACE89A004EE8AA /* libmupen64plus.dylib */,
 				2F768BEF17A8A8DF00E8CD2A /* libfreetype.6.dylib */,
 				2F768BF017A8A8DF00E8CD2A /* libpng12.0.dylib */,
 				2F768BF117A8A8DF00E8CD2A /* libSDL-1.2.0.dylib */,
 				2F3B4BCA17598E1D007FC4D6 /* libmupen64plus-input-MALInput.dylib */,
-				2F768BEC17A8A7A600E8CD2A /* libmupen64plus.dylib */,
-				2F768BE017A8A75400E8CD2A /* mupen64plus-audio-sdl.dylib */,
-				2F768BE117A8A75400E8CD2A /* mupen64plus-rsp-hle.dylib */,
-				2F768BE217A8A75400E8CD2A /* mupen64plus-video-arachnoid.dylib */,
-				2F768BE317A8A75400E8CD2A /* mupen64plus-video-glide64.dylib */,
 			);
 			name = Plugins;
 			path = plugins;
@@ -557,11 +593,10 @@
 		2F4951D714110C4E00D2B2C1 /* Config */ = {
 			isa = PBXGroup;
 			children = (
-				2F4951F51411381C00D2B2C1 /* Glide64.ini */,
-				2F4951921411032A00D2B2C1 /* InputAutoCfg.ini */,
-				2F4951931411032A00D2B2C1 /* RiceVideoLinux.ini */,
-				2F4951951411032A00D2B2C1 /* mupen64plus.cht */,
-				2F4951961411032A00D2B2C1 /* mupen64plus.ini */,
+				2F281A7F17ACB480004EE8AA /* mupen64plus.cht */,
+				2F281A8017ACB480004EE8AA /* mupen64plus.ini */,
+				2F281A8117ACB480004EE8AA /* mupencheat.txt */,
+				2F281A8217ACB480004EE8AA /* RiceVideoLinux.ini */,
 			);
 			name = Config;
 			path = config;
@@ -610,6 +645,17 @@
 				2F495166141102BF00D2B2C1 /* MALBackporting.m */,
 			);
 			path = MALlib;
+			sourceTree = "<group>";
+		};
+		2FF8AD8817B0CFA40060F0E9 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				2FF8AD9417B0CFA40060F0E9 /* librsp-hle.dylib */,
+				2FF8AD9617B0CFA40060F0E9 /* libaudio-sdl.dylib */,
+				2FF8AD9817B0CFA40060F0E9 /* libmupen64plus.dylib */,
+				2FF8AD9A17B0CFA40060F0E9 /* libvideo-rice.dylib */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -725,6 +771,10 @@
 					ProductGroup = 2F41A30E175FCD920003B333 /* Products */;
 					ProjectRef = 2F3B4BC817598DE6007FC4D6 /* mupen64plus-input-MALInput.xcodeproj */;
 				},
+				{
+					ProductGroup = 2FF8AD8817B0CFA40060F0E9 /* Products */;
+					ProjectRef = 2F281AFB17ACE0C4004EE8AA /* mupen64plus-upstream.xcodeproj */;
+				},
 			);
 			projectRoot = "";
 			targets = (
@@ -757,6 +807,34 @@
 			remoteRef = 2F41A319175FCD920003B333 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
+		2FF8AD9417B0CFA40060F0E9 /* librsp-hle.dylib */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.dylib";
+			path = "librsp-hle.dylib";
+			remoteRef = 2FF8AD9317B0CFA40060F0E9 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		2FF8AD9617B0CFA40060F0E9 /* libaudio-sdl.dylib */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.dylib";
+			path = "libaudio-sdl.dylib";
+			remoteRef = 2FF8AD9517B0CFA40060F0E9 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		2FF8AD9817B0CFA40060F0E9 /* libmupen64plus.dylib */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.dylib";
+			path = libmupen64plus.dylib;
+			remoteRef = 2FF8AD9717B0CFA40060F0E9 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		2FF8AD9A17B0CFA40060F0E9 /* libvideo-rice.dylib */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.dylib";
+			path = "libvideo-rice.dylib";
+			remoteRef = 2FF8AD9917B0CFA40060F0E9 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 /* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
@@ -777,11 +855,7 @@
 				2F4951301411019D00D2B2C1 /* MainMenu.xib in Resources */,
 				2F4951A91411032A00D2B2C1 /* PluginListPane.xib in Resources */,
 				2F4951AA1411032A00D2B2C1 /* ROMListPane.xib in Resources */,
-				2F4951AB1411032A00D2B2C1 /* InputAutoCfg.ini in Resources */,
-				2F4951AC1411032A00D2B2C1 /* RiceVideoLinux.ini in Resources */,
 				2F4951AD1411032A00D2B2C1 /* font.ttf in Resources */,
-				2F4951AE1411032A00D2B2C1 /* mupen64plus.cht in Resources */,
-				2F4951AF1411032A00D2B2C1 /* mupen64plus.ini in Resources */,
 				2F4951B11411032A00D2B2C1 /* mupen64plus_rom.icns in Resources */,
 				2F4951BD1411032A00D2B2C1 /* InfoPlist.strings in Resources */,
 				2FB388A416F2AC980023CAAF /* MALInput.framework in Resources */,
@@ -789,7 +863,6 @@
 				2F4951C01411032A00D2B2C1 /* Preferences.xib in Resources */,
 				2F4951C11411032A00D2B2C1 /* GameWindow.xib in Resources */,
 				2F4951D614110AFF00D2B2C1 /* mupen64plus.icns in Resources */,
-				2F4951F61411381C00D2B2C1 /* Glide64.ini in Resources */,
 				2FB3889A16F2A1740023CAAF /* 09494148_64Controller_answer_1_small.jpeg in Resources */,
 				2F6663E616FFFF0F00AD360B /* n64ControllerBig.png in Resources */,
 				2F3B4BC917598DE6007FC4D6 /* mupen64plus-input-MALInput.xcodeproj in Resources */,
@@ -799,6 +872,14 @@
 				2F2B7C8A176EAB250001D2A5 /* Volume100PercentTemplate.pdf in Resources */,
 				2F2B7C8B176EAB250001D2A5 /* Volume0PercentCroppedTemplate.pdf in Resources */,
 				2F2B7C8C176EAB250001D2A5 /* Volume0PercentTemplate.pdf in Resources */,
+				2F281A8717ACB4F3004EE8AA /* mupen64plus.cht in Resources */,
+				2F281A8817ACB4F3004EE8AA /* mupen64plus.ini in Resources */,
+				2F281A8917ACB4F3004EE8AA /* mupencheat.txt in Resources */,
+				2F281A8A17ACB4F3004EE8AA /* RiceVideoLinux.ini in Resources */,
+				2F281AFC17ACE0C4004EE8AA /* mupen64plus-upstream.xcodeproj in Resources */,
+				2F281B5F17B0B006004EE8AA /* mupen64plus-audio-sdl.dylib in Resources */,
+				2F281B6017B0B006004EE8AA /* mupen64plus-rsp-hle.dylib in Resources */,
+				2F281B6117B0B006004EE8AA /* mupen64plus-video-rice.dylib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
