@@ -9,10 +9,13 @@
 
 #import <Cocoa/Cocoa.h>
 #include "videoExtension.h"
-#include "callbacks.h"
+//#include "callbacks.h"
 #import "MALGameWindow.h"
 #include <SDL/SDL.h>
 #import "OpenGL/OpenGL.h"
+
+#define DebugMessage(a, args...) printf(args)
+#define StateChanged(a,b) ;
 
 /*
  typedef struct {
@@ -513,12 +516,12 @@ m64p_error VidExt_SetVideoMode(int Width, int Height, int BitsPerPixel, int scre
     /* call video extension override if necessary */
     if (l_VideoExtensionActive)
     {
-        m64p_error rval = (*l_ExternalVideoFuncTable.VidExtFuncSetMode)(Width, Height, BitsPerPixel, ScreenMode);
-        l_Fullscreen = (rval == M64ERR_SUCCESS && ScreenMode == M64VIDEO_FULLSCREEN);
-        l_VideoOutputActive = (rval == M64ERR_SUCCESS);
-        if (l_VideoOutputActive)
-            StateChanged(M64CORE_VIDEO_MODE, ScreenMode);
-        return rval;
+//        m64p_error rval = (*l_ExternalVideoFuncTable.VidExtFuncSetMode)(Width, Height, BitsPerPixel, ScreenMode);
+//        l_Fullscreen = (rval == M64ERR_SUCCESS && ScreenMode == M64VIDEO_FULLSCREEN);
+//        l_VideoOutputActive = (rval == M64ERR_SUCCESS);
+//        if (l_VideoOutputActive)
+//            StateChanged(M64CORE_VIDEO_MODE, ScreenMode);
+//        return rval;
     }
 	
     /* Get SDL video flags to use */
@@ -679,8 +682,72 @@ m64p_error VidExt_GL_SwapBuffers(void) {
     return M64ERR_SUCCESS;
 }
 
+m64p_error VidExt_ResizeWindow(int Width, int Height)
+{
+#if 0
+    const SDL_VideoInfo *videoInfo;
+    int videoFlags = 0;
+	
+    /* call video extension override if necessary */
+    if (l_VideoExtensionActive)
+    {
+        m64p_error rval;
+        // shut down the OSD
+        osd_exit();
+        // re-create the OGL context
+        rval = (*l_ExternalVideoFuncTable.VidExtFuncResizeWindow)(Width, Height);
+        if (rval == M64ERR_SUCCESS)
+        {
+            StateChanged(M64CORE_VIDEO_SIZE, (Width << 16) | Height);
+            // re-create the On-Screen Display
+            osd_init(Width, Height);
+        }
+        return rval;
+    }
+	
+    if (!l_VideoOutputActive || !SDL_WasInit(SDL_INIT_VIDEO))
+        return M64ERR_NOT_INIT;
+	
+    if (l_Fullscreen)
+    {
+        DebugMessage(M64MSG_ERROR, "VidExt_ResizeWindow() called in fullscreen mode.");
+        return M64ERR_INVALID_STATE;
+    }
+	
+    /* Get SDL video flags to use */
+    videoFlags = SDL_OPENGL | SDL_RESIZABLE;
+    if ((videoInfo = SDL_GetVideoInfo()) == NULL)
+    {
+        DebugMessage(M64MSG_ERROR, "SDL_GetVideoInfo query failed: %s", SDL_GetError());
+        return M64ERR_SYSTEM_FAIL;
+    }
+    if (videoInfo->hw_available)
+        videoFlags |= SDL_HWSURFACE;
+    else
+        videoFlags |= SDL_SWSURFACE;
+	
+    // destroy the On-Screen Display
+    osd_exit();
+	
+    /* set the re-sizing the screen will create a new OpenGL context */
+    l_pScreen = SDL_SetVideoMode(Width, Height, 0, videoFlags);
+    if (l_pScreen == NULL)
+    {
+        DebugMessage(M64MSG_ERROR, "SDL_SetVideoMode failed: %s", SDL_GetError());
+        return M64ERR_SYSTEM_FAIL;
+    }
+	
+    StateChanged(M64CORE_VIDEO_SIZE, (Width << 16) | Height);
+    // re-create the On-Screen Display
+    osd_init(Width, Height);
+	
+#endif
+    return M64ERR_SUCCESS;
+}
+
+
 m64p_video_extension_functions extensionFunctions = {
-	.Functions = 10,
+	.Functions = 11,
 	.VidExtFuncInit = VidExt_Init,
 	.VidExtFuncQuit = VidExt_Quit,
 	.VidExtFuncListModes = VidExt_ListFullscreenModes,
@@ -690,5 +757,6 @@ m64p_video_extension_functions extensionFunctions = {
 	.VidExtFuncGLGetAttr = VidExt_GL_GetAttribute,
 	.VidExtFuncGLSwapBuf = VidExt_GL_SwapBuffers,
 	.VidExtFuncSetCaption = VidExt_SetCaption,
-	.VidExtFuncToggleFS = VidExt_ToggleFullScreen
+	.VidExtFuncToggleFS = VidExt_ToggleFullScreen,
+	.VidExtFuncResizeWindow = VidExt_ResizeWindow
 };

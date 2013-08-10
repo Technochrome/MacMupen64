@@ -1,3 +1,6 @@
 [submodule "mupen64plus-upstream"]
 	path = mupen64plus-upstream
 	url = https://github.com/Technochrome/Mupen64upstream.git
+[submodule "MALInput"]
+	path = MALInput
+	url = https://github.com/Technochrome/MALInput.git
