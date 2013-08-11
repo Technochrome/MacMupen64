@@ -1,7 +1,9 @@
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
- *   Mupen64plus-ui-console - version.h                                    *
+ *   Mupen64plus-input-MALInput - version.h                                *
  *   Mupen64Plus homepage: http://code.google.com/p/mupen64plus/           *
- *   Copyright (C) 2009 Richard Goedeken                                   *
+ *   MacMupen homepage: https://github.com/Technochrome/MacMupen64/        *
+ *   Copyright (C) 2013 John Pender                                        *
+ *   Copyright (C) 2009-2012 Richard Goedeken                              *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
@@ -26,12 +28,10 @@
 #if !defined(VERSION_H)
 #define VERSION_H
 
-#define CONSOLE_UI_VERSION 0x020101
-#define CONSOLE_API_VERSION 0x020101
-#define CONSOLE_UI_NAME    "Mupen64Plus Cocoa User Interface"
-
-#define MINIMUM_CORE_VERSION 0x016300
-#define MINIMUM_API_VERSION 0x10000
+#define PLUGIN_NAME    "Mupen64Plus MALInput Input Plugin"
+#define PLUGIN_VERSION           0x016305
+#define INPUT_PLUGIN_API_VERSION 0x020000
+#define CONFIG_API_VERSION       0x020000
 
 #define VERSION_PRINTF_SPLIT(x) (((x) >> 16) & 0xffff), (((x) >> 8) & 0xff), ((x) & 0xff)
 

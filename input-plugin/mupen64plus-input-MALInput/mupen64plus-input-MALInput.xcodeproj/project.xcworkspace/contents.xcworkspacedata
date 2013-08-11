@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:MacMupen64.xcodeproj">
+      location = "self:mupen64plus-input-MALInput.xcodeproj">
    </FileRef>
 </Workspace>
