@@ -489,7 +489,7 @@ int TestOtherMain(void) {
 
 	
 	pixelAttributes = [[NSMutableArray alloc] init];
-	(*CoreOverrideVidExt)(&extensionFunctions);
+	(*CoreOverrideVidExt)(&videoExtensionFunctions);
 	
 	/* run the game */
 	(*CoreDoCommand)(M64CMD_EXECUTE, 0, NULL);

@@ -89,7 +89,6 @@
 		2FB388A216F2A9600023CAAF /* Preference Panes.bundle in CopyFiles */ = {isa = PBXBuildFile; fileRef = 2F4951DD14110DF500D2B2C1 /* Preference Panes.bundle */; };
 		2FD8F64F17A8A9070007685C /* libfreetype.6.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 2F768BEF17A8A8DF00E8CD2A /* libfreetype.6.dylib */; };
 		2FD8F65417A8A90A0007685C /* libSDL-1.2.0.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 2F768BF117A8A8DF00E8CD2A /* libSDL-1.2.0.dylib */; };
-		2FD8F65517A8A9200007685C /* libSDL-1.2.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F768BF117A8A8DF00E8CD2A /* libSDL-1.2.0.dylib */; };
 		2FD8F66F17A8AE080007685C /* m64p_common.h in Headers */ = {isa = PBXBuildFile; fileRef = 2FD8F65E17A8AE080007685C /* m64p_common.h */; };
 		2FD8F67017A8AE080007685C /* m64p_config.h in Headers */ = {isa = PBXBuildFile; fileRef = 2FD8F65F17A8AE080007685C /* m64p_config.h */; };
 		2FD8F67117A8AE080007685C /* m64p_debugger.h in Headers */ = {isa = PBXBuildFile; fileRef = 2FD8F66017A8AE080007685C /* m64p_debugger.h */; };
@@ -325,7 +324,6 @@
 			files = (
 				2F8FCFEE17B5FBC900400C0B /* MALInput.framework in Frameworks */,
 				2F294B6B179224C900355455 /* Cocoa.framework in Frameworks */,
-				2FD8F65517A8A9200007685C /* libSDL-1.2.0.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1013,6 +1011,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/resources/plugins\"",
+					"\"$(SRCROOT)/resources/libs\"",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1050,6 +1049,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/resources/plugins\"",
+					"\"$(SRCROOT)/resources/libs\"",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				PRODUCT_NAME = "$(TARGET_NAME)";
