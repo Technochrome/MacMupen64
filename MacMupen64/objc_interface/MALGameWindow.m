@@ -37,17 +37,10 @@ static void drawAnObject (float z)
 @implementation MALGameWindow
 -(NSOpenGLView*) openGLview {return openGLview;}
 -(void) setOpenGLview:(NSOpenGLView *)glview {
-	if(glview != openGLview) {
-		[glview retain];
-		[openGLview release];
-		openGLview = glview;
-		[self setContentView:openGLview];
-		
-		[openGLview prepareOpenGL];
-		[openGLview.openGLContext makeCurrentContext];
-		
-		glClearColor(0, 1, .3, 0);
-	}
+	[glview retain];
+	[openGLview release];
+	openGLview = glview;
+	[self setContentView:openGLview];
 }
 
 +(NSWindowController*) gameWindow {
@@ -57,6 +50,7 @@ static void drawAnObject (float z)
 	return [wc autorelease];
 }
 
+#if 0
 -(void) switchToFramebuffer {
 	glBindFramebuffer(GL_FRAMEBUFFER, renderBuffer);
 	glBindTexture(GL_TEXTURE_2D, 0);
@@ -68,52 +62,20 @@ static void drawAnObject (float z)
 	
 	glBindFramebuffer(GL_FRAMEBUFFER, 0);
 	glBindTexture(GL_TEXTURE_2D, 0);
-//    glClearColor(0, .1, .5, 0);
-//    glClear(GL_COLOR_BUFFER_BIT);
+	//    glClearColor(0, .1, .5, 0);
+	//    glClear(GL_COLOR_BUFFER_BIT);
 }
+#endif
 
--(void) drawFramebuffer {
-	if(![NSThread isMainThread])
-		[self performSelector:_cmd onThread:[NSThread mainThread] withObject:nil waitUntilDone:YES];
-
-	[openGLview.openGLContext flushBuffer];
-	return;
-	
-	[self switchToScreen];
-	
-	glMatrixMode(GL_PROJECTION);
-	glPushMatrix();
-	glLoadIdentity();
-	glViewport(0, 0, splitSize(self.frame.size));
-	glOrtho(0.0, self.frame.size.width, 0.0, self.frame.size.height, -1.0, 1.0);
-	
-	glMatrixMode(GL_MODELVIEW);
-	
-	glDisable(GL_LIGHTING);
-	glEnable(GL_TEXTURE_2D);
-	
-	glPushMatrix(); {
-		glScaled(self.frame.size.width, self.frame.size.height, 1);
-//		glBindTexture(GL_TEXTURE_2D, renderTexture);
-		glColor3f(.5, .5, 0);
-		drawGlRect();
-	
-	} glPopMatrix();
-	
-	
-	glMatrixMode(GL_PROJECTION);
-	glPopMatrix();
-	
-	glMatrixMode(GL_MODELVIEW);
-	[openGLview.openGLContext flushBuffer];
-	
-//	[self switchToFramebuffer];
-}
--(void) setFramebufferSize:(NSSize)size {
+-(void) setFramebufferSize:(NSSize)size attributes:(NSArray*)pixelAttributes {
+	NSOpenGLPixelFormatAttribute * form = (NSOpenGLPixelFormatAttribute*)malloc(sizeof(NSOpenGLPixelFormatAttribute) * (1 +[pixelAttributes count]));
+	for(int i=0; i<[pixelAttributes count]; i++)
+		[[pixelAttributes objectAtIndex:i] getValue:&form[i]];
+	form[[pixelAttributes count]]=0;
 	
 	[self setContentSize:size];
+	[self setOpenGLview:[[NSOpenGLView alloc] initWithFrame:self.frame pixelFormat:[[NSOpenGLPixelFormat alloc] initWithAttributes:form]]];
 	[openGLview.openGLContext makeCurrentContext];
-	return;
 	
 	glGenTextures(1, &renderTexture);
 	glBindTexture(GL_TEXTURE_2D, renderTexture);
@@ -132,22 +94,52 @@ static void drawAnObject (float z)
 	glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH_COMPONENT, splitSize(size));
 	glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_RENDERBUFFER, renderDepth);
 	
-//	[self switchToFramebuffer];
-	[self switchToScreen];
+	if(glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE) {
+		NSLog(@"Framebuffer creation failure");
+	}
 	
-	NSLog(@"%x %x", glCheckFramebufferStatus(GL_FRAMEBUFFER), GL_FRAMEBUFFER_COMPLETE);
+	glBindTexture(GL_TEXTURE_2D, 0);
+	glBindFramebuffer(GL_FRAMEBUFFER, 0);
 }
--(void) setPixelFormatAttributes:(NSArray*)pixelAttributes {
+
+-(void) drawFramebuffer {
+//	[[openGLview openGLContext] performSelectorOnMainThread:@selector(flushBuffer) withObject:nil waitUntilDone:YES];
 //	if(![NSThread isMainThread])
-//		[self performSelector:_cmd onThread:[NSThread mainThread] withObject:pixelAttributes waitUntilDone:YES];
+//		[self performSelectorOnMainThread:_cmd withObject:nil waitUntilDone:YES];
 	
-	pixelAttributes = [pixelAttributes arrayByAddingObjectsFromArray:@[@(NSOpenGLCPSwapInterval),@1]];
+	glMatrixMode(GL_PROJECTION);
+	glPushMatrix(); {
+		glLoadIdentity();
+		glViewport(0, 0, splitSize(self.frame.size));
+		glOrtho(0.0, self.frame.size.width, 0.0, self.frame.size.height, -1.0, 1.0);
+		
+		glMatrixMode(GL_MODELVIEW);
+		
+		BOOL lighting = glIsEnabled(GL_LIGHTING), textured = glIsEnabled(GL_TEXTURE_2D), depth = glIsEnabled(GL_DEPTH_TEST);
+		glDisable(GL_LIGHTING); glDisable(GL_TEXTURE_2D); glDisable(GL_DEPTH_TEST);
+		
+		glPushMatrix(); {
+			//		glBindTexture(GL_TEXTURE_2D, renderTexture);
+			glColor3f(.1, .5, 0);
+			glTranslated(.1, .1, 0);
+			
+			glScaled(splitSize(self.frame.size), 1);
+			glScaled(.5, .5, 1);
+			drawGlRect();
+		} glPopMatrix();
+		
+		
+		if(lighting) glEnable(GL_LIGHTING);
+		if(textured) glEnable(GL_TEXTURE_2D);
+		if(depth) glEnable(GL_DEPTH_TEST);
+		
+		glMatrixMode(GL_PROJECTION);
+	} glPopMatrix();
 	
-	NSOpenGLPixelFormatAttribute * attr = (NSOpenGLPixelFormatAttribute*)malloc(sizeof(NSOpenGLPixelFormatAttribute) * (1 +[pixelAttributes count]));
-	for(int i=0; i<[pixelAttributes count]; i++)
-		[[pixelAttributes objectAtIndex:i] getValue:&attr[i]];
-	attr[[pixelAttributes count]]=0;
+	glMatrixMode(GL_MODELVIEW);
 	
-	[self setOpenGLview:[[NSOpenGLView alloc] initWithFrame:self.frame pixelFormat:[[NSOpenGLPixelFormat alloc] initWithAttributes:attr]]];
+
+	[openGLview.openGLContext flushBuffer];
 }
 @end
+

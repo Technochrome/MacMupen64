@@ -15,7 +15,6 @@
 @property (readwrite, retain) NSOpenGLView * openGLview;
 +(NSWindowController*) gameWindow;
 
--(void) setPixelFormatAttributes:(NSArray*)attr;
--(void) setFramebufferSize:(NSSize)size;
+-(void) setFramebufferSize:(NSSize)size attributes:(NSArray*)pixelAttributes;
 -(void) drawFramebuffer;
 @end

@@ -51,10 +51,8 @@ m64p_error VidExt_SetVideoMode(int Width, int Height, int BitsPerPixel, m64p_vid
 	addVal(NSOpenGLPFAAlphaSize,pixelAttributes);
 	addVal(BitsPerPixel/4, pixelAttributes);
 #undef addVal
-	[malwin setPixelFormatAttributes:pixelAttributes];
 
-	
-	[malwin setFramebufferSize:NSMakeSize(Width, Height)];
+	[malwin setFramebufferSize:NSMakeSize(Width, Height) attributes:pixelAttributes];
 	
 	return M64ERR_SUCCESS;
 }
@@ -160,7 +158,8 @@ m64p_error VidExt_GL_GetAttribute(m64p_GLattr Attr, int *pValue) {
 }
 
 m64p_error VidExt_GL_SwapBuffers(void) {
-	[malwin drawFramebuffer];
+	[malwin performSelectorOnMainThread:@selector(drawFramebuffer) withObject:nil waitUntilDone:YES];
+//	[malwin drawFramebuffer];
     return M64ERR_SUCCESS;
 }
 
