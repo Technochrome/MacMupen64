@@ -17,7 +17,7 @@ extern NSString * const MALMupenEngineFinished;
 @interface MALMupenEngine : NSObject <NSWindowDelegate> {
 	NSMutableArray * plugins,*controllerBindings;
 	NSWindowController * gameWindow;
-	BOOL isRunning, muted;
+	BOOL isRunning, muted, fullscreen;
 	BOOL shouldDefrost;
 	int framesUntilStop; // Stopping requires an extra frame to flush the command queue
 	int volume;
@@ -28,7 +28,7 @@ extern NSString * const MALMupenEngineFinished;
 @property (readwrite, retain) MALMupenRom * mainROM;
 @property (readonly) NSArray * controllerBindings;
 
-@property (readwrite) BOOL muted;
+@property (readwrite) BOOL muted,fullscreen;
 @property (readwrite) int volume;
 
 +(MALInputDevice*) n64Controller;

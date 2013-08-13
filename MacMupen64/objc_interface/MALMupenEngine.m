@@ -277,6 +277,17 @@ void frameCallback(unsigned int FrameIndex) {
 	[self didChangeValueForKey:@"muted"];
 }
 -(BOOL) muted { return muted; }
+-(void) setFullscreen:(BOOL)full {
+	if(full == fullscreen) return;
+	
+	int pFullscreen = full ? 3 : 2;
+	(*CoreDoCommand)(M64CMD_CORE_STATE_SET, M64CORE_VIDEO_MODE, &pFullscreen);
+	
+	[self willChangeValueForKey:@"fullscreen"];
+	fullscreen = full;
+	[self didChangeValueForKey:@"fullscreen"];
+}
+-(BOOL) fullscreen { return fullscreen; }
 -(void) freeze {
 	(*CoreDoCommand)(M64CMD_STATE_SAVE,1,(void*)[[self autosaveLocation] UTF8String]);
 }

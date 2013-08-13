@@ -78,6 +78,9 @@
 		2F8FD02417B7251300400C0B /* libsamplerate.0.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 2F8FD01A17B724DA00400C0B /* libsamplerate.0.dylib */; };
 		2F8FD02517B7251600400C0B /* libspeexdsp.1.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 2F8FD01B17B724DA00400C0B /* libspeexdsp.1.dylib */; };
 		2F8FD02617B7251800400C0B /* libz.1.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 2F8FD01C17B724DA00400C0B /* libz.1.dylib */; };
+		2F8FD02817B999DD00400C0B /* mupen64plus-video-arachnoid.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 2F8FD00117B60C6700400C0B /* mupen64plus-video-arachnoid.dylib */; };
+		2F8FD02917B9A2E900400C0B /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F9FF6C61628B0B400E1821F /* OpenGL.framework */; };
+		2F8FD05C17B9DE6700400C0B /* MALMupenOpenGLView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F8FD05A17B9DDAD00400C0B /* MALMupenOpenGLView.m */; };
 		2F9FF6C41628B06500E1821F /* MALAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F495164141102BF00D2B2C1 /* MALAdditions.m */; };
 		2F9FF6C51628B06500E1821F /* MALBackporting.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F495166141102BF00D2B2C1 /* MALBackporting.m */; };
 		2F9FF6C71628B0B400E1821F /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F9FF6C61628B0B400E1821F /* OpenGL.framework */; };
@@ -169,6 +172,7 @@
 				2F281B6217B0B1AB004EE8AA /* mupen64plus-audio-sdl.dylib in CopyFiles */,
 				2F281B6317B0B1AD004EE8AA /* mupen64plus-rsp-hle.dylib in CopyFiles */,
 				2F281B6417B0B1B1004EE8AA /* mupen64plus-video-rice.dylib in CopyFiles */,
+				2F8FD02817B999DD00400C0B /* mupen64plus-video-arachnoid.dylib in CopyFiles */,
 				2F8FD00717B60F6600400C0B /* mupen64plus-video-glide64mk2.dylib in CopyFiles */,
 				2F8FCFFB17B5FF5B00400C0B /* libmupen64plus-input-MALInput.dylib in CopyFiles */,
 			);
@@ -303,6 +307,8 @@
 		2F8FD01A17B724DA00400C0B /* libsamplerate.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libsamplerate.0.dylib; sourceTree = "<group>"; };
 		2F8FD01B17B724DA00400C0B /* libspeexdsp.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libspeexdsp.1.dylib; sourceTree = "<group>"; };
 		2F8FD01C17B724DA00400C0B /* libz.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libz.1.dylib; sourceTree = "<group>"; };
+		2F8FD05917B9DDAD00400C0B /* MALMupenOpenGLView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MALMupenOpenGLView.h; sourceTree = "<group>"; };
+		2F8FD05A17B9DDAD00400C0B /* MALMupenOpenGLView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MALMupenOpenGLView.m; sourceTree = "<group>"; };
 		2F9FF6C61628B0B400E1821F /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
 		2FB3889316F29F1D0023CAAF /* InputPane.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InputPane.xib; sourceTree = "<group>"; };
 		2FB3889916F2A1740023CAAF /* 09494148_64Controller_answer_1_small.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 09494148_64Controller_answer_1_small.jpeg; sourceTree = "<group>"; };
@@ -322,6 +328,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2F8FD02917B9A2E900400C0B /* OpenGL.framework in Frameworks */,
 				2F8FCFEE17B5FBC900400C0B /* MALInput.framework in Frameworks */,
 				2F294B6B179224C900355455 /* Cocoa.framework in Frameworks */,
 			);
@@ -488,14 +495,11 @@
 		2F495178141102D000D2B2C1 /* MacMupen Framework */ = {
 			isa = PBXGroup;
 			children = (
+				2F8FD05817B9DD6900400C0B /* Rendering */,
 				2F49517F141102E700D2B2C1 /* preferences.h */,
 				2F495180141102E700D2B2C1 /* preferences.m */,
-				2F4951541411023300D2B2C1 /* videoExtension.h */,
-				2F4951551411023300D2B2C1 /* videoExtension.m */,
 				2F4951521411021C00D2B2C1 /* Old Console SRC */,
 				2F495143141101F800D2B2C1 /* API */,
-				2F495188141102FD00D2B2C1 /* MALGameWindow.h */,
-				2F495189141102FD00D2B2C1 /* MALGameWindow.m */,
 				2F495169141102CB00D2B2C1 /* core_interface.c */,
 				2F49516A141102CB00D2B2C1 /* core_interface.h */,
 				2F49516B141102CB00D2B2C1 /* MALMupenEngine.h */,
@@ -631,6 +635,19 @@
 				2F8FD01C17B724DA00400C0B /* libz.1.dylib */,
 			);
 			path = libs;
+			sourceTree = "<group>";
+		};
+		2F8FD05817B9DD6900400C0B /* Rendering */ = {
+			isa = PBXGroup;
+			children = (
+				2F4951541411023300D2B2C1 /* videoExtension.h */,
+				2F4951551411023300D2B2C1 /* videoExtension.m */,
+				2F495188141102FD00D2B2C1 /* MALGameWindow.h */,
+				2F495189141102FD00D2B2C1 /* MALGameWindow.m */,
+				2F8FD05917B9DDAD00400C0B /* MALMupenOpenGLView.h */,
+				2F8FD05A17B9DDAD00400C0B /* MALMupenOpenGLView.m */,
+			);
+			name = Rendering;
 			sourceTree = "<group>";
 		};
 		2F9FF6C31628AB4400E1821F /* MALlib */ = {
@@ -880,6 +897,7 @@
 				2F294B8D179226E100355455 /* osal_dynamiclib_unix.m in Sources */,
 				2F294B8E1792270500355455 /* videoExtension.m in Sources */,
 				2F294B9117922BD600355455 /* preferences.m in Sources */,
+				2F8FD05C17B9DE6700400C0B /* MALMupenOpenGLView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

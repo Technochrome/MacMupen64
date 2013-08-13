@@ -16,29 +16,24 @@
 @end
 
 @implementation  NSMutableAttributedString (MALAdditions)
--(void) addBoldString:(NSString*)s {
-	NSDictionary * boldAttr = [NSDictionary dictionaryWithObject:[NSFont boldSystemFontOfSize:[NSFont systemFontSize]] forKey:NSFontAttributeName];
-	NSAttributedString * string = [[NSAttributedString alloc] initWithString:s attributes:boldAttr];
+-(void) appendString:(NSString*)str withAttributes:(NSDictionary*)attr {
+	if(!str) return;
+	
+	NSAttributedString * string = [[NSAttributedString alloc] initWithString:str attributes:attr];
 	[self appendAttributedString:string];
 	[string release];
+}
+-(void) addBoldString:(NSString*)s {
+	[self appendString:s withAttributes:@{NSFontAttributeName: [NSFont boldSystemFontOfSize:[NSFont systemFontSize]]}];
 }
 -(void) addRegularString:(NSString*)s {
-	NSDictionary * regAttr =  [NSDictionary dictionaryWithObject:[NSFont systemFontOfSize:[NSFont systemFontSize]] forKey:NSFontAttributeName];
-	NSAttributedString * string = [[NSAttributedString alloc] initWithString:s attributes:regAttr];
-	[self appendAttributedString:string];
-	[string release];
+	[self appendString:s withAttributes:@{NSFontAttributeName: [NSFont systemFontOfSize:[NSFont systemFontSize]]}];
 }
 -(void) addSmallString:(NSString*)s {
-	NSDictionary * smallAttr = [NSDictionary dictionaryWithObject:[NSFont systemFontOfSize:[NSFont smallSystemFontSize]] forKey:NSFontAttributeName];
-	NSAttributedString * string = [[NSAttributedString alloc] initWithString:s attributes:smallAttr];
-	[self appendAttributedString:string];
-	[string release];
+	[self appendString:s withAttributes:@{NSFontAttributeName: [NSFont systemFontOfSize:[NSFont smallSystemFontSize]]}];
 }
 -(void) addRedString:(NSString*)s {
-	NSDictionary * redAttr = [NSDictionary dictionaryWithObject:[NSColor redColor] forKey:NSForegroundColorAttributeName];
-	NSAttributedString * string = [[NSAttributedString alloc] initWithString:s attributes:redAttr];
-	[self appendAttributedString:string];
-	[string release];
+	[self appendString:s withAttributes:@{NSForegroundColorAttributeName: [NSColor redColor]}];
 }
 -(void) addReturn {
 	NSAttributedString * _return = [[NSAttributedString alloc] initWithString:@"\n"];

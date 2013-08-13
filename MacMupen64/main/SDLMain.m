@@ -18,15 +18,14 @@ int main (int argc, char **argv) {
 					  forKey:MALDefaultOpenPanelDirectoryKey];
 	defaultValues[MALDefaultROMExtensionsKey] = @[@"z64",@"n64",@"v64"];
 	
-	NSMutableDictionary * pluginPaths = [NSMutableDictionary dictionary];
-	[pluginPaths setObject:@"libmupen64plus" forKey:CoreString];
-	[pluginPaths setObject:@"libmupen64plus-input-MALInput" forKey:InputString];
-	[pluginPaths setObject:@"mupen64plus-audio-sdl" forKey:AudioString];
-	[pluginPaths setObject:@"mupen64plus-rsp-hle" forKey:RSPString];
-	[pluginPaths setObject:@"mupen64plus-video-glide64mk2" forKey:VideoString];
-	[defaultValues setObject:pluginPaths forKey:MALDefaultPluginPathsKey];
+	defaultValues[MALDefaultPluginPathsKey] = @{
+			CoreString: @"libmupen64plus",
+			InputString: @"libmupen64plus-input-MALInput",
+			AudioString: @"mupen64plus-audio-sdl",
+			RSPString: @"mupen64plus-rsp-hle",
+			VideoString: @"mupen64plus-video-glide64mk2"};
 	
-	[defaultValues setObject:NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) forKey:MALDefaultROMFoldersKey];
+	defaultValues[MALDefaultROMFoldersKey] = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
 	
 	NSMutableDictionary * iconPaths = [NSMutableDictionary dictionary];
 	[iconPaths setObject:@"/Applications/Utilities/Activity Monitor.app/Contents/Resources/ActivityMonitor.icns" forKey:RSPString];

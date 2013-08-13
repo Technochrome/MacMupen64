@@ -8,11 +8,14 @@
 
 #import <Cocoa/Cocoa.h>
 
-@class MALGameWindow;
-
 @interface MALGameWindow : NSWindow {
 	NSOpenGLView * openGLview;
+	GLuint renderTexture,renderBuffer,renderDepth;
 }
 @property (readwrite, retain) NSOpenGLView * openGLview;
 +(NSWindowController*) gameWindow;
+
+-(void) setPixelFormatAttributes:(NSArray*)attr;
+-(void) setFramebufferSize:(NSSize)size;
+-(void) drawFramebuffer;
 @end
