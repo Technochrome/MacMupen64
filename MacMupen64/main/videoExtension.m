@@ -124,7 +124,7 @@ m64p_error VidExt_GL_GetAttribute(m64p_GLattr Attr, int *pValue) {
 //	 { M64P_GL_BUFFER_SIZE,  SDL_GL_BUFFER_SIZE },
 	 { M64P_GL_DEPTH_SIZE,   NSOpenGLPFADepthSize },
 	 { M64P_GL_ALPHA_SIZE,   NSOpenGLPFAAlphaSize },
-//	 { M64P_GL_SWAP_CONTROL, NSOpenGLCPSwapInterval },
+	 { M64P_GL_SWAP_CONTROL, NSOpenGLCPSwapInterval },
 	 { M64P_GL_MULTISAMPLEBUFFERS, NSOpenGLPFASampleBuffers },
 	 { M64P_GL_MULTISAMPLESAMPLES, NSOpenGLPFASamples }
 	};
@@ -158,8 +158,7 @@ m64p_error VidExt_GL_GetAttribute(m64p_GLattr Attr, int *pValue) {
 }
 
 m64p_error VidExt_GL_SwapBuffers(void) {
-	[malwin performSelectorOnMainThread:@selector(drawFramebuffer) withObject:nil waitUntilDone:YES];
-//	[malwin drawFramebuffer];
+	[malwin drawFramebuffer];
     return M64ERR_SUCCESS;
 }
 

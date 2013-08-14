@@ -10,9 +10,13 @@
 
 @interface MALGameWindow : NSWindow {
 	NSOpenGLView * openGLview;
-	GLuint renderTexture,renderBuffer,renderDepth;
+	
+	NSWindow * hiddenWindow;
+	NSOpenGLView * offscreenGLview;
+	NSOpenGLContext * offscreenContext;
+	GLuint renderTexture,renderBuffer;
+	GLvoid * offscreenBuffer;
 }
-@property (readwrite, retain) NSOpenGLView * openGLview;
 +(NSWindowController*) gameWindow;
 
 -(void) setFramebufferSize:(NSSize)size attributes:(NSArray*)pixelAttributes;

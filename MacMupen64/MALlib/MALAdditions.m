@@ -55,3 +55,17 @@
 	return result;
 }
 @end
+
+@implementation NSOpenGLPixelFormat (initFromArray)
++(NSOpenGLPixelFormat*) pixelFormatFromArrayOfAttributes:(NSArray*)attrs {
+	NSOpenGLPixelFormatAttribute * pixelAttrs = malloc(sizeof(NSOpenGLPixelFormatAttribute) * (1 +[attrs count]));
+	for(int i=0; i<[attrs count]; i++)
+		[[attrs objectAtIndex:i] getValue:&pixelAttrs[i]];
+	pixelAttrs[[attrs count]]=0;
+	
+	NSOpenGLPixelFormat * pixelFormat = [[NSOpenGLPixelFormat alloc] initWithAttributes:pixelAttrs];
+	free(pixelAttrs);
+	
+	return [pixelFormat autorelease];
+}
+@end

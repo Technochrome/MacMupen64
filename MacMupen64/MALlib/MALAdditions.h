@@ -7,6 +7,7 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import "NSInvocation(ForwardedConstruction).h"
 #import "OBJprintf.h"
 
 @interface NSString (MALAdditions)
@@ -24,4 +25,8 @@
 
 @interface NSString (HexIntValue)
 - (NSUInteger)hexIntegerValue ;
+@end
+
+@interface NSOpenGLPixelFormat (initFromArray)
++(NSOpenGLPixelFormat*) pixelFormatFromArrayOfAttributes:(NSArray*)attributes;
 @end

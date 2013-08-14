@@ -113,22 +113,35 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "MacMupen64/objc_interface/MALGameWindow.m"
-         timestampString = "398121447.671052"
+         timestampString = "398140677.627112"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "193"
-         endingLineNumber = "193">
+         startingLineNumber = "145"
+         endingLineNumber = "145">
       </FileBreakpoint>
       <FileBreakpoint
          shouldBeEnabled = "No"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "MacMupen64/objc_interface/MALGameWindow.m"
-         timestampString = "398121447.671052"
+         timestampString = "398140677.627112"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "193"
-         endingLineNumber = "193">
+         startingLineNumber = "145"
+         endingLineNumber = "145">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "MacMupen64/objc_interface/MALGameWindow.m"
+         timestampString = "398140677.627112"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "72"
+         endingLineNumber = "72"
+         landmarkName = "-setFramebufferSize:attributes:"
+         landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>
    <ExceptionBreakpoints>
