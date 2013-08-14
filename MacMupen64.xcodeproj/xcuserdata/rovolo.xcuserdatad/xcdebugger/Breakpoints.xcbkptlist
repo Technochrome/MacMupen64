@@ -113,34 +113,47 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "MacMupen64/objc_interface/MALGameWindow.m"
-         timestampString = "398140677.627112"
+         timestampString = "398197857.700785"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "145"
-         endingLineNumber = "145">
+         startingLineNumber = "150"
+         endingLineNumber = "150">
       </FileBreakpoint>
       <FileBreakpoint
          shouldBeEnabled = "No"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "MacMupen64/objc_interface/MALGameWindow.m"
-         timestampString = "398140677.627112"
+         timestampString = "398197857.700785"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "145"
-         endingLineNumber = "145">
+         startingLineNumber = "150"
+         endingLineNumber = "150">
       </FileBreakpoint>
       <FileBreakpoint
          shouldBeEnabled = "No"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "MacMupen64/objc_interface/MALGameWindow.m"
-         timestampString = "398140677.627112"
+         timestampString = "398197610.928569"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "72"
-         endingLineNumber = "72"
+         startingLineNumber = "69"
+         endingLineNumber = "69"
          landmarkName = "-setFramebufferSize:attributes:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "MacMupen64/objc_interface/MALGameWindow.m"
+         timestampString = "398197857.700785"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "134"
+         endingLineNumber = "134"
+         landmarkName = "-drawFramebuffer"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>

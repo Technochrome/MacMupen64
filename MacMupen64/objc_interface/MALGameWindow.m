@@ -49,7 +49,7 @@ static void drawAnObject ()
 +(NSWindowController*) gameWindow {
 	NSWindowController * wc = [[NSWindowController alloc] initWithWindowNibName:@"GameWindow"];
 	MALGameWindow * emu = (MALGameWindow*)[wc window];
-	[emu setOpenGLview:[[[NSOpenGLView alloc] initWithFrame:[emu frame] pixelFormat:[NSOpenGLView defaultPixelFormat]] autorelease]];
+	[emu setBackgroundColor:[NSColor blackColor]];
 	return [wc autorelease];
 }
 
@@ -63,9 +63,6 @@ static void drawAnObject ()
 		return;
 	}
 	
-	NSLog(@"set framebuffer");
-		
-	
 	NSOpenGLPixelFormat * onscreenPixFormat = [NSOpenGLPixelFormat pixelFormatFromArrayOfAttributes:pixelAttributes],
 	*offscreenPixFormat = [NSOpenGLPixelFormat pixelFormatFromArrayOfAttributes:[pixelAttributes arrayByAddingObject:@(NSOpenGLPFAOffScreen)]];
 	
@@ -74,6 +71,7 @@ static void drawAnObject ()
 	
 	[openGLview.openGLContext makeCurrentContext];
 	
+	glClearColor(0, 0, 0, 0);
 	glGenTextures(1, &renderTexture);
 	glBindTexture(GL_TEXTURE_2D, renderTexture);
 	glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
@@ -102,12 +100,34 @@ static void drawAnObject ()
 	offscreenGLview = [[NSOpenGLView alloc] initWithFrame:hiddenWindow.frame pixelFormat:offscreenPixFormat];
 	[hiddenWindow setContentView:offscreenGLview];
 	
-	[offscreenGLview.openGLContext makeCurrentContext];
+//	[offscreenGLview.openGLContext makeCurrentContext];
 }
 
 -(void) close {
 	[hiddenWindow close];
 	[super close];
+}
+
+-(void) drawOpenglWindow {
+	[openGLview.openGLContext makeCurrentContext];
+	glViewport(0, 0, splitSize(self.frame.size));
+	glClearColor(0, 0, 1, 0);
+	glClear(GL_COLOR_BUFFER_BIT);
+	
+	
+	glColor3f(1, 1, 1);
+	glBegin(GL_QUADS);
+	glTexCoord2f(0, 0); glVertex3f(0, 0, 0);
+	glTexCoord2f(0, 1); glVertex3f(0, 1, 0);
+	glTexCoord2f(1, 1); glVertex3f(1, 1, 0);
+	glTexCoord2f(1, 0); glVertex3f(1, 0, 0);
+	glEnd();
+	
+	glFlush();
+#define REPORTGLERROR() { GLenum tGLErr; while((tGLErr = glGetError()) != GL_NO_ERROR) { printf("OpenGL error %d : %s\n",tGLErr, __PRETTY_FUNCTION__); } }
+	
+	REPORTGLERROR();
+	[openGLview.openGLContext flushBuffer];
 }
 
 -(void) drawFramebuffer {
@@ -119,26 +139,12 @@ static void drawAnObject ()
 	glReadPixels(0, 0, splitSize(texSize), GL_RGB, GL_UNSIGNED_BYTE, pixels);
 	
 	[openGLview.openGLContext makeCurrentContext];
-	glViewport(0, 0, splitSize(self.frame.size));
-	glClearColor(0, 0, 1, 0);
-	glClear(GL_COLOR_BUFFER_BIT);
-	
-	
 	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, splitSize(texSize), 0, GL_RGB, GL_UNSIGNED_BYTE, pixels);
-	glColor3f(1, 1, 1);
-	glBegin(GL_QUADS);
-	glTexCoord2f(0, 0); glVertex3f(0, 0, 0);
-	glTexCoord2f(0, 1); glVertex3f(0, 1, 0);
-	glTexCoord2f(1, 1); glVertex3f(1, 1, 0);
-	glTexCoord2f(1, 0); glVertex3f(1, 0, 0);
-	glEnd();
-	
 	free(pixels);
-	glFlush();
-#define REPORTGLERROR() { GLenum tGLErr; while((tGLErr = glGetError()) != GL_NO_ERROR) { printf("OpenGL error %d : %s\n",tGLErr, __PRETTY_FUNCTION__); } }
 	
-	REPORTGLERROR();
-	[openGLview.openGLContext flushBuffer];
+	// Can interfere with driver initializing the view on the main thread, so put in queue
+	[self performSelectorOnMainThread:@selector(drawOpenglWindow) withObject:nil waitUntilDone:NO];
+	
 	[offscreenGLview.openGLContext makeCurrentContext];
 }
 @end
