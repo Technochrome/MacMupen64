@@ -7,9 +7,9 @@
 //
 
 #import "MALGameWindow.h"
-#import "MALMupenOpenGLView.h"
 #import <OpenGL/OpenGL.h>
 #import "MALAdditions.h"
+#import "MALMupenEngine.h"
 
 static void drawGlRect() {
 	glBegin(GL_QUADS);
@@ -38,6 +38,7 @@ static void drawAnObject ()
 #define splitRect(rect) splitPoint(rect.origin), splitSize(rect.size)
 
 @implementation MALGameWindow
+@synthesize engine,oldTitle;
 -(NSOpenGLView*) openGLview {return openGLview;}
 -(void) setOpenGLview:(NSOpenGLView *)glview {
 	[glview retain];
@@ -50,6 +51,7 @@ static void drawAnObject ()
 	NSWindowController * wc = [[NSWindowController alloc] initWithWindowNibName:@"GameWindow"];
 	MALGameWindow * emu = (MALGameWindow*)[wc window];
 	[emu setBackgroundColor:[NSColor blackColor]];
+	[emu setDelegate:emu];
 	return [wc autorelease];
 }
 
@@ -89,6 +91,13 @@ static void drawAnObject ()
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
 	glEnable(GL_TEXTURE_2D);
+	glViewport(0,0, splitSize(size));
+	
+	GLint dim[2] = {size.width, size.height};
+	// ctx must be a valid context
+	void *ctx =[openGLview.openGLContext CGLContextObj];
+	CGLSetParameter(ctx, kCGLCPSurfaceBackingSize, dim);
+	CGLEnable (ctx, kCGLCESurfaceBackingSize);
 	
 	// Setup offscreen buffer
 	NSRect frame = NSMakeRect(100, 100, splitSize(size));
@@ -99,18 +108,14 @@ static void drawAnObject ()
 	
 	offscreenGLview = [[NSOpenGLView alloc] initWithFrame:hiddenWindow.frame pixelFormat:offscreenPixFormat];
 	[hiddenWindow setContentView:offscreenGLview];
-	
-//	[offscreenGLview.openGLContext makeCurrentContext];
 }
 
 -(void) close {
-	[hiddenWindow close];
 	[super close];
 }
 
 -(void) drawOpenglWindow {
 	[openGLview.openGLContext makeCurrentContext];
-	glViewport(0, 0, splitSize(self.frame.size));
 	glClearColor(0, 0, 1, 0);
 	glClear(GL_COLOR_BUFFER_BIT);
 	
@@ -143,9 +148,57 @@ static void drawAnObject ()
 	free(pixels);
 	
 	// Can interfere with driver initializing the view on the main thread, so put in queue
-	[self performSelectorOnMainThread:@selector(drawOpenglWindow) withObject:nil waitUntilDone:NO];
+	[self performSelectorOnMainThread:@selector(drawOpenglWindow) withObject:nil waitUntilDone:YES];
 	
 	[offscreenGLview.openGLContext makeCurrentContext];
+}
+
+-(void) setFullscreen:(BOOL)fullscreen {
+	if (fullscreen) {
+		oldLevel = self.level;
+		oldFrame = self.frame;
+		self.oldTitle = self.title;
+		[self setStyleMask:NSBorderlessWindowMask];
+		[self setLevel:NSMainMenuWindowLevel+1];
+		[self setFrame:[[NSScreen mainScreen] frame] display:YES animate:YES];
+	} else {
+		[self setStyleMask:NSTitledWindowMask | NSClosableWindowMask | NSResizableWindowMask | NSMiniaturizableWindowMask];
+		[self setTitle:self.oldTitle];
+		[self setFrame:oldFrame display:YES animate:YES];
+		[self setLevel:oldLevel];
+	}
+	
+	glViewport(0,0, splitSize(offscreenGLview.frame.size));
+	
+	glMatrixMode(GL_PROJECTION);
+	glLoadIdentity();
+	glOrtho(0.0, 1, 0.0, 1, -1.0, 1.0);
+}
+
+#pragma mark <NSWindowDelegate>
+-(BOOL) windowShouldClose:(id)sender {
+	if(engine.isRunning) {
+		[engine stopEmulation];
+		return NO;
+	} else {
+		return YES;
+	}
+}
+-(NSSize) windowWillResize:(NSWindow *)sender toSize:(NSSize)frameSize {
+	NSSize emuSize = hiddenWindow.frame.size;
+	frameSize = NSMakeSize(MAX(frameSize.width ,frameSize.height * ( emuSize.width/emuSize.height)),
+						   MAX(frameSize.height,frameSize.width  * (emuSize.height/ emuSize.width)));
+	
+	return frameSize;
+}
+-(void) windowDidResignMain:(NSNotification *)notification {
+	
+}
+-(void) windowDidResignKey:(NSNotification *)notification {
+	
+}
+-(void) windowWillClose:(NSNotification *)notification {
+	[hiddenWindow close];
 }
 @end
 

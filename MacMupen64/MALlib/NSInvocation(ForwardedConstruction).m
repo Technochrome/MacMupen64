@@ -23,6 +23,7 @@
 // class (not a subclass of NSObject) and does not implement the NSObject
 // protocol (and so is *not* a first-class object).
 //
+NS_ROOT_CLASS
 @interface InvocationProxy
 {
     Class isa;
@@ -31,7 +32,6 @@
 	BOOL retainArguments;
 	NSUInteger forwardingAddress;
 }
-
 + (id)alloc;
 + (void)setValuesForInstance:(InvocationProxy *)instance
 	target:(id)target
@@ -228,7 +228,7 @@
 		[target methodSignatureForSelector:aSelector];
 	
 	NSAssert3(signature != nil,
-		@"NSInvocation(ForwardedConstruction) error: object 0x%x of class '%@' does not implement %s",
+		@"NSInvocation(ForwardedConstruction) error: object 0x%p of class '%@' does not implement %s",
 		target, [target className], sel_getName(aSelector));
 	
 	return signature;
@@ -312,7 +312,7 @@
 	//
 	// Alloc and init the proxy
 	//
-	InvocationProxy *invocationProxy = [[InvocationProxy alloc] init];
+	InvocationProxy *invocationProxy = [(id)[InvocationProxy alloc] init];
 
 	//
 	// Set the instance attributes on the proxy
@@ -353,7 +353,7 @@
 	//
 	// Alloc and init the proxy
 	//
-	InvocationProxy *invocationProxy = [[InvocationProxy alloc] init];
+	InvocationProxy *invocationProxy = [(id)[InvocationProxy alloc] init];
 
 	//
 	// Set the instance attributes on the proxy

@@ -23,7 +23,6 @@ GLuint renderBuffer,renderTexture;
 /* video extension functions to be called by the video plugin */
 m64p_error VidExt_Init(void) {
 	pixelAttributes = [[NSMutableArray alloc] init];
-	[[[malwin openGLview] openGLContext] flushBuffer];
     return M64ERR_SUCCESS;
 }
 

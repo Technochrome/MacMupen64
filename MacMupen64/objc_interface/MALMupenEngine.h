@@ -14,7 +14,7 @@ extern NSString * const MALMupenEngineStarted;
 extern NSString * const MALMupenEngineFinished;
 
 @class MALMupenRom,MALMupenCore;
-@interface MALMupenEngine : NSObject <NSWindowDelegate> {
+@interface MALMupenEngine : NSObject {
 	NSMutableArray * plugins,*controllerBindings;
 	NSWindowController * gameWindow;
 	BOOL isRunning, muted, fullscreen;
@@ -38,6 +38,8 @@ extern NSString * const MALMupenEngineFinished;
 -(void) freeze;
 -(void) defrost;
 +(MALMupenEngine*) shared;
+
+-(void) stopEmulation;
 
 -(void) emulationStarted;
 -(void) emulationStopped;

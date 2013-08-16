@@ -65,7 +65,7 @@ MALMupenEngine * _shared = nil;
 	if(isRunning) {
 		gameWindow = [[MALGameWindow gameWindow] retain];
 		malwin = (MALGameWindow*)[gameWindow window];
-		[malwin setDelegate:self];
+		malwin.engine = self;
 		[gameWindow performSelectorOnMainThread:@selector(showWindow:) withObject:self waitUntilDone:YES];
 		[[NSNotificationCenter defaultCenter] postNotificationName:MALMupenEngineStarted object:self];
 	} else {
@@ -194,21 +194,6 @@ MALMupenEngine * _shared = nil;
 	return device;
 }
 
--(BOOL) windowShouldClose:(id)sender {
-	if(isRunning) {
-		[self stopEmulation];
-		return NO;
-	} else {
-		return YES;
-	}
-}
--(void) windowWillClose:(NSNotification *)notification {
-}
--(void) windowDidMove:(NSNotification *)notification {
-}
--(void) windowWillMove:(NSNotification *)notification{
-}
-
 #pragma mark initialization
 -(void) dealloc {
 	[self setIsRunning:NO];
@@ -216,7 +201,7 @@ MALMupenEngine * _shared = nil;
 	[super dealloc];
 }
 
-void frameCallback(unsigned int FrameIndex) {
+static void frameCallback(unsigned int FrameIndex) {
 	[[MALMupenEngine shared] frameCallback];
 }
 -(id) init {
@@ -280,8 +265,7 @@ void frameCallback(unsigned int FrameIndex) {
 -(void) setFullscreen:(BOOL)full {
 	if(full == fullscreen) return;
 	
-	int pFullscreen = full ? 3 : 2;
-	(*CoreDoCommand)(M64CMD_CORE_STATE_SET, M64CORE_VIDEO_MODE, &pFullscreen);
+	[malwin setFullscreen:full];
 	
 	[self willChangeValueForKey:@"fullscreen"];
 	fullscreen = full;

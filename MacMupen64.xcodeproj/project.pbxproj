@@ -82,7 +82,6 @@
 		2F8FD02617B7251800400C0B /* libz.1.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 2F8FD01C17B724DA00400C0B /* libz.1.dylib */; };
 		2F8FD02817B999DD00400C0B /* mupen64plus-video-arachnoid.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 2F8FD00117B60C6700400C0B /* mupen64plus-video-arachnoid.dylib */; };
 		2F8FD02917B9A2E900400C0B /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F9FF6C61628B0B400E1821F /* OpenGL.framework */; };
-		2F8FD05C17B9DE6700400C0B /* MALMupenOpenGLView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F8FD05A17B9DDAD00400C0B /* MALMupenOpenGLView.m */; };
 		2F9FF6C41628B06500E1821F /* MALAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F495164141102BF00D2B2C1 /* MALAdditions.m */; };
 		2F9FF6C51628B06500E1821F /* MALBackporting.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F495166141102BF00D2B2C1 /* MALBackporting.m */; };
 		2F9FF6C71628B0B400E1821F /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F9FF6C61628B0B400E1821F /* OpenGL.framework */; };
@@ -311,8 +310,6 @@
 		2F8FD01A17B724DA00400C0B /* libsamplerate.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libsamplerate.0.dylib; sourceTree = "<group>"; };
 		2F8FD01B17B724DA00400C0B /* libspeexdsp.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libspeexdsp.1.dylib; sourceTree = "<group>"; };
 		2F8FD01C17B724DA00400C0B /* libz.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libz.1.dylib; sourceTree = "<group>"; };
-		2F8FD05917B9DDAD00400C0B /* MALMupenOpenGLView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MALMupenOpenGLView.h; sourceTree = "<group>"; };
-		2F8FD05A17B9DDAD00400C0B /* MALMupenOpenGLView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MALMupenOpenGLView.m; sourceTree = "<group>"; };
 		2F9FF6C61628B0B400E1821F /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
 		2FB3889316F29F1D0023CAAF /* InputPane.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InputPane.xib; sourceTree = "<group>"; };
 		2FB3889916F2A1740023CAAF /* 09494148_64Controller_answer_1_small.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 09494148_64Controller_answer_1_small.jpeg; sourceTree = "<group>"; };
@@ -648,8 +645,6 @@
 				2F4951551411023300D2B2C1 /* videoExtension.m */,
 				2F495188141102FD00D2B2C1 /* MALGameWindow.h */,
 				2F495189141102FD00D2B2C1 /* MALGameWindow.m */,
-				2F8FD05917B9DDAD00400C0B /* MALMupenOpenGLView.h */,
-				2F8FD05A17B9DDAD00400C0B /* MALMupenOpenGLView.m */,
 			);
 			name = Rendering;
 			sourceTree = "<group>";
@@ -904,7 +899,6 @@
 				2F294B8D179226E100355455 /* osal_dynamiclib_unix.m in Sources */,
 				2F294B8E1792270500355455 /* videoExtension.m in Sources */,
 				2F294B9117922BD600355455 /* preferences.m in Sources */,
-				2F8FD05C17B9DE6700400C0B /* MALMupenOpenGLView.m in Sources */,
 				2F6C27B117BB1F0C0013DB70 /* NSInvocation(ForwardedConstruction).m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
