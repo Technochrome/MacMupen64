@@ -82,6 +82,7 @@
 		2F8FD02617B7251800400C0B /* libz.1.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 2F8FD01C17B724DA00400C0B /* libz.1.dylib */; };
 		2F8FD02817B999DD00400C0B /* mupen64plus-video-arachnoid.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 2F8FD00117B60C6700400C0B /* mupen64plus-video-arachnoid.dylib */; };
 		2F8FD02917B9A2E900400C0B /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F9FF6C61628B0B400E1821F /* OpenGL.framework */; };
+		2F9F7F7E17BE9D9300BD5D9D /* MALInput.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 2F8FCFD517B5F27800400C0B /* MALInput.framework */; };
 		2F9FF6C41628B06500E1821F /* MALAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F495164141102BF00D2B2C1 /* MALAdditions.m */; };
 		2F9FF6C51628B06500E1821F /* MALBackporting.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F495166141102BF00D2B2C1 /* MALBackporting.m */; };
 		2F9FF6C71628B0B400E1821F /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F9FF6C61628B0B400E1821F /* OpenGL.framework */; };
@@ -205,6 +206,7 @@
 			files = (
 				2F8FD00217B60C6700400C0B /* mupen64plus-video-arachnoid.dylib in CopyFiles */,
 				2F294B901792273300355455 /* MacMupen.framework in CopyFiles */,
+				2F9F7F7E17BE9D9300BD5D9D /* MALInput.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

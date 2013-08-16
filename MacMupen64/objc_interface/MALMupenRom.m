@@ -21,14 +21,13 @@ NSString * const MALMupenRomNewROMOpened = @"MALMupenRom New ROM Loaded";
 const char * const xattrMupenVersionKey = "Mupen64plus version";
 const char * const xattrINIVersionKey = "Mupen64plus ini version";
 const char * const xattrROMInfoKey = "Mupen64plus ROM Info";
+const char * const xattrLastOpened = "Mupen64plus last opened";
 
 NSImage * MALDefaultRomImage = nil;
 NSMutableArray * recentlyOpenedROMS = nil;
 NSMutableDictionary * romLists = nil;
 
-void fixSwap(m64p_rom_header * header);
-
-void fixSwap(m64p_rom_header * header) {
+static void fixSwap(m64p_rom_header * header) {
 	int loadlength=sizeof(m64p_rom_header);
 	char firstByte = header->init_PI_BSB_DOM1_LAT_REG;
 	unsigned char * bytes = (unsigned char*)header;
@@ -58,6 +57,22 @@ void fixSwap(m64p_rom_header * header) {
 #pragma mark Accessors and Setters
 @synthesize gameTitle,MD5,status,players,rumble,netplay,formattedInfo,path,isUsable,image,lastOpened;
 
+-(NSDate*) lastOpened {
+	return lastOpened;
+}
+-(void) setLastOpened:(NSDate *)lo {
+	NSFileHandle * fh = [NSFileHandle fileHandleForReadingAtPath:[path relativePath]];
+	NSTimeInterval ti = [lo timeIntervalSince1970];
+	
+	fsetxattr([fh fileDescriptor], xattrLastOpened, &ti, sizeof(ti), 0, 0);
+	
+	[self willChangeValueForKey:@"lastOpened"];
+	[lo retain];
+	[lastOpened release];
+	lastOpened = lo;
+	[self didChangeValueForKey:@"lastOpened"];
+}
+
 -(NSURL*) freezesPath {
 	NSURL * folder = [MALFreezesFolder URLByAppendingPathComponent:self.gameTitle];
 	
@@ -83,7 +98,7 @@ void fixSwap(m64p_rom_header * header) {
 		[recentlyOpenedROMS addObject:self];
 		[[NSNotificationCenter defaultCenter] postNotificationName:MALMupenRomNewROMOpened object:self];
 	}
-	lastOpened = [[NSDate date] retain];
+	self.lastOpened = [[NSDate date] retain];
 	[NSKeyedArchiver archiveRootObject:recentlyOpenedROMS toFile:[MALRecentlyOpenedRomsFile relativePath]];
 	[self didChangeValueForKey:@"lastOpened"];
 	return contents;
@@ -141,6 +156,11 @@ void fixSwap(m64p_rom_header * header) {
 			[self setPath:nil];
 			[self setFormattedInfo:[[[NSAttributedString alloc] initWithString:gameTitle] autorelease]];
 		}
+		NSTimeInterval ti;
+		if(fgetxattr([fh fileDescriptor], xattrLastOpened, &ti, sizeof(ti), 0, 0) != -1) {
+			lastOpened = [[NSDate alloc] initWithTimeIntervalSince1970:ti];
+		}
+		
 		[self setPath:url];
 		[self setIsUsable:YES];
 		
@@ -160,7 +180,6 @@ void fixSwap(m64p_rom_header * header) {
 	MALMupenRom * retVal=nil;
 	retVal = [romLists objectForKey:[url relativePath]];
 	if(retVal!=nil) {
-//		NSLog(@"dup: %@",[url relativePath]);
 		return retVal;
 	}
 	retVal = [[[self alloc] initWithURL:url] autorelease];

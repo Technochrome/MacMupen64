@@ -132,7 +132,6 @@
 
 #pragma mark application delegates
 -(BOOL)application:(NSApplication*)app openFile:(NSString*)path {
-	//update this
 	[self setOpenROM:[MALMupenRom mupenROMAtPath:path]];
 	[self startEmulation:self];
 	
@@ -192,12 +191,10 @@
 	[openPanel setAllowedFileTypes:[defaults objectForKey:MALDefaultROMExtensionsKey]];
 	[openPanel setAllowsOtherFileTypes:NO];
 	[openPanel setAllowsMultipleSelection:NO];
-	if([openPanel runModalForDirectory:[defaults objectForKey:MALDefaultOpenPanelDirectoryKey] 
-								  file:nil 
-								 types:[defaults objectForKey:MALDefaultROMExtensionsKey]]
-	   == NSFileHandlingPanelOKButton) {
+	[openPanel setDirectoryURL:[NSURL URLWithString:[defaults objectForKey:MALDefaultOpenPanelDirectoryKey]]];
+	if([openPanel runModal] == NSFileHandlingPanelOKButton) {
 		
-		[defaults setObject:[openPanel directory] forKey:MALDefaultOpenPanelDirectoryKey];
+		[defaults setObject:[[openPanel directoryURL] absoluteString] forKey:MALDefaultOpenPanelDirectoryKey];
 		MALMupenRom * rom = [MALMupenRom mupenROMAtURL:[openPanel URL]];
 		[self addROMToList:rom];
 		[romListController setSelectionIndex:[romList indexOfObject:rom]];

@@ -44,7 +44,13 @@ static void drawAnObject ()
 	[glview retain];
 	[openGLview release];
 	openGLview = glview;
-	[self setContentView:openGLview];
+	
+	// Let's us shrink the size of NSOpenGLView in fullscreen
+	NSView * backingView = [[NSView alloc] init];
+	[self setContentView:backingView];
+	[backingView addSubview:openGLview];
+	[openGLview setAutoresizingMask:NSViewWidthSizable | NSViewHeightSizable];
+	[openGLview setFrame:backingView.frame];
 }
 
 +(NSWindowController*) gameWindow {
@@ -53,6 +59,15 @@ static void drawAnObject ()
 	[emu setBackgroundColor:[NSColor blackColor]];
 	[emu setDelegate:emu];
 	return [wc autorelease];
+}
+
+-(NSSize) expandSize:(NSSize)size toAspectRatio:(NSSize)ratio {
+	return NSMakeSize(MAX(size.width ,size.height * ( ratio.width/ratio.height)),
+					  MAX(size.height,size.width  * (ratio.height/ ratio.width)));
+}
+-(NSSize) shrinkSize:(NSSize)size toAspectRatio:(NSSize)ratio {
+	return NSMakeSize(MIN(size.width ,size.height * ( ratio.width/ratio.height)),
+					  MIN(size.height,size.width  * (ratio.height/ ratio.width)));
 }
 
 -(void) setFramebufferSize:(NSSize)size attributes:(NSArray*)pixelAttributes {
@@ -116,7 +131,7 @@ static void drawAnObject ()
 
 -(void) drawOpenglWindow {
 	[openGLview.openGLContext makeCurrentContext];
-	glClearColor(0, 0, 1, 0);
+	glClearColor(0, 0, 0, 0);
 	glClear(GL_COLOR_BUFFER_BIT);
 	
 	
@@ -154,25 +169,37 @@ static void drawAnObject ()
 }
 
 -(void) setFullscreen:(BOOL)fullscreen {
+	NSSize emuSize = offscreenGLview.frame.size;
 	if (fullscreen) {
 		oldLevel = self.level;
 		oldFrame = self.frame;
 		self.oldTitle = self.title;
 		[self setStyleMask:NSBorderlessWindowMask];
 		[self setLevel:NSMainMenuWindowLevel+1];
-		[self setFrame:[[NSScreen mainScreen] frame] display:YES animate:YES];
+		[self setHidesOnDeactivate:YES];
+		[self setFrame:[[NSScreen mainScreen] frame] display:YES animate:NO];
+		
+		NSSize newViewport = [self shrinkSize:self.frame.size toAspectRatio:emuSize];
+		NSSize fullSize = self.frame.size;
+		[openGLview setFrameOrigin:NSMakePoint((fullSize.width - newViewport.width)/2, (fullSize.height - newViewport.height)/2)];
+		[openGLview setFrameSize:newViewport];
 	} else {
+		[openGLview setFrame:self.frame];
+		
+		
 		[self setStyleMask:NSTitledWindowMask | NSClosableWindowMask | NSResizableWindowMask | NSMiniaturizableWindowMask];
 		[self setTitle:self.oldTitle];
-		[self setFrame:oldFrame display:YES animate:YES];
+		[self setFrame:oldFrame display:YES animate:NO];
 		[self setLevel:oldLevel];
+		[self setHidesOnDeactivate:NO];
 	}
 	
-	glViewport(0,0, splitSize(offscreenGLview.frame.size));
+	glViewport(0,0, splitSize(emuSize));
 	
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
 	glOrtho(0.0, 1, 0.0, 1, -1.0, 1.0);
+
 }
 
 #pragma mark <NSWindowDelegate>
@@ -185,11 +212,7 @@ static void drawAnObject ()
 	}
 }
 -(NSSize) windowWillResize:(NSWindow *)sender toSize:(NSSize)frameSize {
-	NSSize emuSize = hiddenWindow.frame.size;
-	frameSize = NSMakeSize(MAX(frameSize.width ,frameSize.height * ( emuSize.width/emuSize.height)),
-						   MAX(frameSize.height,frameSize.width  * (emuSize.height/ emuSize.width)));
-	
-	return frameSize;
+	return [self expandSize:frameSize toAspectRatio:hiddenWindow.frame.size];
 }
 -(void) windowDidResignMain:(NSNotification *)notification {
 	
