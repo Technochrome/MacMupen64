@@ -8,11 +8,27 @@
 
 #import <Cocoa/Cocoa.h>
 
-@class MALGameWindow;
+@class MALMupenEngine;
 
-@interface MALGameWindow : NSWindow {
+@interface MALGameWindow : NSWindow <NSWindowDelegate> {
 	NSOpenGLView * openGLview;
+	
+	NSWindow * hiddenWindow;
+	NSOpenGLView * offscreenGLview;
+	NSOpenGLContext * offscreenContext;
+	GLuint renderTexture,renderBuffer;
+	GLvoid * offscreenBuffer;
+	MALMupenEngine * engine;
+	
+	NSInteger oldLevel;
+	NSRect oldFrame;
+	NSString * oldTitle;
 }
-@property (readwrite, retain) NSOpenGLView * openGLview;
+@property (readwrite, assign) MALMupenEngine * engine;
+@property (readwrite, retain) NSString * oldTitle;
 +(NSWindowController*) gameWindow;
+
+-(void) setFramebufferSize:(NSSize)size attributes:(NSArray*)pixelAttributes;
+-(void) drawFramebuffer;
+-(void) setFullscreen:(BOOL)fullscreen;
 @end

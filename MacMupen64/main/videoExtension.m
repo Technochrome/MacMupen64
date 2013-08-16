@@ -12,18 +12,17 @@
 #import "MALGameWindow.h"
 #import "OpenGL/OpenGL.h"
 
-
+NSOpenGLContext * offscreenContext;
 NSOpenGLView * vidExtOpenGL;
 NSMutableArray * pixelAttributes;
 MALGameWindow * malwin;
-GLuint TV_FBO;
+GLuint renderBuffer,renderTexture;
 
 #pragma mark Startup/Shutdown
 
 /* video extension functions to be called by the video plugin */
 m64p_error VidExt_Init(void) {
 	pixelAttributes = [[NSMutableArray alloc] init];
-	[[[malwin openGLview] openGLContext] flushBuffer];
     return M64ERR_SUCCESS;
 }
 
@@ -51,20 +50,8 @@ m64p_error VidExt_SetVideoMode(int Width, int Height, int BitsPerPixel, m64p_vid
 	addVal(NSOpenGLPFAAlphaSize,pixelAttributes);
 	addVal(BitsPerPixel/4, pixelAttributes);
 #undef addVal
-	
-//	NSLog(@"%@",pixelAttributes);
-	
-	NSOpenGLPixelFormatAttribute * form = (NSOpenGLPixelFormatAttribute*)malloc(sizeof(NSOpenGLPixelFormatAttribute) * (1 +[pixelAttributes count]));
-	for(int i=0; i<[pixelAttributes count]; i++)
-		[[pixelAttributes objectAtIndex:i] getValue:&form[i]];
-	form[[pixelAttributes count]]=0;
-	
-	NSRect frame = NSMakeRect(0, 0, Width, Height);
-	[malwin setContentSize:frame.size];
-	vidExtOpenGL = [[NSOpenGLView alloc] initWithFrame:frame pixelFormat:[[NSOpenGLPixelFormat alloc] initWithAttributes:form]];
-	[malwin setOpenGLview:vidExtOpenGL];
-	NSOpenGLContext * ogc = [vidExtOpenGL openGLContext];
-	[ogc makeCurrentContext];
+
+	[malwin setFramebufferSize:NSMakeSize(Width, Height) attributes:pixelAttributes];
 	
 	return M64ERR_SUCCESS;
 }
@@ -136,7 +123,7 @@ m64p_error VidExt_GL_GetAttribute(m64p_GLattr Attr, int *pValue) {
 //	 { M64P_GL_BUFFER_SIZE,  SDL_GL_BUFFER_SIZE },
 	 { M64P_GL_DEPTH_SIZE,   NSOpenGLPFADepthSize },
 	 { M64P_GL_ALPHA_SIZE,   NSOpenGLPFAAlphaSize },
-//	 { M64P_GL_SWAP_CONTROL, SDL_GL_SWAP_CONTROL },
+	 { M64P_GL_SWAP_CONTROL, NSOpenGLCPSwapInterval },
 	 { M64P_GL_MULTISAMPLEBUFFERS, NSOpenGLPFASampleBuffers },
 	 { M64P_GL_MULTISAMPLESAMPLES, NSOpenGLPFASamples }
 	};
@@ -170,7 +157,7 @@ m64p_error VidExt_GL_GetAttribute(m64p_GLattr Attr, int *pValue) {
 }
 
 m64p_error VidExt_GL_SwapBuffers(void) {
-	[[vidExtOpenGL openGLContext] performSelectorOnMainThread:@selector(flushBuffer) withObject:nil waitUntilDone:YES];
+	[malwin drawFramebuffer];
     return M64ERR_SUCCESS;
 }
 
