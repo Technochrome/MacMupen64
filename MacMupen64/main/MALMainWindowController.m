@@ -137,6 +137,19 @@
 	
 	return YES;
 }
+-(NSApplicationTerminateReply)applicationShouldTerminate:(NSApplication *)sender {
+	if(engine.isRunning) {
+		[engine stopEmulation];
+		[[NSNotificationCenter defaultCenter] addObserverForName:MALMupenEngineFinished object:engine queue:nil usingBlock:^(NSNotification *note) {
+			
+			[NSApp replyToApplicationShouldTerminate:YES];
+		}];
+		return NSTerminateLater;
+	} else {
+		return NSTerminateNow;
+	}
+}
+
 #pragma mark Notifications
 -(void) emulationFinished:(NSNotification*) notification {
 	//cycle main window back in

@@ -33,16 +33,13 @@ MALMupenEngine * _shared = nil;
 -(NSString*) autosaveLocation {
 	return [[self.mainROM.freezesPath URLByAppendingPathComponent:@"Autosave.n64_freeze"] relativePath];
 }
+-(void) shutdown {
+	(*CoreDoCommand)(M64CMD_STOP,0,0);
+}
 -(void) frameCallback {
 	if(shouldDefrost && [[NSFileManager defaultManager] fileExistsAtPath:[self autosaveLocation]]) {
 		(*CoreDoCommand)(M64CMD_STATE_LOAD,0,(void*)[[self autosaveLocation] UTF8String]);
 		shouldDefrost = NO;
-	}
-	if ( framesUntilStop > 0) {
-		framesUntilStop--;
-	} else if(framesUntilStop == 0) {
-		[malwin close];
-		(*CoreDoCommand)(M64CMD_STOP,0,0);
 	}
 }
 -(void) emulationStarted {
@@ -144,7 +141,9 @@ MALMupenEngine * _shared = nil;
 }
 -(void) stopEmulation {
 	(*CoreDoCommand)(M64CMD_STATE_SAVE,1,(void*)[[self autosaveLocation] UTF8String]);
-	framesUntilStop = 1;
+	[[NSNotificationCenter defaultCenter] addObserverForName:MALNotificationMupenSaveComplete object:nil queue:nil usingBlock:^(NSNotification *note) {
+		[self shutdown];
+	}];
 }
 -(void) attachControllers {
 	MALInputCenter * inputCenter = [MALInputCenter shared];

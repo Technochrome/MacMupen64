@@ -27,6 +27,7 @@
 
 NSString * MALNotificationCoreLoaded = @"MALMupenCore Loaded";
 NSString * MALNotificationCoreUnloaded = @"MALMupenCore Unloaded";
+NSString * MALNotificationMupenSaveComplete = @"MALMupenCore Save Complete";
 MALMupenCore * lastMade=nil;
 
 void CoreStateCallback(void *Context, m64p_core_param param_type, int new_value);
@@ -53,6 +54,9 @@ void CoreStateCallback(void *Context, m64p_core_param param_type, int new_value)
 		case M64CORE_SPEED_FACTOR:
 		case M64CORE_SPEED_LIMITER:
 		case M64CORE_VIDEO_MODE:
+		case M64CORE_STATE_SAVECOMPLETE:
+			[[NSNotificationCenter defaultCenter] postNotificationName:MALNotificationMupenSaveComplete object:core];
+			break;
 		default:
 			break;
 	}

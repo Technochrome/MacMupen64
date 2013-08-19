@@ -10,7 +10,9 @@
 #import "MALMupenPlugin.h"
 
 extern NSString * MALNotificationCoreLoaded;
-extern NSString * MALNotificationCoreUnloaded; 
+extern NSString * MALNotificationCoreUnloaded;
+extern NSString * MALNotificationMupenSaveComplete;
+
 
 @class MALMupenEngine;
 @interface MALMupenCore : MALMupenPlugin {}
