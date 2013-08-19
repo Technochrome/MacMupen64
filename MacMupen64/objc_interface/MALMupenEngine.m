@@ -205,6 +205,10 @@ static void frameCallback(unsigned int FrameIndex) {
 	[[MALMupenEngine shared] frameCallback];
 }
 -(id) init {
+	if(_shared) {
+		[self release];
+		return [_shared retain];
+	}
 	if(self = [super init]) {
 		_shared = self;
 		plugins = [[NSMutableArray alloc] initWithCapacity:5];
@@ -272,13 +276,20 @@ static void frameCallback(unsigned int FrameIndex) {
 	[self didChangeValueForKey:@"fullscreen"];
 }
 -(BOOL) fullscreen { return fullscreen; }
--(void) freeze {
+
+-(IBAction) takeScreenShot:(id)sender {
+	(*CoreDoCommand)(M64CMD_TAKE_NEXT_SCREENSHOT,0,NULL);
+}
+-(IBAction) freeze:(id)sender {
 	(*CoreDoCommand)(M64CMD_STATE_SAVE,1,(void*)[[self autosaveLocation] UTF8String]);
 }
--(void) defrost {
+-(IBAction) defrost:(id)sender {
 	(*CoreDoCommand)(M64CMD_STATE_LOAD,0,(void*)[[self autosaveLocation] UTF8String]);
 }
--(void) takeScreenShot {
-	(*CoreDoCommand)(M64CMD_TAKE_NEXT_SCREENSHOT,0,NULL);
+-(IBAction) reset:(id)sender {
+	(*CoreDoCommand)(M64CMD_RESET,0,NULL);
+}
+-(IBAction) hardwareReset:(id)sender {
+	(*CoreDoCommand)(M64CMD_RESET,1,NULL);
 }
 @end

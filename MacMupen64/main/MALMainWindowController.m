@@ -218,13 +218,4 @@
 	}
 	[preferencesController showWindow:self];
 }
-- (IBAction) takeScreenShot:(id)sender {
-	[engine takeScreenShot];
-}
-- (IBAction) freeze:(id)sender {
-	[engine freeze];
-}
-- (IBAction) defrost:(id)sender {
-	[engine defrost];
-}
 @end

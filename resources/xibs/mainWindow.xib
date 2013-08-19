@@ -511,6 +511,7 @@
 											<int key="NSvFlags">265</int>
 											<string key="NSFrame">{{330, 6}, {108, 32}}</string>
 											<reference key="NSSuperview" ref="651331734"/>
+											<reference key="NSWindow"/>
 											<reference key="NSNextKeyView" ref="903392871"/>
 											<bool key="NSEnabled">YES</bool>
 											<object class="NSButtonCell" key="NSCell" id="188436295">
@@ -537,6 +538,7 @@
 											<int key="NSvFlags">265</int>
 											<string key="NSFrame">{{330, 57}, {108, 32}}</string>
 											<reference key="NSSuperview" ref="651331734"/>
+											<reference key="NSWindow"/>
 											<reference key="NSNextKeyView" ref="683326080"/>
 											<bool key="NSEnabled">YES</bool>
 											<object class="NSButtonCell" key="NSCell" id="301233699">
@@ -576,6 +578,7 @@
 											</object>
 											<string key="NSFrame">{{12, 11}, {80, 80}}</string>
 											<reference key="NSSuperview" ref="651331734"/>
+											<reference key="NSWindow"/>
 											<reference key="NSNextKeyView" ref="403277259"/>
 											<bool key="NSEnabled">YES</bool>
 											<object class="NSImageCell" key="NSCell" id="909395202">
@@ -594,6 +597,7 @@
 											<int key="NSvFlags">266</int>
 											<string key="NSFrame">{{100, 11}, {229, 74}}</string>
 											<reference key="NSSuperview" ref="651331734"/>
+											<reference key="NSWindow"/>
 											<reference key="NSNextKeyView" ref="534767894"/>
 											<bool key="NSEnabled">YES</bool>
 											<object class="NSTextFieldCell" key="NSCell" id="905007744">
@@ -630,11 +634,13 @@
 									</object>
 									<string key="NSFrame">{{1, 1}, {444, 98}}</string>
 									<reference key="NSSuperview" ref="508077964"/>
+									<reference key="NSWindow"/>
 									<reference key="NSNextKeyView" ref="312583257"/>
 								</object>
 							</object>
 							<string key="NSFrame">{{17, 154}, {446, 114}}</string>
 							<reference key="NSSuperview" ref="414427165"/>
+							<reference key="NSWindow"/>
 							<reference key="NSNextKeyView" ref="651331734"/>
 							<string key="NSOffsets">{0, 0}</string>
 							<object class="NSTextFieldCell" key="NSTitleCell">
@@ -681,6 +687,7 @@
 											<int key="NSvFlags">256</int>
 											<string key="NSFrameSize">{438, 114}</string>
 											<reference key="NSSuperview" ref="866727466"/>
+											<reference key="NSWindow"/>
 											<reference key="NSNextKeyView" ref="585561076"/>
 											<bool key="NSEnabled">YES</bool>
 											<bool key="NSAllowsLogicalLayoutDirection">NO</bool>
@@ -690,6 +697,7 @@
 												<int key="NSvFlags">256</int>
 												<string key="NSFrameSize">{438, 17}</string>
 												<reference key="NSSuperview" ref="1054998562"/>
+												<reference key="NSWindow"/>
 												<reference key="NSNextKeyView" ref="866727466"/>
 												<reference key="NSTableView" ref="18609013"/>
 											</object>
@@ -844,6 +852,7 @@
 									</object>
 									<string key="NSFrame">{{1, 17}, {438, 114}}</string>
 									<reference key="NSSuperview" ref="903392871"/>
+									<reference key="NSWindow"/>
 									<reference key="NSNextKeyView" ref="18609013"/>
 									<reference key="NSDocView" ref="18609013"/>
 									<reference key="NSBGColor" ref="235031756"/>
@@ -854,6 +863,7 @@
 									<int key="NSvFlags">-2147483392</int>
 									<string key="NSFrame">{{424, 17}, {15, 99}}</string>
 									<reference key="NSSuperview" ref="903392871"/>
+									<reference key="NSWindow"/>
 									<reference key="NSNextKeyView" ref="673150694"/>
 									<bool key="NSAllowsLogicalLayoutDirection">NO</bool>
 									<reference key="NSTarget" ref="903392871"/>
@@ -866,6 +876,7 @@
 									<int key="NSvFlags">-2147483392</int>
 									<string key="NSFrame">{{1, 116}, {438, 15}}</string>
 									<reference key="NSSuperview" ref="903392871"/>
+									<reference key="NSWindow"/>
 									<reference key="NSNextKeyView"/>
 									<bool key="NSAllowsLogicalLayoutDirection">NO</bool>
 									<int key="NSsFlags">1</int>
@@ -883,6 +894,7 @@
 									</object>
 									<string key="NSFrame">{{1, 0}, {438, 17}}</string>
 									<reference key="NSSuperview" ref="903392871"/>
+									<reference key="NSWindow"/>
 									<reference key="NSNextKeyView" ref="1015002968"/>
 									<reference key="NSDocView" ref="1015002968"/>
 									<reference key="NSBGColor" ref="235031756"/>
@@ -891,6 +903,7 @@
 							</object>
 							<string key="NSFrame">{{20, 18}, {440, 132}}</string>
 							<reference key="NSSuperview" ref="414427165"/>
+							<reference key="NSWindow"/>
 							<reference key="NSNextKeyView" ref="1054998562"/>
 							<int key="NSsFlags">133682</int>
 							<reference key="NSVScroller" ref="585561076"/>
@@ -905,6 +918,7 @@
 					</object>
 					<string key="NSFrameSize">{480, 286}</string>
 					<reference key="NSSuperview"/>
+					<reference key="NSWindow"/>
 					<reference key="NSNextKeyView" ref="508077964"/>
 				</object>
 				<string key="NSScreenRect">{{0, 0}, {1440, 878}}</string>
@@ -913,6 +927,9 @@
 			</object>
 			<object class="NSCustomObject" id="426043054">
 				<string key="NSClassName">MALMainWindowController</string>
+			</object>
+			<object class="NSCustomObject" id="742297914">
+				<string key="NSClassName">MALMupenEngine</string>
 			</object>
 			<object class="NSUserDefaultsController" id="516616256">
 				<bool key="NSSharedInstance">YES</bool>
@@ -950,6 +967,7 @@
 						<int key="NSvFlags">268</int>
 						<string key="NSFrame">{{24, 1}, {152, 21}}</string>
 						<reference key="NSSuperview" ref="999959145"/>
+						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="778340117"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="NSEnabled">YES</bool>
@@ -987,6 +1005,7 @@
 						</object>
 						<string key="NSFrame">{{182, 4}, {16, 16}}</string>
 						<reference key="NSSuperview" ref="999959145"/>
+						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="NSEnabled">YES</bool>
@@ -1023,6 +1042,7 @@
 						</object>
 						<string key="NSFrame">{{7, 4}, {16, 16}}</string>
 						<reference key="NSSuperview" ref="999959145"/>
+						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="196585672"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="NSEnabled">YES</bool>
@@ -1045,6 +1065,7 @@
 				</object>
 				<string key="NSFrameSize">{203, 24}</string>
 				<reference key="NSSuperview"/>
+				<reference key="NSWindow"/>
 				<reference key="NSNextKeyView" ref="988447920"/>
 				<string key="NSReuseIdentifierKey">_NS:9</string>
 				<string key="NSClassName">NSView</string>
@@ -1214,14 +1235,6 @@
 					<int key="connectionID">961</int>
 				</object>
 				<object class="IBConnectionRecord">
-					<object class="IBActionConnection" key="connection">
-						<string key="label">takeScreenShot:</string>
-						<reference key="source" ref="426043054"/>
-						<reference key="destination" ref="985326672"/>
-					</object>
-					<int key="connectionID">979</int>
-				</object>
-				<object class="IBConnectionRecord">
 					<object class="IBOutletConnection" key="connection">
 						<string key="label">romListController</string>
 						<reference key="source" ref="426043054"/>
@@ -1254,20 +1267,12 @@
 					<int key="connectionID">1044</int>
 				</object>
 				<object class="IBConnectionRecord">
-					<object class="IBActionConnection" key="connection">
-						<string key="label">freeze:</string>
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">engine</string>
 						<reference key="source" ref="426043054"/>
-						<reference key="destination" ref="132373882"/>
+						<reference key="destination" ref="742297914"/>
 					</object>
-					<int key="connectionID">1052</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBActionConnection" key="connection">
-						<string key="label">defrost:</string>
-						<reference key="source" ref="426043054"/>
-						<reference key="destination" ref="36110873"/>
-					</object>
-					<int key="connectionID">1053</int>
+					<int key="connectionID">1064</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBOutletConnection" key="connection">
@@ -1488,6 +1493,46 @@
 						</object>
 					</object>
 					<int key="connectionID">1060</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">freeze:</string>
+						<reference key="source" ref="742297914"/>
+						<reference key="destination" ref="132373882"/>
+					</object>
+					<int key="connectionID">1065</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">defrost:</string>
+						<reference key="source" ref="742297914"/>
+						<reference key="destination" ref="36110873"/>
+					</object>
+					<int key="connectionID">1066</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">reset:</string>
+						<reference key="source" ref="742297914"/>
+						<reference key="destination" ref="640216406"/>
+					</object>
+					<int key="connectionID">1067</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">hardwareReset:</string>
+						<reference key="source" ref="742297914"/>
+						<reference key="destination" ref="506952520"/>
+					</object>
+					<int key="connectionID">1068</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">takeScreenShot:</string>
+						<reference key="source" ref="742297914"/>
+						<reference key="destination" ref="985326672"/>
+					</object>
+					<int key="connectionID">1069</int>
 				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -2113,6 +2158,12 @@
 						<reference key="object" ref="1000930499"/>
 						<reference key="parent" ref="835318025"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">1061</int>
+						<reference key="object" ref="742297914"/>
+						<reference key="parent" ref="0"/>
+						<string key="objectName">Mupen Engine</string>
+					</object>
 				</object>
 			</object>
 			<object class="NSMutableDictionary" key="flattenedProperties">
@@ -2146,6 +2197,7 @@
 					<string>1056.IBPluginDependency</string>
 					<string>1057.IBPluginDependency</string>
 					<string>106.IBPluginDependency</string>
+					<string>1061.IBPluginDependency</string>
 					<string>111.IBPluginDependency</string>
 					<string>124.IBPluginDependency</string>
 					<string>125.IBPluginDependency</string>
@@ -2260,6 +2312,7 @@
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>{{513, 476}, {480, 286}}</string>
 					<integer value="1"/>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -2316,9 +2369,203 @@
 				<reference key="dict.values" ref="0"/>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">1060</int>
+			<int key="maxID">1069</int>
 		</object>
-		<object class="IBClassDescriber" key="IBDocument.Classes"/>
+		<object class="IBClassDescriber" key="IBDocument.Classes">
+			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
+				<bool key="EncodedWithXMLCoder">YES</bool>
+				<object class="IBPartialClassDescription">
+					<string key="className">MALArrayController</string>
+					<string key="superclassName">NSArrayController</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">./Classes/MALArrayController.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">MALMainWindowController</string>
+					<string key="superclassName">NSObject</string>
+					<object class="NSMutableDictionary" key="actions">
+						<bool key="EncodedWithXMLCoder">YES</bool>
+						<object class="NSArray" key="dict.sortedKeys">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>decreaseVolume:</string>
+							<string>defrost:</string>
+							<string>increaseVolume:</string>
+							<string>openPreferencesWindow:</string>
+							<string>startEmulation:</string>
+							<string>startOpenPanelForROM:</string>
+							<string>takeScreenShot:</string>
+						</object>
+						<object class="NSArray" key="dict.values">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>id</string>
+							<string>id</string>
+							<string>id</string>
+							<string>id</string>
+							<string>id</string>
+							<string>id</string>
+							<string>id</string>
+						</object>
+					</object>
+					<object class="NSMutableDictionary" key="actionInfosByName">
+						<bool key="EncodedWithXMLCoder">YES</bool>
+						<object class="NSArray" key="dict.sortedKeys">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>decreaseVolume:</string>
+							<string>defrost:</string>
+							<string>increaseVolume:</string>
+							<string>openPreferencesWindow:</string>
+							<string>startEmulation:</string>
+							<string>startOpenPanelForROM:</string>
+							<string>takeScreenShot:</string>
+						</object>
+						<object class="NSArray" key="dict.values">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<object class="IBActionInfo">
+								<string key="name">decreaseVolume:</string>
+								<string key="candidateClassName">id</string>
+							</object>
+							<object class="IBActionInfo">
+								<string key="name">defrost:</string>
+								<string key="candidateClassName">id</string>
+							</object>
+							<object class="IBActionInfo">
+								<string key="name">increaseVolume:</string>
+								<string key="candidateClassName">id</string>
+							</object>
+							<object class="IBActionInfo">
+								<string key="name">openPreferencesWindow:</string>
+								<string key="candidateClassName">id</string>
+							</object>
+							<object class="IBActionInfo">
+								<string key="name">startEmulation:</string>
+								<string key="candidateClassName">id</string>
+							</object>
+							<object class="IBActionInfo">
+								<string key="name">startOpenPanelForROM:</string>
+								<string key="candidateClassName">id</string>
+							</object>
+							<object class="IBActionInfo">
+								<string key="name">takeScreenShot:</string>
+								<string key="candidateClassName">id</string>
+							</object>
+						</object>
+					</object>
+					<object class="NSMutableDictionary" key="outlets">
+						<bool key="EncodedWithXMLCoder">YES</bool>
+						<object class="NSArray" key="dict.sortedKeys">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>engine</string>
+							<string>mainWindow</string>
+							<string>romListController</string>
+							<string>romListView</string>
+						</object>
+						<object class="NSArray" key="dict.values">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>MALMupenEngine</string>
+							<string>NSWindow</string>
+							<string>NSArrayController</string>
+							<string>NSTableView</string>
+						</object>
+					</object>
+					<object class="NSMutableDictionary" key="toOneOutletInfosByName">
+						<bool key="EncodedWithXMLCoder">YES</bool>
+						<object class="NSArray" key="dict.sortedKeys">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>engine</string>
+							<string>mainWindow</string>
+							<string>romListController</string>
+							<string>romListView</string>
+						</object>
+						<object class="NSArray" key="dict.values">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<object class="IBToOneOutletInfo">
+								<string key="name">engine</string>
+								<string key="candidateClassName">MALMupenEngine</string>
+							</object>
+							<object class="IBToOneOutletInfo">
+								<string key="name">mainWindow</string>
+								<string key="candidateClassName">NSWindow</string>
+							</object>
+							<object class="IBToOneOutletInfo">
+								<string key="name">romListController</string>
+								<string key="candidateClassName">NSArrayController</string>
+							</object>
+							<object class="IBToOneOutletInfo">
+								<string key="name">romListView</string>
+								<string key="candidateClassName">NSTableView</string>
+							</object>
+						</object>
+					</object>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">./Classes/MALMainWindowController.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">MALMupenEngine</string>
+					<string key="superclassName">NSObject</string>
+					<object class="NSMutableDictionary" key="actions">
+						<bool key="EncodedWithXMLCoder">YES</bool>
+						<object class="NSArray" key="dict.sortedKeys">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>defrost:</string>
+							<string>freeze:</string>
+							<string>hardwareReset:</string>
+							<string>reset:</string>
+							<string>takeScreenShot:</string>
+						</object>
+						<object class="NSArray" key="dict.values">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>id</string>
+							<string>id</string>
+							<string>id</string>
+							<string>id</string>
+							<string>id</string>
+						</object>
+					</object>
+					<object class="NSMutableDictionary" key="actionInfosByName">
+						<bool key="EncodedWithXMLCoder">YES</bool>
+						<object class="NSArray" key="dict.sortedKeys">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>defrost:</string>
+							<string>freeze:</string>
+							<string>hardwareReset:</string>
+							<string>reset:</string>
+							<string>takeScreenShot:</string>
+						</object>
+						<object class="NSArray" key="dict.values">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<object class="IBActionInfo">
+								<string key="name">defrost:</string>
+								<string key="candidateClassName">id</string>
+							</object>
+							<object class="IBActionInfo">
+								<string key="name">freeze:</string>
+								<string key="candidateClassName">id</string>
+							</object>
+							<object class="IBActionInfo">
+								<string key="name">hardwareReset:</string>
+								<string key="candidateClassName">id</string>
+							</object>
+							<object class="IBActionInfo">
+								<string key="name">reset:</string>
+								<string key="candidateClassName">id</string>
+							</object>
+							<object class="IBActionInfo">
+								<string key="name">takeScreenShot:</string>
+								<string key="candidateClassName">id</string>
+							</object>
+						</object>
+					</object>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">./Classes/MALMupenEngine.h</string>
+					</object>
+				</object>
+			</object>
+		</object>
 		<int key="IBDocument.localizationMode">0</int>
 		<string key="IBDocument.TargetRuntimeIdentifier">IBCocoaFramework</string>
 		<object class="NSMutableDictionary" key="IBDocument.PluginDeclaredDevelopmentDependencies">

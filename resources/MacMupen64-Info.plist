@@ -20,6 +20,20 @@
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>n64_freeze</string>
+			</array>
+			<key>CFBundleTypeIconFile</key>
+			<string>mupen64plus_rom</string>
+			<key>CFBundleTypeName</key>
+			<string>N64 savestate</string>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>LSTypeIsPackage</key>
+			<true/>
+		</dict>
 	</array>
 	<key>CFBundleExecutable</key>
 	<string>${EXECUTABLE_NAME}</string>

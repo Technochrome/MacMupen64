@@ -83,6 +83,7 @@
 		2F8FD02817B999DD00400C0B /* mupen64plus-video-arachnoid.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 2F8FD00117B60C6700400C0B /* mupen64plus-video-arachnoid.dylib */; };
 		2F8FD02917B9A2E900400C0B /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F9FF6C61628B0B400E1821F /* OpenGL.framework */; };
 		2F9F7F7E17BE9D9300BD5D9D /* MALInput.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 2F8FCFD517B5F27800400C0B /* MALInput.framework */; };
+		2F9F7F8417C1CF2300BD5D9D /* GeneralPrefsPane.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2F9F7F8317C1CF2300BD5D9D /* GeneralPrefsPane.xib */; };
 		2F9FF6C41628B06500E1821F /* MALAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F495164141102BF00D2B2C1 /* MALAdditions.m */; };
 		2F9FF6C51628B06500E1821F /* MALBackporting.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F495166141102BF00D2B2C1 /* MALBackporting.m */; };
 		2F9FF6C71628B0B400E1821F /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F9FF6C61628B0B400E1821F /* OpenGL.framework */; };
@@ -312,6 +313,7 @@
 		2F8FD01A17B724DA00400C0B /* libsamplerate.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libsamplerate.0.dylib; sourceTree = "<group>"; };
 		2F8FD01B17B724DA00400C0B /* libspeexdsp.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libspeexdsp.1.dylib; sourceTree = "<group>"; };
 		2F8FD01C17B724DA00400C0B /* libz.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libz.1.dylib; sourceTree = "<group>"; };
+		2F9F7F8317C1CF2300BD5D9D /* GeneralPrefsPane.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GeneralPrefsPane.xib; sourceTree = "<group>"; };
 		2F9FF6C61628B0B400E1821F /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
 		2FB3889316F29F1D0023CAAF /* InputPane.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InputPane.xib; sourceTree = "<group>"; };
 		2FB3889916F2A1740023CAAF /* 09494148_64Controller_answer_1_small.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 09494148_64Controller_answer_1_small.jpeg; sourceTree = "<group>"; };
@@ -586,6 +588,7 @@
 		2F4951D814110C7E00D2B2C1 /* Xibs */ = {
 			isa = PBXGroup;
 			children = (
+				2F9F7F8317C1CF2300BD5D9D /* GeneralPrefsPane.xib */,
 				2FB3889316F29F1D0023CAAF /* InputPane.xib */,
 				2F4951901411032A00D2B2C1 /* PluginListPane.xib */,
 				2F4951911411032A00D2B2C1 /* ROMListPane.xib */,
@@ -879,6 +882,7 @@
 			files = (
 				2F4951E414110DF600D2B2C1 /* InfoPlist.strings in Resources */,
 				2FB3889B16F2A1960023CAAF /* 09494148_64Controller_answer_1_small.jpeg in Resources */,
+				2F9F7F8417C1CF2300BD5D9D /* GeneralPrefsPane.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

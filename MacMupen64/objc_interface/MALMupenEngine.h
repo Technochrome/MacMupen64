@@ -34,9 +34,11 @@ extern NSString * const MALMupenEngineFinished;
 +(MALInputDevice*) n64Controller;
 
 -(void) runWithRom:(MALMupenRom*)rom;
--(void) takeScreenShot;
--(void) freeze;
--(void) defrost;
+-(IBAction) takeScreenShot:(id)sender;
+-(IBAction) freeze:(id)sender;
+-(IBAction) defrost:(id)sender;
+-(IBAction) reset:(id)sender;
+-(IBAction) hardwareReset:(id)sender;
 +(MALMupenEngine*) shared;
 
 -(void) stopEmulation;
