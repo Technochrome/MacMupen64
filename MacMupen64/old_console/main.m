@@ -38,7 +38,6 @@
 #include "main.h"
 #include "version.h"
 #include "core_interface.h"
-#include "compare_core.h"
 #include "osal_preproc.h"
 
 #import "videoExtension.h"
@@ -67,9 +66,7 @@ static int  *l_TestShotList = NULL;      // list of screenshots to take for regr
 static int   l_SaveOptions = 0;          // save command-line options in configuration file
 static int   l_CoreCompareMode = 0;      // 0 = disable, 1 = send, 2 = receive
 
-static eCheatMode l_CheatMode = CHEAT_DISABLE;
 static int       *l_CheatNumList = NULL;
-static int        l_CheatListLength = 0;
 
 /*********************************************************************************************************
  *  Callback functions from the core
@@ -155,8 +152,6 @@ static void printUsage(const char *progname)
            "Parameters:\n"
            "    --noosd               : disable onscreen display\n"
            "    --osd                 : enable onscreen display\n"
-           "    --fullscreen          : use fullscreen display mode\n"
-           "    --windowed            : use windowed display mode\n"
            "    --resolution (res)    : display resolution (640x480, 800x600, 1024x768, etc)\n"
            "    --cheats (cheat-spec) : enable or list cheat codes for the given rom file\n"
            "    --corelib (filepath)  : use core library (filepath) (can be only filename or full path)\n"
@@ -264,39 +259,6 @@ static int SetConfigParameter(const char *ParamSpec)
     return 0;
 }
 
-static int *ParseNumberList(const char *InputString, int *ValuesFound)
-{
-    const char *str;
-    int *OutputList;
-
-    /* count the number of integers in the list */
-    int values = 1;
-    str = InputString;
-    while ((str = strchr(str, ',')) != NULL)
-    {
-        str++;
-        values++;
-    }
-
-    /* create a list and populate it with the frame counter values at which to take screenshots */
-    if ((OutputList = (int *) malloc(sizeof(int) * (values + 1))) != NULL)
-    {
-        int idx = 0;
-        str = InputString;
-        while (str != NULL)
-        {
-            OutputList[idx++] = atoi(str);
-            str = strchr(str, ',');
-            if (str != NULL) str++;
-        }
-        OutputList[idx] = 0;
-    }
-
-    if (ValuesFound != NULL)
-        *ValuesFound = values;
-    return OutputList;
-}
-
 static int ParseCommandLineInitial(int argc, const char **argv)
 {
     int i;
@@ -321,11 +283,6 @@ static int ParseCommandLineInitial(int argc, const char **argv)
             l_DataDirPath = argv[i+1];
             i++;
         }
-        else if (strcmp(argv[i], "--help") == 0 || strcmp(argv[i], "-h") == 0)
-        {
-            printUsage(argv[0]);
-            return 1;
-        }
     }
 
     return 0;
@@ -349,21 +306,6 @@ static m64p_error ParseCommandLineFinal(int argc, const char **argv)
             int Osd = 1;
             (*ConfigSetParameter)(l_ConfigCore, "OnScreenDisplay", M64TYPE_BOOL, &Osd);
         }
-        else if (strcmp(argv[i], "--fullscreen") == 0)
-        {
-            int Fullscreen = 1;
-            (*ConfigSetParameter)(l_ConfigVideo, "Fullscreen", M64TYPE_BOOL, &Fullscreen);
-        }
-        else if (strcmp(argv[i], "--windowed") == 0)
-        {
-            int Fullscreen = 0;
-            (*ConfigSetParameter)(l_ConfigVideo, "Fullscreen", M64TYPE_BOOL, &Fullscreen);
-        }
-        else if ((strcmp(argv[i], "--corelib") == 0 || strcmp(argv[i], "--configdir") == 0 ||
-                  strcmp(argv[i], "--datadir") == 0) && ArgsLeft >= 1)
-        {   /* these are handled in ParseCommandLineInitial */
-            i++;
-        }
         else if (strcmp(argv[i], "--resolution") == 0 && ArgsLeft >= 1)
         {
             const char *res = argv[i+1];
@@ -377,33 +319,10 @@ static m64p_error ParseCommandLineFinal(int argc, const char **argv)
                 (*ConfigSetParameter)(l_ConfigVideo, "ScreenHeight", M64TYPE_INT, &yres);
             }
         }
-        else if (strcmp(argv[i], "--cheats") == 0 && ArgsLeft >= 1)
-        {
-            if (strcmp(argv[i+1], "all") == 0)
-                l_CheatMode = CHEAT_ALL;
-            else if (strcmp(argv[i+1], "list") == 0)
-                l_CheatMode = CHEAT_SHOW_LIST;
-            else
-            {
-                l_CheatMode = CHEAT_LIST;
-                l_CheatNumList = ParseNumberList(argv[i+1], &l_CheatListLength);
-            }
-            i++;
-        }
-        else if (strcmp(argv[i], "--sshotdir") == 0 && ArgsLeft >= 1)
-        {
-            (*ConfigSetParameter)(l_ConfigCore, "ScreenshotPath", M64TYPE_STRING, argv[i+1]);
-            i++;
-        }
         else if (strcmp(argv[i], "--emumode") == 0 && ArgsLeft >= 1)
         {
             int emumode = atoi(argv[i+1]);
             (*ConfigSetParameter)(l_ConfigCore, "R4300Emulator", M64TYPE_INT, &emumode);
-            i++;
-        }
-        else if (strcmp(argv[i], "--testshots") == 0 && ArgsLeft >= 1)
-        {
-            l_TestShotList = ParseNumberList(argv[i+1], NULL);
             i++;
         }
         else if (strcmp(argv[i], "--set") == 0 && ArgsLeft >= 1)
@@ -447,10 +366,6 @@ void configCallback(void* null, const char * SectionName) {
 //	NSLog(@"%s",SectionName);
 	m64p_handle ConfigSectionHandle;
 	
-	(*ConfigOpenSection)(SectionName, &ConfigSectionHandle);
-	(*ConfigSetParameter)(ConfigSectionHandle, "A Button", M64TYPE_STRING, "key(116)");
-	if(strcmp(SectionName, "Input-SDL-Control1")==0)
-		(*ConfigListParameters)(ConfigSectionHandle, &ConfigSectionHandle, paramList);
 }
 
 #import "videoExtension.h"
@@ -464,35 +379,14 @@ int TestOtherMain(void) {
 	{
 		return 4;
 	}
-//	(*ConfigSetParameter)(l_ConfigCore, "ScreenshotPath", M64TYPE_STRING, "/Users/rovolo/Desktop/");
-
-	/* Handle the core comparison feature */
-	if (l_CoreCompareMode != 0 && !(g_CoreCapabilities & M64CAPS_CORE_COMPARE))
-	{
-		printf("UI-console: can't use --core-compare feature with this Mupen64Plus core library.\n");
-		return 6;
-	}
-	compare_core_init(l_CoreCompareMode);
 
 	/* save the given command-line options in configuration file if requested */
 	if (l_SaveOptions)
 		SaveConfigurationOptions();
-	
-
-	/* handle the cheat codes */
-	CheatStart(l_CheatMode, l_CheatNumList, l_CheatListLength);
-	if (l_CheatMode == CHEAT_SHOW_LIST)
-	{
-		(*CoreDoCommand)(M64CMD_ROM_CLOSE, 0, NULL);
-		return 11;
-	}
 
 	
-	pixelAttributes = [[NSMutableArray alloc] init];
-	(*CoreOverrideVidExt)(&videoExtensionFunctions);
 	
 	/* run the game */
-	(*CoreDoCommand)(M64CMD_EXECUTE, 0, NULL);
 	
 
 	/* save the configuration file again if --saveoptions was specified, to keep any updated parameters from the core/plugins */

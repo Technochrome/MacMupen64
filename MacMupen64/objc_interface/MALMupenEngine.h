@@ -18,8 +18,6 @@ extern NSString * const MALMupenEngineFinished;
 	NSMutableArray * plugins,*controllerBindings;
 	NSWindowController * gameWindow;
 	BOOL isRunning, muted, fullscreen;
-	BOOL shouldDefrost;
-	int framesUntilStop; // Stopping requires an extra frame to flush the command queue
 	int volume;
 }
 @property (readwrite, retain) NSMutableArray * plugins;
@@ -34,11 +32,6 @@ extern NSString * const MALMupenEngineFinished;
 +(MALInputDevice*) n64Controller;
 
 -(void) runWithRom:(MALMupenRom*)rom;
--(IBAction) takeScreenShot:(id)sender;
--(IBAction) freeze:(id)sender;
--(IBAction) defrost:(id)sender;
--(IBAction) reset:(id)sender;
--(IBAction) hardwareReset:(id)sender;
 +(MALMupenEngine*) shared;
 
 -(void) stopEmulation;
@@ -46,4 +39,12 @@ extern NSString * const MALMupenEngineFinished;
 -(void) emulationStarted;
 -(void) emulationStopped;
 -(void) emulationPaused;
+@end
+
+@interface MALMupenEngine (rawInterface)
+-(IBAction) takeScreenShot:(id)sender;
+-(IBAction) freeze:(id)sender;
+-(IBAction) defrost:(id)sender;
+-(IBAction) reset:(id)sender;
+-(IBAction) hardwareReset:(id)sender;
 @end

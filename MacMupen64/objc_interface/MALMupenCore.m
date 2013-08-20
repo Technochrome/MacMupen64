@@ -91,16 +91,22 @@ void CoreStateCallback(void *Context, m64p_core_param param_type, int new_value)
         printf("            Includes support for r4300 Core Comparison.\n");
 	
 	if(getCoreFunctionPointers(pluginHandle) != M64ERR_SUCCESS) return isUsable = NO;
-	if((*CoreStartup)(CONSOLE_UI_VERSION, NULL, NULL, [self typeString], DebugCallback, self, CoreStateCallback) != M64ERR_SUCCESS) {
+	if((*CoreStartup)(CONSOLE_UI_VERSION,
+					  [[MALConfigFolder relativePath] UTF8String], [[MALRandomDataFolder relativePath] UTF8String],
+					  [self typeString], DebugCallback, self, CoreStateCallback) != M64ERR_SUCCESS) {
 		[self removePlugin];
 		return isUsable = NO;
 	}
+	m64p_handle coreConfigHandle;
+	(*ConfigOpenSection) ("Core", &coreConfigHandle);
+	(*ConfigSetParameter)(coreConfigHandle,"SharedDataPath",M64TYPE_STRING,[[MALRandomDataFolder relativePath] UTF8String]);
+	(*ConfigSetParameter)(coreConfigHandle,"SaveSRAMPath",M64TYPE_STRING,[[MALSRAMFolder relativePath] UTF8String]);
+	(*ConfigSetParameter)(coreConfigHandle,"ScreenshotPath",M64TYPE_STRING,[[MALScreenshotFolder relativePath] UTF8String]);
 	[[NSNotificationCenter defaultCenter] postNotificationName:MALNotificationCoreLoaded object:self];
 	
 	return YES;
 }
 -(void) testCompatibility:(MALMupenCore*)core {
-	// we don't want a core to try and load itself
 	isCompatible=YES;
 }
 -(BOOL) loadDefaultCore {

@@ -69,3 +69,4 @@
 	return [pixelFormat autorelease];
 }
 @end
+

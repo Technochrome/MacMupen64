@@ -30,7 +30,6 @@
 		2F294B871792260500355455 /* MALMupenCore.h in Headers */ = {isa = PBXBuildFile; fileRef = 2F49516F141102CB00D2B2C1 /* MALMupenCore.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		2F294B881792260500355455 /* MALMupenRom.h in Headers */ = {isa = PBXBuildFile; fileRef = 2F495171141102CB00D2B2C1 /* MALMupenRom.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		2F294B8A179226E100355455 /* cheat.c in Sources */ = {isa = PBXBuildFile; fileRef = 2F4951441411021600D2B2C1 /* cheat.c */; };
-		2F294B8B179226E100355455 /* compare_core.c in Sources */ = {isa = PBXBuildFile; fileRef = 2F4951461411021600D2B2C1 /* compare_core.c */; };
 		2F294B8C179226E100355455 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F4951481411021600D2B2C1 /* main.m */; };
 		2F294B8D179226E100355455 /* osal_dynamiclib_unix.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F49514B1411021600D2B2C1 /* osal_dynamiclib_unix.m */; };
 		2F294B8E1792270500355455 /* videoExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F4951551411023300D2B2C1 /* videoExtension.m */; };
@@ -245,8 +244,6 @@
 		2F49512F1411019D00D2B2C1 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		2F4951441411021600D2B2C1 /* cheat.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = cheat.c; sourceTree = "<group>"; };
 		2F4951451411021600D2B2C1 /* cheat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cheat.h; sourceTree = "<group>"; };
-		2F4951461411021600D2B2C1 /* compare_core.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = compare_core.c; sourceTree = "<group>"; };
-		2F4951471411021600D2B2C1 /* compare_core.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = compare_core.h; sourceTree = "<group>"; };
 		2F4951481411021600D2B2C1 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		2F4951491411021600D2B2C1 /* main.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = main.h; sourceTree = "<group>"; };
 		2F49514A1411021600D2B2C1 /* osal_dynamiclib.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = osal_dynamiclib.h; sourceTree = "<group>"; };
@@ -484,8 +481,6 @@
 			children = (
 				2F4951441411021600D2B2C1 /* cheat.c */,
 				2F4951451411021600D2B2C1 /* cheat.h */,
-				2F4951461411021600D2B2C1 /* compare_core.c */,
-				2F4951471411021600D2B2C1 /* compare_core.h */,
 				2F4951481411021600D2B2C1 /* main.m */,
 				2F4951491411021600D2B2C1 /* main.h */,
 				2F49514A1411021600D2B2C1 /* osal_dynamiclib.h */,
@@ -900,7 +895,6 @@
 				2F294B81179225F800355455 /* MALMupenCore.m in Sources */,
 				2F294B82179225F800355455 /* MALMupenRom.m in Sources */,
 				2F294B8A179226E100355455 /* cheat.c in Sources */,
-				2F294B8B179226E100355455 /* compare_core.c in Sources */,
 				2F294B8C179226E100355455 /* main.m in Sources */,
 				2F294B8D179226E100355455 /* osal_dynamiclib_unix.m in Sources */,
 				2F294B8E1792270500355455 /* videoExtension.m in Sources */,

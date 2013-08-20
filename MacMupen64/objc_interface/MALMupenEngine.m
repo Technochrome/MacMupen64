@@ -26,24 +26,64 @@ MALMupenEngine * _shared = nil;
 
 @interface MALMupenEngine()
 @property (readwrite) NSArray * controllerBindings;
+-(NSString*) autosaveLocation;
+@end
 
+@implementation MALMupenEngine (rawInterface)
+-(void) shutdown {
+	(*CoreDoCommand)(M64CMD_STOP,0,0);
+}
+-(void) detachROM {
+	(*CoreDoCommand)(M64CMD_ROM_CLOSE, 0,NULL);
+	self.mainROM = nil;
+}
+-(BOOL) attachROM:(MALMupenRom*)rom {
+	NSData * romData = [rom contents];
+	self.mainROM = rom;
+	return (*CoreDoCommand)(M64CMD_ROM_OPEN, (int)[romData length], (unsigned char*)[romData bytes]) == M64ERR_SUCCESS;
+}
+
+-(BOOL) freezeToFile:(NSString*)filepath {
+	return (*CoreDoCommand)(M64CMD_STATE_SAVE,1,(void*)[filepath UTF8String]) == M64ERR_SUCCESS;
+}
+-(BOOL) defrostFromFile:(NSString*)filepath {
+	return (*CoreDoCommand)(M64CMD_STATE_LOAD,0,(void*)[filepath UTF8String]) == M64ERR_SUCCESS;
+}
+-(void) setState:(m64p_core_param)state toValue:(int)value {
+	(*CoreDoCommand)(M64CMD_CORE_STATE_SET,state,&value);
+}
+-(int) getState:(m64p_core_param)state {
+	int ret;
+	(*CoreDoCommand)(M64CMD_CORE_STATE_QUERY,state,&ret);
+	return ret;
+}
+
+-(IBAction) takeScreenShot:(id)sender {
+	(*CoreDoCommand)(M64CMD_TAKE_NEXT_SCREENSHOT,0,NULL);
+}
+-(IBAction) freeze:(id)sender {
+	[self freezeToFile:[self autosaveLocation]];
+}
+-(IBAction) defrost:(id)sender {
+	[self defrostFromFile:[self autosaveLocation]];
+}
+-(IBAction) reset:(id)sender {
+	(*CoreDoCommand)(M64CMD_RESET,0,NULL);
+}
+-(IBAction) hardwareReset:(id)sender {
+	(*CoreDoCommand)(M64CMD_RESET,1,NULL);
+}
 @end
 
 @implementation MALMupenEngine
 -(NSString*) autosaveLocation {
 	return [[self.mainROM.freezesPath URLByAppendingPathComponent:@"Autosave.n64_freeze"] relativePath];
 }
--(void) shutdown {
-	(*CoreDoCommand)(M64CMD_STOP,0,0);
-}
 -(void) frameCallback {
-	if(shouldDefrost && [[NSFileManager defaultManager] fileExistsAtPath:[self autosaveLocation]]) {
-		(*CoreDoCommand)(M64CMD_STATE_LOAD,0,(void*)[[self autosaveLocation] UTF8String]);
-		shouldDefrost = NO;
-	}
 }
 -(void) emulationStarted {
 	self.volume = volume;
+	[self autoload];
 }
 -(void) emulationStopped {
 	[malwin close];
@@ -75,6 +115,12 @@ MALMupenEngine * _shared = nil;
 	return [plugins objectAtIndex:0];
 }
 #pragma mark core methods
+-(void) autosave {
+	[self freezeToFile:[self autosaveLocation]];
+}
+-(void) autoload {
+	[self defrostFromFile:[self autosaveLocation]];
+}
 -(void) unloadPluginIndex:(int)type {
 	
 }
@@ -118,8 +164,8 @@ MALMupenEngine * _shared = nil;
 		m64p_error err;
 		if ((err = (*CoreAttachPlugin)([plugin type], [plugin handle]) != M64ERR_SUCCESS)) {
 			NSLog(@"UI-Console: from core while attaching %@ plugin.\n%s\n", [plugin typeString], (*CoreErrorMessage)(err));
-			(*CoreDoCommand)(M64CMD_ROM_CLOSE, 0, NULL);
-			return 13;
+			[self detachROM];
+			return NO;
 		}
 	}
 	return YES;
@@ -131,19 +177,11 @@ MALMupenEngine * _shared = nil;
 	}
 	return YES;
 }
--(BOOL) attachROM:(MALMupenRom*)rom {
-	NSData * romData = [rom contents];
-	self.mainROM = rom;
-	return (*CoreDoCommand)(M64CMD_ROM_OPEN, (int)[romData length], (unsigned char*)[romData bytes]) == M64ERR_SUCCESS;
-}
--(void) detachROM {
-	(*CoreDoCommand)(M64CMD_ROM_CLOSE, 0,NULL);
-}
 -(void) stopEmulation {
-	(*CoreDoCommand)(M64CMD_STATE_SAVE,1,(void*)[[self autosaveLocation] UTF8String]);
 	[[NSNotificationCenter defaultCenter] addObserverForName:MALNotificationMupenSaveComplete object:nil queue:nil usingBlock:^(NSNotification *note) {
 		[self shutdown];
 	}];
+	[self autosave];
 }
 -(void) attachControllers {
 	MALInputCenter * inputCenter = [MALInputCenter shared];
@@ -160,22 +198,58 @@ MALMupenEngine * _shared = nil;
 	}
 }
 
--(void) spawnInThreadWithROM:(MALMupenRom*)rom {
-	NSAutoreleasePool * pl = [[NSAutoreleasePool alloc] init];
-	shouldDefrost = YES;
-	framesUntilStop = -1;
-	[self setIsRunning:YES];
+m64p_handle ConfigSectionHandle;
+static void ParameterListCallback(void * context, const char *ParamName, m64p_type ParamType) {
+	printf("  %s = ",ParamName);
+	switch (ParamType) {
+		case M64TYPE_INT:
+			printf("%d\n",(*ConfigGetParamInt)(ConfigSectionHandle, ParamName)); break;
+		case M64TYPE_FLOAT:
+			printf("%f\n",(*ConfigGetParamFloat)(ConfigSectionHandle, ParamName)); break;
+		case M64TYPE_BOOL:
+			printf("%s\n",(*ConfigGetParamInt)(ConfigSectionHandle, ParamName) ? "true" : "false"); break;
+		case M64TYPE_STRING:
+			printf("%s\n",(*ConfigGetParamString)(ConfigSectionHandle, ParamName)); break;
+	}
+	printf("    %s\n",(*ConfigGetParameterHelp)(ConfigSectionHandle, ParamName));
+}
+
+static void SectionListCallback(void * context, const char * SectionName) {
+	printf("== %s ==\n",SectionName);
+	(*ConfigOpenSection)(SectionName, &ConfigSectionHandle);
+	(*ConfigListParameters)(ConfigSectionHandle, NULL, ParameterListCallback);
+}
+
+static void printConfigSections() {
+	(*ConfigListSections)(NULL, SectionListCallback);
+}
+
+-(void) runWithRom:(MALMupenRom *)rom{
+	if([NSThread isMainThread]) {
+		[NSThread detachNewThreadSelector:_cmd toTarget:self withObject:rom];
+		return;
+	}
 	
-	(*ConfigListSections)(NULL,configCallback);
-	[self attachROM:rom];
-	[self attachPluginsToCore];
-	[self attachControllers];
-	TestOtherMain();
-	[self detachPluginsFromCore];
-	[self detachROM];
-	
-	[self setIsRunning:NO];
-	[pl drain];
+	@autoreleasepool {
+		[[NSThread currentThread] setName:@"Mupen Engine"];
+		[self setIsRunning:YES];
+		
+		(*ConfigListSections)(NULL,configCallback);
+		[self attachROM:rom];
+		[self attachPluginsToCore];
+		
+		pixelAttributes = [[NSMutableArray alloc] init];
+		(*CoreOverrideVidExt)(&videoExtensionFunctions);
+		
+		[self attachControllers];
+		printConfigSections();
+		(*CoreDoCommand)(M64CMD_EXECUTE, 0, NULL);
+		
+		[self detachPluginsFromCore];
+		[self detachROM];
+		
+		[self setIsRunning:NO];
+	}
 }
 #pragma mark key events
 +(MALInputDevice*) n64Controller {
@@ -228,26 +302,14 @@ static void frameCallback(unsigned int FrameIndex) {
 	return _shared;
 }
 
-#pragma mark API
+#pragma mark Parameters
 
-#define pluginFunction(plugin,func,argv...) {\
-	MALMupenPlugin * p = [plugins objectAtIndex:[self indexForPluginType:plugin]]; \
-	ptr_##func func = osal_dynlib_getproc([p handle], #func); \
-	if (func) { \
-		func(argv); \
-	} }
-
--(void) runWithRom:(MALMupenRom *)rom{
-	[NSThread detachNewThreadSelector:@selector(spawnInThreadWithROM:) toTarget:self withObject:rom];
-}
 -(void) setVolume:(int)v {
 	v = MIN(MAX(v,0), 100);
 	self.muted = NO;
-	
-//	(*CoreDoCommand)(M64CMD_CORE_STATE_SET,M64CORE);
-	pluginFunction(M64PLUGIN_AUDIO, VolumeSetLevel, v)
-	
 	if(v == volume) return;
+	
+	[self setState:M64CORE_AUDIO_VOLUME toValue:v];
 	
 	[self willChangeValueForKey:@"volume"];
 	volume = v;
@@ -258,7 +320,7 @@ static void frameCallback(unsigned int FrameIndex) {
 -(void) setMuted:(BOOL)m {
 	if(m == muted) return;
 	
-	pluginFunction(M64PLUGIN_AUDIO, VolumeMute);
+	[self setState:M64CORE_AUDIO_MUTE toValue:m];
 	
 	[self willChangeValueForKey:@"muted"];
 	muted = m;
@@ -275,20 +337,4 @@ static void frameCallback(unsigned int FrameIndex) {
 	[self didChangeValueForKey:@"fullscreen"];
 }
 -(BOOL) fullscreen { return fullscreen; }
-
--(IBAction) takeScreenShot:(id)sender {
-	(*CoreDoCommand)(M64CMD_TAKE_NEXT_SCREENSHOT,0,NULL);
-}
--(IBAction) freeze:(id)sender {
-	(*CoreDoCommand)(M64CMD_STATE_SAVE,1,(void*)[[self autosaveLocation] UTF8String]);
-}
--(IBAction) defrost:(id)sender {
-	(*CoreDoCommand)(M64CMD_STATE_LOAD,0,(void*)[[self autosaveLocation] UTF8String]);
-}
--(IBAction) reset:(id)sender {
-	(*CoreDoCommand)(M64CMD_RESET,0,NULL);
-}
--(IBAction) hardwareReset:(id)sender {
-	(*CoreDoCommand)(M64CMD_RESET,1,NULL);
-}
 @end

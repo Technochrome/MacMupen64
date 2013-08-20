@@ -26,7 +26,10 @@ NSString * const MALApplicationName = @"MacMupen64 Plus";
 NSURL * MALKeybindingsFile;
 NSURL * MALRecentlyOpenedRomsFile;
 NSURL * MALFreezesFolder;
-
+NSURL * MALSRAMFolder;
+NSURL * MALConfigFolder;
+NSURL * MALRandomDataFolder;
+NSURL * MALScreenshotFolder;
 
 NSString * const RSPString = @"RSP";
 NSString * const VideoString = @"Video";
@@ -47,4 +50,8 @@ void initializePaths(void) {
 	MALKeybindingsFile = [[supportFolder URLByAppendingPathComponent:@"keyBindings.plist"] retain];
 	MALRecentlyOpenedRomsFile = [[supportFolder URLByAppendingPathComponent:@"Recently Opened ROMs.plist"] retain];
 	MALFreezesFolder = [[supportFolder URLByAppendingPathComponent:@"Freezes"] retain];
+	MALSRAMFolder = [[supportFolder URLByAppendingPathComponent:@"SRAM"] retain];
+	MALConfigFolder = [[supportFolder URLByAppendingPathComponent:@"config"] retain];
+	MALRandomDataFolder = [[supportFolder URLByAppendingPathComponent:@"data"] retain];
+	MALScreenshotFolder = [[fileManager URLForDirectory:NSDesktopDirectory inDomain:NSUserDomainMask appropriateForURL:nil create:YES error:NULL] retain];
 }

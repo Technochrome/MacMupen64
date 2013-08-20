@@ -20,8 +20,8 @@ GLuint renderBuffer,renderTexture;
 
 #pragma mark Startup/Shutdown
 
-/* video extension functions to be called by the video plugin */
 m64p_error VidExt_Init(void) {
+	NSLog(@"-------Video Init");
 	pixelAttributes = [[NSMutableArray alloc] init];
     return M64ERR_SUCCESS;
 }
