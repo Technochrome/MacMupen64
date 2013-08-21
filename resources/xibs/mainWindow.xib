@@ -108,6 +108,14 @@
 									<reference key="NSOnImage" ref="756751024"/>
 									<reference key="NSMixedImage" ref="908425081"/>
 								</object>
+								<object class="NSMenuItem" id="767947032">
+									<reference key="NSMenu" ref="110575045"/>
+									<string key="NSTitle">Check for Updates…</string>
+									<string key="NSKeyEquiv"/>
+									<int key="NSMnemonicLoc">2147483647</int>
+									<reference key="NSOnImage" ref="756751024"/>
+									<reference key="NSMixedImage" ref="908425081"/>
+								</object>
 								<object class="NSMenuItem" id="481834944">
 									<reference key="NSMenu" ref="110575045"/>
 									<bool key="NSIsDisabled">YES</bool>
@@ -877,7 +885,6 @@
 									<string key="NSFrame">{{1, 116}, {438, 15}}</string>
 									<reference key="NSSuperview" ref="903392871"/>
 									<reference key="NSWindow"/>
-									<reference key="NSNextKeyView"/>
 									<bool key="NSAllowsLogicalLayoutDirection">NO</bool>
 									<int key="NSsFlags">1</int>
 									<reference key="NSTarget" ref="903392871"/>
@@ -928,8 +935,11 @@
 			<object class="NSCustomObject" id="426043054">
 				<string key="NSClassName">MALMainWindowController</string>
 			</object>
-			<object class="NSCustomObject" id="742297914">
+			<object class="NSCustomObject" id="200595407">
 				<string key="NSClassName">MALMupenEngine</string>
+			</object>
+			<object class="NSCustomObject" id="128671435">
+				<string key="NSClassName">SUUpdater</string>
 			</object>
 			<object class="NSUserDefaultsController" id="516616256">
 				<bool key="NSSharedInstance">YES</bool>
@@ -1006,7 +1016,6 @@
 						<string key="NSFrame">{{182, 4}, {16, 16}}</string>
 						<reference key="NSSuperview" ref="999959145"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="NSEnabled">YES</bool>
 						<object class="NSImageCell" key="NSCell" id="6093439">
@@ -1270,7 +1279,7 @@
 					<object class="IBOutletConnection" key="connection">
 						<string key="label">engine</string>
 						<reference key="source" ref="426043054"/>
-						<reference key="destination" ref="742297914"/>
+						<reference key="destination" ref="200595407"/>
 					</object>
 					<int key="connectionID">1064</int>
 				</object>
@@ -1497,7 +1506,7 @@
 				<object class="IBConnectionRecord">
 					<object class="IBActionConnection" key="connection">
 						<string key="label">freeze:</string>
-						<reference key="source" ref="742297914"/>
+						<reference key="source" ref="200595407"/>
 						<reference key="destination" ref="132373882"/>
 					</object>
 					<int key="connectionID">1065</int>
@@ -1505,7 +1514,7 @@
 				<object class="IBConnectionRecord">
 					<object class="IBActionConnection" key="connection">
 						<string key="label">defrost:</string>
-						<reference key="source" ref="742297914"/>
+						<reference key="source" ref="200595407"/>
 						<reference key="destination" ref="36110873"/>
 					</object>
 					<int key="connectionID">1066</int>
@@ -1513,7 +1522,7 @@
 				<object class="IBConnectionRecord">
 					<object class="IBActionConnection" key="connection">
 						<string key="label">reset:</string>
-						<reference key="source" ref="742297914"/>
+						<reference key="source" ref="200595407"/>
 						<reference key="destination" ref="640216406"/>
 					</object>
 					<int key="connectionID">1067</int>
@@ -1521,7 +1530,7 @@
 				<object class="IBConnectionRecord">
 					<object class="IBActionConnection" key="connection">
 						<string key="label">hardwareReset:</string>
-						<reference key="source" ref="742297914"/>
+						<reference key="source" ref="200595407"/>
 						<reference key="destination" ref="506952520"/>
 					</object>
 					<int key="connectionID">1068</int>
@@ -1529,10 +1538,18 @@
 				<object class="IBConnectionRecord">
 					<object class="IBActionConnection" key="connection">
 						<string key="label">takeScreenShot:</string>
-						<reference key="source" ref="742297914"/>
+						<reference key="source" ref="200595407"/>
 						<reference key="destination" ref="985326672"/>
 					</object>
 					<int key="connectionID">1069</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">checkForUpdates:</string>
+						<reference key="source" ref="128671435"/>
+						<reference key="destination" ref="767947032"/>
+					</object>
+					<int key="connectionID">1072</int>
 				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -1691,6 +1708,7 @@
 							<reference ref="1046388886"/>
 							<reference ref="1056857174"/>
 							<reference ref="342932134"/>
+							<reference ref="767947032"/>
 						</object>
 						<reference key="parent" ref="694149608"/>
 					</object>
@@ -2160,9 +2178,20 @@
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">1061</int>
-						<reference key="object" ref="742297914"/>
+						<reference key="object" ref="200595407"/>
 						<reference key="parent" ref="0"/>
 						<string key="objectName">Mupen Engine</string>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">1070</int>
+						<reference key="object" ref="767947032"/>
+						<reference key="parent" ref="110575045"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">1071</int>
+						<reference key="object" ref="128671435"/>
+						<reference key="parent" ref="0"/>
+						<string key="objectName">Sparkle (updates)</string>
 					</object>
 				</object>
 			</object>
@@ -2198,6 +2227,8 @@
 					<string>1057.IBPluginDependency</string>
 					<string>106.IBPluginDependency</string>
 					<string>1061.IBPluginDependency</string>
+					<string>1070.IBPluginDependency</string>
+					<string>1071.IBPluginDependency</string>
 					<string>111.IBPluginDependency</string>
 					<string>124.IBPluginDependency</string>
 					<string>125.IBPluginDependency</string>
@@ -2313,6 +2344,8 @@
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>{{513, 476}, {480, 286}}</string>
 					<integer value="1"/>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -2369,7 +2402,7 @@
 				<reference key="dict.values" ref="0"/>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">1069</int>
+			<int key="maxID">1072</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -2390,17 +2423,13 @@
 						<object class="NSArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>decreaseVolume:</string>
-							<string>defrost:</string>
 							<string>increaseVolume:</string>
 							<string>openPreferencesWindow:</string>
 							<string>startEmulation:</string>
 							<string>startOpenPanelForROM:</string>
-							<string>takeScreenShot:</string>
 						</object>
 						<object class="NSArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<string>id</string>
-							<string>id</string>
 							<string>id</string>
 							<string>id</string>
 							<string>id</string>
@@ -2413,21 +2442,15 @@
 						<object class="NSArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>decreaseVolume:</string>
-							<string>defrost:</string>
 							<string>increaseVolume:</string>
 							<string>openPreferencesWindow:</string>
 							<string>startEmulation:</string>
 							<string>startOpenPanelForROM:</string>
-							<string>takeScreenShot:</string>
 						</object>
 						<object class="NSArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<object class="IBActionInfo">
 								<string key="name">decreaseVolume:</string>
-								<string key="candidateClassName">id</string>
-							</object>
-							<object class="IBActionInfo">
-								<string key="name">defrost:</string>
 								<string key="candidateClassName">id</string>
 							</object>
 							<object class="IBActionInfo">
@@ -2444,10 +2467,6 @@
 							</object>
 							<object class="IBActionInfo">
 								<string key="name">startOpenPanelForROM:</string>
-								<string key="candidateClassName">id</string>
-							</object>
-							<object class="IBActionInfo">
-								<string key="name">takeScreenShot:</string>
 								<string key="candidateClassName">id</string>
 							</object>
 						</object>
@@ -2562,6 +2581,36 @@
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
 						<string key="minorKey">./Classes/MALMupenEngine.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">SUUpdater</string>
+					<string key="superclassName">NSObject</string>
+					<object class="NSMutableDictionary" key="actions">
+						<string key="NS.key.0">checkForUpdates:</string>
+						<string key="NS.object.0">id</string>
+					</object>
+					<object class="NSMutableDictionary" key="actionInfosByName">
+						<string key="NS.key.0">checkForUpdates:</string>
+						<object class="IBActionInfo" key="NS.object.0">
+							<string key="name">checkForUpdates:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+					</object>
+					<object class="NSMutableDictionary" key="outlets">
+						<string key="NS.key.0">delegate</string>
+						<string key="NS.object.0">id</string>
+					</object>
+					<object class="NSMutableDictionary" key="toOneOutletInfosByName">
+						<string key="NS.key.0">delegate</string>
+						<object class="IBToOneOutletInfo" key="NS.object.0">
+							<string key="name">delegate</string>
+							<string key="candidateClassName">id</string>
+						</object>
+					</object>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">./Classes/SUUpdater.h</string>
 					</object>
 				</object>
 			</object>

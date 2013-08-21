@@ -69,7 +69,6 @@
 		2F8FCFFB17B5FF5B00400C0B /* libmupen64plus-input-MALInput.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 2F8FCFFA17B5FF5B00400C0B /* libmupen64plus-input-MALInput.dylib */; };
 		2F8FCFFE17B6012400400C0B /* MALInput.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2FF8ADA217B5EA4F0060F0E9 /* MALInput.framework */; };
 		2F8FCFFF17B6014400400C0B /* MALInput.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2FF8ADA217B5EA4F0060F0E9 /* MALInput.framework */; };
-		2F8FD00217B60C6700400C0B /* mupen64plus-video-arachnoid.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 2F8FD00117B60C6700400C0B /* mupen64plus-video-arachnoid.dylib */; };
 		2F8FD00717B60F6600400C0B /* mupen64plus-video-glide64mk2.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 2F8FD00517B60F1B00400C0B /* mupen64plus-video-glide64mk2.dylib */; };
 		2F8FD00817B60F7A00400C0B /* Glide64mk2.ini in Resources */ = {isa = PBXBuildFile; fileRef = 2F8FD00317B60EEC00400C0B /* Glide64mk2.ini */; };
 		2F8FD01317B616BD00400C0B /* libpng15.15.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 2F8FD01117B616A900400C0B /* libpng15.15.dylib */; };
@@ -83,6 +82,8 @@
 		2F8FD02917B9A2E900400C0B /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F9FF6C61628B0B400E1821F /* OpenGL.framework */; };
 		2F9F7F7E17BE9D9300BD5D9D /* MALInput.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 2F8FCFD517B5F27800400C0B /* MALInput.framework */; };
 		2F9F7F8417C1CF2300BD5D9D /* GeneralPrefsPane.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2F9F7F8317C1CF2300BD5D9D /* GeneralPrefsPane.xib */; };
+		2F9F7FC017C43B4000BD5D9D /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F9F7FB717C43B1A00BD5D9D /* Sparkle.framework */; };
+		2F9F7FC117C43B5000BD5D9D /* Sparkle.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 2F9F7FB717C43B1A00BD5D9D /* Sparkle.framework */; };
 		2F9FF6C41628B06500E1821F /* MALAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F495164141102BF00D2B2C1 /* MALAdditions.m */; };
 		2F9FF6C51628B06500E1821F /* MALBackporting.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F495166141102BF00D2B2C1 /* MALBackporting.m */; };
 		2F9FF6C71628B0B400E1821F /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F9FF6C61628B0B400E1821F /* OpenGL.framework */; };
@@ -146,6 +147,48 @@
 			remoteGlobalIDString = 2F8FCFC917B5F0EA00400C0B;
 			remoteInfo = "MALInput (copy products to project dir)";
 		};
+		2F9F7FB617C43B1A00BD5D9D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2F9F7FAE17C43B1900BD5D9D /* Sparkle.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 8DC2EF5B0486A6940098B216;
+			remoteInfo = Sparkle;
+		};
+		2F9F7FB817C43B1A00BD5D9D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2F9F7FAE17C43B1900BD5D9D /* Sparkle.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 61B5F90209C4CEE200B25A18;
+			remoteInfo = "Sparkle Test App";
+		};
+		2F9F7FBA17C43B1A00BD5D9D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2F9F7FAE17C43B1900BD5D9D /* Sparkle.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 612279D90DB5470200AB99EA;
+			remoteInfo = "Sparkle Unit Tests";
+		};
+		2F9F7FBC17C43B1A00BD5D9D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2F9F7FAE17C43B1900BD5D9D /* Sparkle.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 5D06E8D00FD68C7C005AE3F6;
+			remoteInfo = BinaryDelta;
+		};
+		2F9F7FBE17C43B1A00BD5D9D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2F9F7FAE17C43B1900BD5D9D /* Sparkle.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 55C14BB7136EEF1500649790;
+			remoteInfo = finish_installation;
+		};
+		2F9F7FC717C44A2B00BD5D9D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2F49510C1411019D00D2B2C1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2F4951141411019D00D2B2C1;
+			remoteInfo = MacMupen64;
+		};
 		2FF8AD9F17B5EA4F0060F0E9 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 2F3B4BCC17599C66007FC4D6 /* MALHid.xcodeproj */;
@@ -204,7 +247,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				2F8FD00217B60C6700400C0B /* mupen64plus-video-arachnoid.dylib in CopyFiles */,
+				2F9F7FC117C43B5000BD5D9D /* Sparkle.framework in CopyFiles */,
 				2F294B901792273300355455 /* MacMupen.framework in CopyFiles */,
 				2F9F7F7E17BE9D9300BD5D9D /* MALInput.framework in CopyFiles */,
 			);
@@ -311,6 +354,8 @@
 		2F8FD01B17B724DA00400C0B /* libspeexdsp.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libspeexdsp.1.dylib; sourceTree = "<group>"; };
 		2F8FD01C17B724DA00400C0B /* libz.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libz.1.dylib; sourceTree = "<group>"; };
 		2F9F7F8317C1CF2300BD5D9D /* GeneralPrefsPane.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GeneralPrefsPane.xib; sourceTree = "<group>"; };
+		2F9F7FAE17C43B1900BD5D9D /* Sparkle.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Sparkle.xcodeproj; path = Sparkle/Sparkle.xcodeproj; sourceTree = "<group>"; };
+		2F9F7FC917C44A9900BD5D9D /* CodeSign.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; name = CodeSign.sh; path = ../CodeSign.sh; sourceTree = "<group>"; };
 		2F9FF6C61628B0B400E1821F /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
 		2FB3889316F29F1D0023CAAF /* InputPane.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InputPane.xib; sourceTree = "<group>"; };
 		2FB3889916F2A1740023CAAF /* 09494148_64Controller_answer_1_small.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 09494148_64Controller_answer_1_small.jpeg; sourceTree = "<group>"; };
@@ -340,6 +385,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2F9F7FC017C43B4000BD5D9D /* Sparkle.framework in Frameworks */,
 				2F8FCFFF17B6014400400C0B /* MALInput.framework in Frameworks */,
 				2F294B8F1792272400355455 /* MacMupen.framework in Frameworks */,
 				2F9FF6C71628B0B400E1821F /* OpenGL.framework in Frameworks */,
@@ -386,8 +432,9 @@
 		2F49510A1411019D00D2B2C1 = {
 			isa = PBXGroup;
 			children = (
-				2F8FCFDB17B5FB3A00400C0B /* mupen64plus-input-MALInput.xcodeproj */,
+				2F9F7FAE17C43B1900BD5D9D /* Sparkle.xcodeproj */,
 				2F281AFB17ACE0C4004EE8AA /* mupen64plus-upstream.xcodeproj */,
+				2F8FCFDB17B5FB3A00400C0B /* mupen64plus-input-MALInput.xcodeproj */,
 				2F3B4BCC17599C66007FC4D6 /* MALHid.xcodeproj */,
 				2F49511F1411019D00D2B2C1 /* MacMupen64 */,
 				2F4951201411019D00D2B2C1 /* Resources */,
@@ -432,6 +479,7 @@
 		2F49511F1411019D00D2B2C1 /* MacMupen64 */ = {
 			isa = PBXGroup;
 			children = (
+				2F9F7FC917C44A9900BD5D9D /* CodeSign.sh */,
 				2F4951271411019D00D2B2C1 /* MacMupen64-Prefix.pch */,
 				2F9FF6C31628AB4400E1821F /* MALlib */,
 				2F495185141102EC00D2B2C1 /* Preferences Window */,
@@ -649,6 +697,18 @@
 			name = Rendering;
 			sourceTree = "<group>";
 		};
+		2F9F7FAF17C43B1900BD5D9D /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				2F9F7FB717C43B1A00BD5D9D /* Sparkle.framework */,
+				2F9F7FB917C43B1A00BD5D9D /* Sparkle Test App.app */,
+				2F9F7FBB17C43B1A00BD5D9D /* Sparkle Unit Tests.octest */,
+				2F9F7FBD17C43B1A00BD5D9D /* BinaryDelta */,
+				2F9F7FBF17C43B1A00BD5D9D /* finish_installation.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		2F9FF6C31628AB4400E1821F /* MALlib */ = {
 			isa = PBXGroup;
 			children = (
@@ -705,6 +765,24 @@
 		};
 /* End PBXHeadersBuildPhase section */
 
+/* Begin PBXLegacyTarget section */
+		2F9F7FC317C449A200BD5D9D /* Code sign */ = {
+			isa = PBXLegacyTarget;
+			buildArgumentsString = CodeSign.sh;
+			buildConfigurationList = 2F9F7FC417C449A200BD5D9D /* Build configuration list for PBXLegacyTarget "Code sign" */;
+			buildPhases = (
+			);
+			buildToolPath = /bin/bash;
+			buildWorkingDirectory = "";
+			dependencies = (
+				2F9F7FC817C44A2B00BD5D9D /* PBXTargetDependency */,
+			);
+			name = "Code sign";
+			passBuildSettingsInEnvironment = 1;
+			productName = "Code sign";
+		};
+/* End PBXLegacyTarget section */
+
 /* Begin PBXNativeTarget section */
 		2F294B69179224C900355455 /* MacMupen */ = {
 			isa = PBXNativeTarget;
@@ -735,6 +813,7 @@
 				2F4951C81411057200D2B2C1 /* CopyFiles */,
 				2F4951CE141105D800D2B2C1 /* CopyFiles */,
 				2F81229D1413F3950042DA30 /* CopyFiles */,
+				2F9F7FAD17C42EE300BD5D9D /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -797,12 +876,17 @@
 					ProductGroup = 2FF8AD8817B0CFA40060F0E9 /* Products */;
 					ProjectRef = 2F281AFB17ACE0C4004EE8AA /* mupen64plus-upstream.xcodeproj */;
 				},
+				{
+					ProductGroup = 2F9F7FAF17C43B1900BD5D9D /* Products */;
+					ProjectRef = 2F9F7FAE17C43B1900BD5D9D /* Sparkle.xcodeproj */;
+				},
 			);
 			projectRoot = "";
 			targets = (
 				2F4951141411019D00D2B2C1 /* MacMupen64 */,
 				2F4951DC14110DF500D2B2C1 /* Preference Panes */,
 				2F294B69179224C900355455 /* MacMupen */,
+				2F9F7FC317C449A200BD5D9D /* Code sign */,
 			);
 		};
 /* End PBXProject section */
@@ -813,6 +897,41 @@
 			fileType = "compiled.mach-o.dylib";
 			path = "libmupen64plus-input-MALInput.dylib";
 			remoteRef = 2F8FCFE117B5FB3B00400C0B /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		2F9F7FB717C43B1A00BD5D9D /* Sparkle.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Sparkle.framework;
+			remoteRef = 2F9F7FB617C43B1A00BD5D9D /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		2F9F7FB917C43B1A00BD5D9D /* Sparkle Test App.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = "Sparkle Test App.app";
+			remoteRef = 2F9F7FB817C43B1A00BD5D9D /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		2F9F7FBB17C43B1A00BD5D9D /* Sparkle Unit Tests.octest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = "Sparkle Unit Tests.octest";
+			remoteRef = 2F9F7FBA17C43B1A00BD5D9D /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		2F9F7FBD17C43B1A00BD5D9D /* BinaryDelta */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.executable";
+			path = BinaryDelta;
+			remoteRef = 2F9F7FBC17C43B1A00BD5D9D /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		2F9F7FBF17C43B1A00BD5D9D /* finish_installation.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = finish_installation.app;
+			remoteRef = 2F9F7FBE17C43B1A00BD5D9D /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		2FF8ADA017B5EA4F0060F0E9 /* HIDTest */ = {
@@ -882,6 +1001,22 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		2F9F7FAD17C42EE300BD5D9D /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/bash;
+			shellScript = "if [ $CONFIGURATION == Release ]; then\ncd $BUILT_PRODUCTS_DIR\nAPP_BUNDLE=MacMupen64.app\nCONTENTS=$APP_BUNDLE/Contents\n\nident=$(defaults read $INFOPLIST_FILE CFBundleIdentifier)\n\nfor sign_target in $CONTENTS/PlugIns/* $CONTENTS/Frameworks/*/Versions/A $CONTENTS/libs/* $APP_BUNDLE; do\necho codesign -s MacMupen64plus -i $ident \"$sign_target\"\ncodesign -s MacMupen64plus -i $ident -f \"$sign_target\"\ndone\n\necho 'Done'\nfi";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		2F294B65179224C900355455 /* Sources */ = {
@@ -954,6 +1089,11 @@
 			isa = PBXTargetDependency;
 			name = "MALInput (copy products to project dir)";
 			targetProxy = 2F8FCFFC17B6011D00400C0B /* PBXContainerItemProxy */;
+		};
+		2F9F7FC817C44A2B00BD5D9D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 2F4951141411019D00D2B2C1 /* MacMupen64 */;
+			targetProxy = 2F9F7FC717C44A2B00BD5D9D /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -1212,6 +1352,47 @@
 			};
 			name = Release;
 		};
+		2F9F7FC517C449A200BD5D9D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				DEBUGGING_SYMBOLS = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		2F9F7FC617C449A200BD5D9D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1250,6 +1431,14 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		2F9F7FC417C449A200BD5D9D /* Build configuration list for PBXLegacyTarget "Code sign" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2F9F7FC517C449A200BD5D9D /* Debug */,
+				2F9F7FC617C449A200BD5D9D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 	};

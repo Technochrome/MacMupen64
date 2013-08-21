@@ -4,3 +4,6 @@
 [submodule "MALInput"]
 	path = MALInput
 	url = https://github.com/Technochrome/MALInput.git
+[submodule "Sparkle"]
+	path = Sparkle
+	url = https://github.com/andymatuschak/Sparkle.git

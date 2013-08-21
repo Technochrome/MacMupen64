@@ -4,6 +4,11 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>Code sign.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>11</integer>
+		</dict>
 		<key>MacMupen.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
@@ -33,6 +38,11 @@
 			<true/>
 		</dict>
 		<key>2F4951DC14110DF500D2B2C1</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>2F9F7FC317C449A200BD5D9D</key>
 		<dict>
 			<key>primary</key>
 			<true/>
