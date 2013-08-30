@@ -54,6 +54,7 @@ void CoreStateCallback(void *Context, m64p_core_param param_type, int new_value)
 		case M64CORE_SPEED_FACTOR:
 		case M64CORE_SPEED_LIMITER:
 		case M64CORE_VIDEO_MODE:
+			break;
 		case M64CORE_STATE_SAVECOMPLETE:
 			[[NSNotificationCenter defaultCenter] postNotificationName:MALNotificationMupenSaveComplete object:core];
 			break;

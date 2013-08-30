@@ -17,7 +17,7 @@ extern NSString * const MALMupenEngineFinished;
 @interface MALMupenEngine : NSObject {
 	NSMutableArray * plugins,*controllerBindings;
 	NSWindowController * gameWindow;
-	BOOL isRunning, muted, fullscreen;
+	BOOL isRunning, muted, fullscreen, shouldAutoload;
 	int volume;
 }
 @property (readwrite, retain) NSMutableArray * plugins;
@@ -28,6 +28,8 @@ extern NSString * const MALMupenEngineFinished;
 
 @property (readwrite) BOOL muted,fullscreen;
 @property (readwrite) int volume;
+
+@property (readwrite) NSSize videoSize;
 
 +(MALInputDevice*) n64Controller;
 
@@ -41,10 +43,16 @@ extern NSString * const MALMupenEngineFinished;
 -(void) emulationPaused;
 @end
 
-@interface MALMupenEngine (rawInterface)
+@interface MALMupenEngine (interface)
 -(IBAction) takeScreenShot:(id)sender;
 -(IBAction) freeze:(id)sender;
 -(IBAction) defrost:(id)sender;
 -(IBAction) reset:(id)sender;
 -(IBAction) hardwareReset:(id)sender;
+@end
+
+@interface MALMupenEngine (rawInterface)
+-(void) pauseEmulation;
+-(void) resumeEmulation;
+-(void) saveScreenshotToFile:(NSURL*)file;
 @end

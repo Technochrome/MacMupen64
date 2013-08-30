@@ -19,6 +19,8 @@
 #import "m64p_plugin.h"
 #import "videoExtension.h"
 
+#import "UKKQueue.h"
+
 NSString *const MALMupenEngineFinished = @"MALMupenEngine Finished Running";
 NSString *const MALMupenEngineStarted = @"MALMupenEngine Started Running";
 
@@ -26,6 +28,7 @@ MALMupenEngine * _shared = nil;
 
 @interface MALMupenEngine()
 @property (readwrite) NSArray * controllerBindings;
+@property (readwrite, retain) NSURL * screenshotSaveLocation;
 -(NSString*) autosaveLocation;
 @end
 
@@ -57,9 +60,21 @@ MALMupenEngine * _shared = nil;
 	(*CoreDoCommand)(M64CMD_CORE_STATE_QUERY,state,&ret);
 	return ret;
 }
-
--(IBAction) takeScreenShot:(id)sender {
+-(void) pauseEmulation {
+	(*CoreDoCommand)(M64CMD_PAUSE,0,NULL);
+}
+-(void) resumeEmulation {
+	(*CoreDoCommand)(M64CMD_RESUME,0,NULL);
+}
+-(void) saveScreenshotToFile:(NSURL*)file {
+	self.screenshotSaveLocation = file;
 	(*CoreDoCommand)(M64CMD_TAKE_NEXT_SCREENSHOT,0,NULL);
+}
+@end
+
+@implementation MALMupenEngine (interface)
+-(IBAction) takeScreenShot:(id)sender {
+	[self saveScreenshotToFile:[NSURL URLWithString:@"file://localhost/Users/rovolo/Desktop/screenshot.png"]];
 }
 -(IBAction) freeze:(id)sender {
 	[self freezeToFile:[self autosaveLocation]];
@@ -83,7 +98,10 @@ MALMupenEngine * _shared = nil;
 }
 -(void) emulationStarted {
 	self.volume = volume;
-	[self autoload];
+	if(shouldAutoload) {
+		[self autoload];
+		shouldAutoload = NO;
+	}
 }
 -(void) emulationStopped {
 	[malwin close];
@@ -241,8 +259,10 @@ static void printConfigSections() {
 		pixelAttributes = [[NSMutableArray alloc] init];
 		(*CoreOverrideVidExt)(&videoExtensionFunctions);
 		
+		shouldAutoload = YES;
+		
 		[self attachControllers];
-		printConfigSections();
+//		printConfigSections();
 		(*CoreDoCommand)(M64CMD_EXECUTE, 0, NULL);
 		
 		[self detachPluginsFromCore];
@@ -277,6 +297,24 @@ static void printConfigSections() {
 static void frameCallback(unsigned int FrameIndex) {
 	[[MALMupenEngine shared] frameCallback];
 }
+
+-(void) screenshotPathWritten:(NSNotification*)note {
+	NSString *screenshotPath = [MALScreenshotFolder relativePath];
+	if([note.userInfo[@"path"] isEqual:screenshotPath]) {
+		NSFileManager * fm = [NSFileManager defaultManager];
+		NSArray * screenshots = [fm subpathsAtPath:screenshotPath];
+		
+		if([screenshots count]) {
+			NSURL * screenshotURL = [MALScreenshotFolder URLByAppendingPathComponent:screenshots[0]];
+			NSLog(@"Move %@ to %@",screenshotURL, self.screenshotSaveLocation);
+			[fm moveItemAtURL:screenshotURL toURL:self.screenshotSaveLocation error:NULL];
+			self.screenshotSaveLocation = nil;
+		}
+		for(int i=1; i<[screenshots count]; i++) {
+			[fm removeItemAtURL:[MALScreenshotFolder URLByAppendingPathComponent:screenshots[i]] error:NULL];
+		}
+	}
+}
 -(id) init {
 	if(_shared) {
 		[self release];
@@ -286,6 +324,10 @@ static void frameCallback(unsigned int FrameIndex) {
 		_shared = self;
 		plugins = [[NSMutableArray alloc] initWithCapacity:5];
 		[plugins addObject:[MALMupenCore defaultCore]];
+		
+		[[UKKQueue sharedFileWatcher] addPath:[MALScreenshotFolder relativePath]];
+		[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(screenshotPathWritten:) name:UKFileWatcherWriteNotification object:nil];
+		
 		muted = NO;
 		for (int i=1; i<5; i++) [plugins addObject:[[[MALMupenPlugin alloc] init] autorelease]];
 		for (int i=1; i<5; i++) [self loadPluginType:(m64p_plugin_type)i];
@@ -337,4 +379,13 @@ static void frameCallback(unsigned int FrameIndex) {
 	[self didChangeValueForKey:@"fullscreen"];
 }
 -(BOOL) fullscreen { return fullscreen; }
+-(void) setVideoSize:(NSSize)videoSize {
+	[self willChangeValueForKey:@"videoSize"];
+	[self setState:M64CORE_VIDEO_SIZE toValue:((int)videoSize.width<<16) + videoSize.height];
+	[self didChangeValueForKey:@"videoSize"];
+}
+-(NSSize) videoSize {
+	int size = [self getState:M64CORE_VIDEO_SIZE];
+	return NSMakeSize(size>>16, size & ((1<<16)-1));
+}
 @end

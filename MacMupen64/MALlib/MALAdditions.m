@@ -70,3 +70,10 @@
 }
 @end
 
+@implementation NSImage (imageFormats)
+-(NSData*) imageInFormat:(NSBitmapImageFileType)format {
+	NSData *imageData = [self TIFFRepresentation];
+	NSBitmapImageRep *imageRep = [NSBitmapImageRep imageRepWithData:imageData];
+	return [imageRep representationUsingType:format properties:@{NSImageCompressionFactor:@1.0}];
+}
+@end

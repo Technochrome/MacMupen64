@@ -123,12 +123,12 @@ static void drawAnObject ()
 	
 	offscreenGLview = [[NSOpenGLView alloc] initWithFrame:hiddenWindow.frame pixelFormat:offscreenPixFormat];
 	[hiddenWindow setContentView:offscreenGLview];
+	offscreenBuffer = malloc(sizeof(GLubyte) * size.width * size.height * 3);
 }
 
 -(void) close {
 	[super close];
 }
-
 -(void) drawOpenglWindow {
 	[openGLview.openGLContext makeCurrentContext];
 	glClearColor(0, 0, 0, 0);
@@ -155,12 +155,10 @@ static void drawAnObject ()
 	
 	// read from the offscreen buffer
 	NSSize texSize = hiddenWindow.frame.size;
-	GLubyte * pixels = malloc(sizeof(GLubyte) * texSize.width * texSize.height * 3);
-	glReadPixels(0, 0, splitSize(texSize), GL_RGB, GL_UNSIGNED_BYTE, pixels);
+	glReadPixels(0, 0, splitSize(texSize), GL_RGB, GL_UNSIGNED_BYTE, offscreenBuffer);
 	
 	[openGLview.openGLContext makeCurrentContext];
-	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, splitSize(texSize), 0, GL_RGB, GL_UNSIGNED_BYTE, pixels);
-	free(pixels);
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, splitSize(texSize), 0, GL_RGB, GL_UNSIGNED_BYTE, offscreenBuffer);
 	
 	// Can interfere with driver initializing the view on the main thread, so put in queue
 	[self performSelectorOnMainThread:@selector(drawOpenglWindow) withObject:nil waitUntilDone:YES];
@@ -212,13 +210,18 @@ static void drawAnObject ()
 	}
 }
 -(NSSize) windowWillResize:(NSWindow *)sender toSize:(NSSize)frameSize {
-	return [self expandSize:frameSize toAspectRatio:hiddenWindow.frame.size];
+	frameSize = [self expandSize:frameSize toAspectRatio:hiddenWindow.frame.size];
+	engine.videoSize = frameSize;
+	return frameSize;
 }
 -(void) windowDidResignMain:(NSNotification *)notification {
 	
 }
 -(void) windowDidResignKey:(NSNotification *)notification {
-	
+	[engine pauseEmulation];
+}
+-(void) windowDidBecomeKey:(NSNotification *)notification {
+	[engine resumeEmulation];
 }
 -(void) windowWillClose:(NSNotification *)notification {
 	[hiddenWindow close];

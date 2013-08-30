@@ -78,10 +78,10 @@ void DebugCallback(void *Context, int level, const char *message)
 		OBJprintf(@"%@ Error: %s\n", Context, message);
 	else if (level == 2)
 		OBJprintf(@"%@ Warning: %s\n", Context, message);
-//	else if (level == 3 || (level == 5 && g_Verbose))
-//		OBJprintf(@"%@: %s\n", (NSString *) Context, message);
-//	else if (level == 4)
-//		OBJprintf(@"%@ Status: %s\n", (NSString *) Context, message);
+	else if (level == 3 || (level == 5 && g_Verbose))
+		OBJprintf(@"%@: %s\n", (NSString *) Context, message);
+	else if (level == 4)
+		OBJprintf(@"%@ Status: %s\n", (NSString *) Context, message);
 }
 
 static m64p_error OpenConfigurationHandles(void)

@@ -30,3 +30,7 @@
 @interface NSOpenGLPixelFormat (initFromArray)
 +(NSOpenGLPixelFormat*) pixelFormatFromArrayOfAttributes:(NSArray*)attributes;
 @end
+
+@interface NSImage (imageFormats)
+-(NSData*) imageInFormat:(NSBitmapImageFileType)format;
+@end

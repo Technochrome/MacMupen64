@@ -17,7 +17,7 @@
 	NSOpenGLView * offscreenGLview;
 	NSOpenGLContext * offscreenContext;
 	GLuint renderTexture,renderBuffer;
-	GLvoid * offscreenBuffer;
+	GLubyte * offscreenBuffer;
 	MALMupenEngine * engine;
 	
 	NSInteger oldLevel;
