@@ -29,7 +29,7 @@ MALMupenEngine * _shared = nil;
 @interface MALMupenEngine()
 @property (readwrite) NSArray * controllerBindings;
 @property (readwrite, retain) NSURL * screenshotSaveLocation;
--(NSString*) autosaveLocation;
+-(NSURL*) autosaveLocation;
 @end
 
 @implementation MALMupenEngine (rawInterface)
@@ -46,11 +46,24 @@ MALMupenEngine * _shared = nil;
 	return (*CoreDoCommand)(M64CMD_ROM_OPEN, (int)[romData length], (unsigned char*)[romData bytes]) == M64ERR_SUCCESS;
 }
 
--(BOOL) freezeToFile:(NSString*)filepath {
+-(BOOL) saveStateToFile:(NSString*)filepath {
 	return (*CoreDoCommand)(M64CMD_STATE_SAVE,1,(void*)[filepath UTF8String]) == M64ERR_SUCCESS;
 }
--(BOOL) defrostFromFile:(NSString*)filepath {
+-(BOOL) loadStateFromFile:(NSString*)filepath {
 	return (*CoreDoCommand)(M64CMD_STATE_LOAD,0,(void*)[filepath UTF8String]) == M64ERR_SUCCESS;
+}
+
+-(BOOL) freezeToFile:(NSURL*)filepath {
+	filepath = [[filepath URLByDeletingPathExtension] URLByAppendingPathExtension:@"n64_freeze"];
+	[[NSFileManager defaultManager] removeItemAtURL:filepath error:NULL];
+	[[NSFileManager defaultManager] createDirectoryAtURL:filepath withIntermediateDirectories:NO attributes:nil error:NULL];
+	[self saveStateToFile:[[filepath URLByAppendingPathComponent:@"freeze"] relativePath]];
+	[self saveScreenshotToFile:[filepath URLByAppendingPathComponent:@"screen.png"]];
+	[@{@"freezeDate":[NSDate date]} writeToURL:[filepath URLByAppendingPathComponent:@"info.plist"] atomically:NO];
+	return YES;
+}
+-(BOOL) defrostFromFile:(NSURL*)filepath {
+	return [self loadStateFromFile:[[filepath URLByAppendingPathComponent:@"freeze"] relativePath]];
 }
 -(void) setState:(m64p_core_param)state toValue:(int)value {
 	(*CoreDoCommand)(M64CMD_CORE_STATE_SET,state,&value);
@@ -73,14 +86,28 @@ MALMupenEngine * _shared = nil;
 @end
 
 @implementation MALMupenEngine (interface)
+
+
 -(IBAction) takeScreenShot:(id)sender {
-	[self saveScreenshotToFile:[NSURL URLWithString:@"file://localhost/Users/rovolo/Desktop/screenshot.png"]];
+	NSSavePanel * savePanel = [NSSavePanel savePanel];
+	savePanel.allowedFileTypes = @[@"png"];
+	if([savePanel runModal] == NSFileHandlingPanelOKButton) {
+		[self saveScreenshotToFile:savePanel.URL];
+	}
 }
 -(IBAction) freeze:(id)sender {
-	[self freezeToFile:[self autosaveLocation]];
+	NSSavePanel * savePanel = [NSSavePanel savePanel];
+	savePanel.allowedFileTypes = @[@"n64_freeze"];
+	if([savePanel runModal] == NSFileHandlingPanelOKButton) {
+		[self freezeToFile:savePanel.URL];
+	}
 }
 -(IBAction) defrost:(id)sender {
-	[self defrostFromFile:[self autosaveLocation]];
+	NSOpenPanel * openPanel = [NSOpenPanel openPanel];
+	openPanel.allowedFileTypes = @[@"n64_freeze"];
+	if([openPanel runModal] == NSFileHandlingPanelOKButton) {
+		[self defrostFromFile:openPanel.URL];
+	}
 }
 -(IBAction) reset:(id)sender {
 	(*CoreDoCommand)(M64CMD_RESET,0,NULL);
@@ -91,8 +118,8 @@ MALMupenEngine * _shared = nil;
 @end
 
 @implementation MALMupenEngine
--(NSString*) autosaveLocation {
-	return [[self.mainROM.freezesPath URLByAppendingPathComponent:@"Autosave.n64_freeze"] relativePath];
+-(NSURL*) autosaveLocation {
+	return [self.mainROM.freezesPath URLByAppendingPathComponent:@"Autosave.n64_freeze"];
 }
 -(void) frameCallback {
 }
@@ -271,7 +298,6 @@ static void printConfigSections() {
 		[self setIsRunning:NO];
 	}
 }
-#pragma mark key events
 +(MALInputDevice*) n64Controller {
 	static MALInputDevice * device = nil;
 	if(device) return device;

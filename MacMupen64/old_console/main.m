@@ -74,6 +74,7 @@ static int       *l_CheatNumList = NULL;
 
 void DebugCallback(void *Context, int level, const char *message)
 {
+	@autoreleasepool {
 	if (level <= 1)
 		OBJprintf(@"%@ Error: %s\n", Context, message);
 	else if (level == 2)
@@ -82,6 +83,7 @@ void DebugCallback(void *Context, int level, const char *message)
 		OBJprintf(@"%@: %s\n", (NSString *) Context, message);
 	else if (level == 4)
 		OBJprintf(@"%@ Status: %s\n", (NSString *) Context, message);
+	}
 }
 
 static m64p_error OpenConfigurationHandles(void)
