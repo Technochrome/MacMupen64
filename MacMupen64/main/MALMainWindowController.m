@@ -10,6 +10,7 @@
 #import "preferences.h"
 #import <MacMupen/MALMupenEngine.h>
 #import "MALPreferencesWindowController.h"
+#import "MALGetCoverWindowController.h"
 #import "MALMupenRom.h"
 
 #import "MALBackporting.h"
@@ -227,8 +228,14 @@
 									 options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld 
 									 context:NULL];
 		preferencesController = [[MALPreferencesWindowController alloc] initWithPreferenceItems:
-								 [NSDictionary dictionaryWithObjectsAndKeys:engine,@"engine",romFolderListController,@"romFolderList",nil]];
+								 @{@"engine":engine, @"romFolderList":romFolderListController}];
 	}
 	[preferencesController showWindow:self];
+}
+- (IBAction) getCover:(id)sender {
+	if (getCoverController==nil) {
+		getCoverController = [[MALGetCoverWindowController alloc] init];
+	}
+	[getCoverController showWindow:self];
 }
 @end

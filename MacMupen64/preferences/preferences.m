@@ -30,6 +30,7 @@ NSURL * MALSRAMFolder;
 NSURL * MALConfigFolder;
 NSURL * MALRandomDataFolder;
 NSURL * MALScreenshotFolder;
+NSURL * MALCoversFolder;
 
 NSString * const RSPString = @"RSP";
 NSString * const VideoString = @"Video";
@@ -62,4 +63,5 @@ void initializePaths(void) {
 	MALConfigFolder = subFolder(@"config");
 	MALRandomDataFolder = subFolder(@"data");
 	MALScreenshotFolder = subFolder(@".screenshot");
+	MALCoversFolder = subFolder(@"Covers");
 }

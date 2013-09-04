@@ -7,3 +7,6 @@
 [submodule "Sparkle"]
 	path = Sparkle
 	url = https://github.com/andymatuschak/Sparkle.git
+[submodule "hpple"]
+	path = hpple
+	url = https://github.com/topfunky/hpple.git

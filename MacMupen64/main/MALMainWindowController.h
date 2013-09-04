@@ -1,7 +1,7 @@
 
 #import <Foundation/Foundation.h>
 
-@class MALMupenEngine,MALMupenRom,MALPreferencesWindowController;
+@class MALMupenEngine,MALMupenRom,MALPreferencesWindowController,MALGetCoverWindowController;
 @interface MALMainWindowController : NSObject <NSApplicationDelegate> {
 	IBOutlet NSWindow * mainWindow;
 	IBOutlet NSTableView * romListView;
@@ -9,6 +9,7 @@
 	IBOutlet MALMupenEngine * engine;
 	
 	MALPreferencesWindowController * preferencesController;
+	MALGetCoverWindowController * getCoverController;
 	MALMupenRom * openROM;
 	
 	//rom objects
@@ -28,4 +29,5 @@
 - (IBAction) startOpenPanelForROM:(id)sender;
 - (IBAction) startEmulation:(id)sender;
 - (IBAction) openPreferencesWindow:(id)sender;
+- (IBAction) getCover:(id)sender;
 @end

@@ -88,6 +88,11 @@
 		2F8FD02617B7251800400C0B /* libz.1.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 2F8FD01C17B724DA00400C0B /* libz.1.dylib */; };
 		2F8FD02817B999DD00400C0B /* mupen64plus-video-arachnoid.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 2F8FD00117B60C6700400C0B /* mupen64plus-video-arachnoid.dylib */; };
 		2F8FD02917B9A2E900400C0B /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F9FF6C61628B0B400E1821F /* OpenGL.framework */; };
+		2F964D0017D1718F0035629C /* GetCoverWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2F964CFF17D1718F0035629C /* GetCoverWindow.xib */; };
+		2F964D0C17D172350035629C /* MALGetCoverWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F964D0B17D172350035629C /* MALGetCoverWindowController.m */; };
+		2F964D1317D194F10035629C /* TFHpple.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F964D0E17D194F00035629C /* TFHpple.m */; };
+		2F964D1417D194F10035629C /* TFHppleElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F964D1017D194F00035629C /* TFHppleElement.m */; };
+		2F964D1517D194F10035629C /* XPathQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F964D1217D194F10035629C /* XPathQuery.m */; };
 		2F9F7F7E17BE9D9300BD5D9D /* MALInput.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 2F8FCFD517B5F27800400C0B /* MALInput.framework */; };
 		2F9F7F8417C1CF2300BD5D9D /* GeneralPrefsPane.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2F9F7F8317C1CF2300BD5D9D /* GeneralPrefsPane.xib */; };
 		2F9F7FC017C43B4000BD5D9D /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F9F7FB717C43B1A00BD5D9D /* Sparkle.framework */; };
@@ -369,6 +374,15 @@
 		2F8FD01A17B724DA00400C0B /* libsamplerate.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libsamplerate.0.dylib; sourceTree = "<group>"; };
 		2F8FD01B17B724DA00400C0B /* libspeexdsp.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libspeexdsp.1.dylib; sourceTree = "<group>"; };
 		2F8FD01C17B724DA00400C0B /* libz.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libz.1.dylib; sourceTree = "<group>"; };
+		2F964CFF17D1718F0035629C /* GetCoverWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GetCoverWindow.xib; sourceTree = "<group>"; };
+		2F964D0A17D172350035629C /* MALGetCoverWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MALGetCoverWindowController.h; sourceTree = "<group>"; };
+		2F964D0B17D172350035629C /* MALGetCoverWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MALGetCoverWindowController.m; sourceTree = "<group>"; };
+		2F964D0D17D194F00035629C /* TFHpple.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFHpple.h; sourceTree = "<group>"; };
+		2F964D0E17D194F00035629C /* TFHpple.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TFHpple.m; sourceTree = "<group>"; };
+		2F964D0F17D194F00035629C /* TFHppleElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFHppleElement.h; sourceTree = "<group>"; };
+		2F964D1017D194F00035629C /* TFHppleElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TFHppleElement.m; sourceTree = "<group>"; };
+		2F964D1117D194F10035629C /* XPathQuery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XPathQuery.h; sourceTree = "<group>"; };
+		2F964D1217D194F10035629C /* XPathQuery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XPathQuery.m; sourceTree = "<group>"; };
 		2F9F7F8317C1CF2300BD5D9D /* GeneralPrefsPane.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GeneralPrefsPane.xib; sourceTree = "<group>"; };
 		2F9F7FAE17C43B1900BD5D9D /* Sparkle.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Sparkle.xcodeproj; path = Sparkle/Sparkle.xcodeproj; sourceTree = "<group>"; };
 		2F9F7FC917C44A9900BD5D9D /* CodeSign.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; name = CodeSign.sh; path = ../CodeSign.sh; sourceTree = "<group>"; };
@@ -495,6 +509,7 @@
 		2F49511F1411019D00D2B2C1 /* MacMupen64 */ = {
 			isa = PBXGroup;
 			children = (
+				2F964D1617D194F60035629C /* Hpple */,
 				2F50B6ED17C82B6400F534A4 /* UKKQueue */,
 				2F9F7FC917C44A9900BD5D9D /* CodeSign.sh */,
 				2F4951271411019D00D2B2C1 /* MacMupen64-Prefix.pch */,
@@ -601,6 +616,8 @@
 				2F49518A141102FD00D2B2C1 /* MALMainWindowController.h */,
 				2F49518B141102FD00D2B2C1 /* MALMainWindowController.m */,
 				2F4951531411023300D2B2C1 /* SDLMain.m */,
+				2F964D0A17D172350035629C /* MALGetCoverWindowController.h */,
+				2F964D0B17D172350035629C /* MALGetCoverWindowController.m */,
 			);
 			name = "Main Window";
 			path = main;
@@ -655,6 +672,7 @@
 				2F4951A61411032A00D2B2C1 /* mainWindow.xib */,
 				2F4951A71411032A00D2B2C1 /* Preferences.xib */,
 				2F4951A81411032A00D2B2C1 /* GameWindow.xib */,
+				2F964CFF17D1718F0035629C /* GetCoverWindow.xib */,
 			);
 			name = Xibs;
 			path = xibs;
@@ -727,6 +745,19 @@
 				2F495189141102FD00D2B2C1 /* MALGameWindow.m */,
 			);
 			name = Rendering;
+			sourceTree = "<group>";
+		};
+		2F964D1617D194F60035629C /* Hpple */ = {
+			isa = PBXGroup;
+			children = (
+				2F964D0D17D194F00035629C /* TFHpple.h */,
+				2F964D0E17D194F00035629C /* TFHpple.m */,
+				2F964D0F17D194F00035629C /* TFHppleElement.h */,
+				2F964D1017D194F00035629C /* TFHppleElement.m */,
+				2F964D1117D194F10035629C /* XPathQuery.h */,
+				2F964D1217D194F10035629C /* XPathQuery.m */,
+			);
+			name = Hpple;
 			sourceTree = "<group>";
 		};
 		2F9F7FAF17C43B1900BD5D9D /* Products */ = {
@@ -1022,6 +1053,7 @@
 				2F281A8917ACB4F3004EE8AA /* mupencheat.txt in Resources */,
 				2F8FD00817B60F7A00400C0B /* Glide64mk2.ini in Resources */,
 				2F281A8A17ACB4F3004EE8AA /* RiceVideoLinux.ini in Resources */,
+				2F964D0017D1718F0035629C /* GetCoverWindow.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1071,6 +1103,10 @@
 				2F49518C141102FD00D2B2C1 /* MALArrayController.m in Sources */,
 				2F49518E141102FD00D2B2C1 /* MALMainWindowController.m in Sources */,
 				2FB388A016F2A5F60023CAAF /* MALPreferencesWindowController.m in Sources */,
+				2F964D0C17D172350035629C /* MALGetCoverWindowController.m in Sources */,
+				2F964D1317D194F10035629C /* TFHpple.m in Sources */,
+				2F964D1417D194F10035629C /* TFHppleElement.m in Sources */,
+				2F964D1517D194F10035629C /* XPathQuery.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1294,6 +1330,7 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MacMupen64/MacMupen64-Prefix.pch";
+				HEADER_SEARCH_PATHS = "$(SDKROOT)/usr/include/libxml2";
 				INFOPLIST_FILE = "$(SRCROOT)/resources/MacMupen64-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1302,6 +1339,7 @@
 					"\"$(SRCROOT)/resources\"",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				OTHER_LDFLAGS = "-lxml2";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -1320,6 +1358,7 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MacMupen64/MacMupen64-Prefix.pch";
+				HEADER_SEARCH_PATHS = "$(SDKROOT)/usr/include/libxml2";
 				INFOPLIST_FILE = "$(SRCROOT)/resources/MacMupen64-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1328,6 +1367,7 @@
 					"\"$(SRCROOT)/resources\"",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				OTHER_LDFLAGS = "-lxml2";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
