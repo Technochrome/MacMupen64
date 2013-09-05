@@ -17,7 +17,8 @@ for sign_target in $CONTENTS/PlugIns/* $CONTENTS/Frameworks/*/Versions/A $CONTEN
 	codesign -s MacMupen64plus -i $ident "$sign_target"
 done
 
-echo zip -r $APP_BUNDLE $APP_BUNDLE
+cd $BUILT_PRODUCTS_DIR
+echo zip -r $APP_NAME $APP_NAME.app
 
-zip -r $BUILT_PRODUCTS_DIR/$APP_NAME $APP_BUNDLE
+zip -r $APP_NAME $APP_NAME.app > /dev/null
 mv $BUILT_PRODUCTS_DIR/$APP_NAME.zip $DESTINATION/$APP_NAME.app.zip

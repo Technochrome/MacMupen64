@@ -66,6 +66,6 @@
 	<key>NSSupportsAutomaticGraphicsSwitching</key>
 	<true/>
 	<key>SUFeedURL</key>
-	<string>https://dl.dropboxusercontent.com/u/19829310/MacMupen64.rss</string>
+	<string>https://dl.dropboxusercontent.com/u/19829310/MacMupen64/MacMupen64.rss</string>
 </dict>
 </plist>
