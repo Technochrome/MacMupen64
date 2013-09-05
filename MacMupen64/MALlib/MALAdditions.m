@@ -86,6 +86,8 @@ NSSize shrinkSizeToAspectRatio(NSSize size, NSSize ratio) {
 	return [imageRep representationUsingType:format properties:@{NSImageCompressionFactor:@1.0}];
 }
 -(NSImage*) croppedImage:(NSRect)bounds {
+	NSSize size = self.size;
+	bounds = NSMakeRect(bounds.origin.x * size.width, bounds.origin.y * size.height, bounds.size.width * size.width, bounds.size.height * size.height);
 	NSImage * canvas = [[NSImage alloc] initWithSize:bounds.size];
 	
 	@try {
@@ -147,13 +149,16 @@ NSSize shrinkSizeToAspectRatio(NSSize size, NSSize ratio) {
 
 @implementation NSData (xattr)
 +(NSData*) dataWithContentsOfFile:(NSURL*)file xattr:(const char *)xattr {
-	int fd = [[NSFileHandle fileHandleForReadingFromURL:file error:NULL] fileDescriptor];
-	ssize_t size = fgetxattr(fd, xattr, NULL, 0, 0, 0);
+	const char *fpath = [[file relativePath] UTF8String];
+	ssize_t size = getxattr(fpath, xattr, NULL, 0, 0, 0);
 	if(size == -1) return nil;
 	
 	NSMutableData * data = [NSMutableData dataWithCapacity:size];
 	[data resetBytesInRange:NSMakeRange(0, size)];
-	fgetxattr(fd, xattr, [data mutableBytes], size, 0, 0);
+	getxattr(fpath, xattr, [data mutableBytes], size, 0, 0);
 	return data;
+}
+-(void) writeDataToFile:(NSURL*)file xattr:(const char *)xattr {
+	setxattr([[file relativePath] UTF8String], xattr, [self bytes], [self length], 0, 0);
 }
 @end

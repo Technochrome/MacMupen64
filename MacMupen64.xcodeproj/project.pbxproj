@@ -117,6 +117,7 @@
 		2FD8F67317A8AE080007685C /* m64p_plugin.h in Headers */ = {isa = PBXBuildFile; fileRef = 2FD8F66217A8AE080007685C /* m64p_plugin.h */; };
 		2FD8F67417A8AE080007685C /* m64p_types.h in Headers */ = {isa = PBXBuildFile; fileRef = 2FD8F66317A8AE080007685C /* m64p_types.h */; };
 		2FD8F67517A8AE080007685C /* m64p_vidext.h in Headers */ = {isa = PBXBuildFile; fileRef = 2FD8F66417A8AE080007685C /* m64p_vidext.h */; };
+		2FEB548217D9423D00FFBBB9 /* MALMupenRom+cover.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FEB548017D9423D00FFBBB9 /* MALMupenRom+cover.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -402,6 +403,7 @@
 		2FD8F66217A8AE080007685C /* m64p_plugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = m64p_plugin.h; sourceTree = "<group>"; };
 		2FD8F66317A8AE080007685C /* m64p_types.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = m64p_types.h; sourceTree = "<group>"; };
 		2FD8F66417A8AE080007685C /* m64p_vidext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = m64p_vidext.h; sourceTree = "<group>"; };
+		2FEB548017D9423D00FFBBB9 /* MALMupenRom+cover.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MALMupenRom+cover.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -592,8 +594,7 @@
 				2F49516E141102CB00D2B2C1 /* MALMupenPlugin.m */,
 				2F49516F141102CB00D2B2C1 /* MALMupenCore.h */,
 				2F495170141102CB00D2B2C1 /* MALMupenCore.m */,
-				2F495171141102CB00D2B2C1 /* MALMupenRom.h */,
-				2F495172141102CB00D2B2C1 /* MALMupenRom.m */,
+				2FEB547517D9420300FFBBB9 /* ROMs */,
 				2F294B6D179224C900355455 /* Supporting Files */,
 			);
 			name = "MacMupen Framework";
@@ -790,6 +791,16 @@
 				2F495166141102BF00D2B2C1 /* MALBackporting.m */,
 			);
 			path = MALlib;
+			sourceTree = "<group>";
+		};
+		2FEB547517D9420300FFBBB9 /* ROMs */ = {
+			isa = PBXGroup;
+			children = (
+				2F495171141102CB00D2B2C1 /* MALMupenRom.h */,
+				2F495172141102CB00D2B2C1 /* MALMupenRom.m */,
+				2FEB548017D9423D00FFBBB9 /* MALMupenRom+cover.m */,
+			);
+			name = ROMs;
 			sourceTree = "<group>";
 		};
 		2FF8AD8817B0CFA40060F0E9 /* Products */ = {
@@ -1100,6 +1111,7 @@
 				2F964D1B17D7CC820035629C /* TFHppleElement.m in Sources */,
 				2F964D1C17D7CC820035629C /* XPathQuery.m in Sources */,
 				2F964D1D17D84BEF0035629C /* MALAdditions.m in Sources */,
+				2FEB548217D9423D00FFBBB9 /* MALMupenRom+cover.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

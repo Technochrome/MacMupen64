@@ -233,11 +233,6 @@
 	[preferencesController showWindow:self];
 }
 - (IBAction) getCover:(id)sender {
-	[openROM getCoverProjectCover:nil];
-	return;
-	if (getCoverController==nil) {
-		getCoverController = [[MALGetCoverWindowController alloc] init];
-	}
-	[getCoverController showWindow:self];
+	[openROM performSelectorInBackground:@selector(getCoverProjectCover:) withObject:nil];
 }
 @end

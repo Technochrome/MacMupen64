@@ -40,4 +40,5 @@ NSSize shrinkSizeToAspectRatio(NSSize size, NSSize ratio);
 
 @interface NSData (xattr)
 +(NSData*) dataWithContentsOfFile:(NSURL*)file xattr:(const char *)xattr;
+-(void) writeDataToFile:(NSURL*)file xattr:(const char *)xattr;
 @end

@@ -14,8 +14,6 @@
 #import "core_interface.h"
 #import "cheat.h"
 
-#import "TFHpple.h"
-
 #import <sys/xattr.h>
 
 NSString * const MALMupenRomNewROMOpened = @"MALMupenRom New ROM Loaded";
@@ -24,9 +22,6 @@ const char * const xattrMupenVersionKey = "Mupen64plus version";
 const char * const xattrINIVersionKey = "Mupen64plus ini version";
 const char * const xattrROMInfoKey = "Mupen64plus ROM Info";
 const char * const xattrLastOpened = "Mupen64plus last opened";
-
-const char * const xattrCoverKey = "Mupen64plus Cover";
-const char * const xattrCoverSectionsKey = "Mupen64plus Cover Sections";
 
 NSImage * MALDefaultRomImage = nil;
 NSMutableArray * recentlyOpenedROMS = nil;
@@ -57,133 +52,8 @@ static void fixSwap(m64p_rom_header * header) {
 		}
 	} //else is .z64
 }
-@implementation MALMupenRom (cover)
-
--(NSImage*) cover {
-	NSData * xattrImg = [NSData dataWithContentsOfFile:[self path] xattr:xattrCoverKey];
-	if(!xattrImg) return nil;
-	NSBitmapImageRep * bitImage = [NSBitmapImageRep imageRepWithData:xattrImg];
-	return [NSImage imageWithRep:bitImage];
-}
-
--(NSURL*) coverImageURL {return [[MALCoversFolder URLByAppendingPathComponent:self.gameTitle] URLByAppendingPathExtension:@"jpg"];}
--(NSImage*) coverSection:(int)section {
-//	getxattr([[coverURL relativePath] UTF8String], xattrCoverSectionsKey, sections, sizeof(sections), 0, 0);
-	NSImage * cover = [[NSImage alloc] initWithContentsOfURL:[self coverImageURL]];
-}
--(NSImage*) frontCover {
-	
-}
--(NSImage*) edgeCover {
-	
-}
--(NSImage*) backCover {
-	
-}
--(NSString*) gameTitleForSearch {
-	NSString * ret = gameTitle;
-	// Remove Rom Attrs; I don't think any names have ()[] in the title
-	NSRange range = [gameTitle rangeOfCharacterFromSet:[NSCharacterSet characterSetWithCharactersInString:@"()[]"]];
-	if(range.location != NSNotFound) {
-		ret = [ret substringToIndex:range.location - 1];
-	}
-	
-	// Remove apostraphes, because the search function can't handle it
-	return [ret stringByReplacingOccurrencesOfString:@"'" withString:@" "];
-}
-+(NSURL*) coverProjectURL:(NSString*)path {
-	return [NSURL URLWithString:[NSString stringWithFormat:@"http://www.thecoverproject.net/%@",path]];
-}
-+(NSData*) contentsOfCoverProjectPageAtPath:(NSString*)path {
-	return [NSData dataWithContentsOfURL:[self coverProjectURL:path]];
-}
-+(NSArray*) coverProjectGamesMatchingSearch:(NSString*)searchString {
-	searchString = [searchString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-	NSMutableArray * ret = [NSMutableArray array];
-	for(int i=1; i<1000; i++) {
-		TFHpple *htmlParser = [TFHpple hppleWithHTMLData:[MALMupenRom contentsOfCoverProjectPageAtPath:
-														  [NSString stringWithFormat:@"view.php?page=%d&searchstring=%@",i,searchString]]];
-		NSArray *results = [htmlParser searchWithXPathQuery:@"//td[@class='pageBody']//a"];
-		if ([results count] == 0) break;
-		for (TFHppleElement *element in results) {
-			NSString * text = [element text], *href = [element objectForKey:@"href"];
-			NSRange textIndex = [text rangeOfString:@"(n64)" options:NSCaseInsensitiveSearch];
-			if(textIndex.location != NSNotFound) {
-				[ret addObject:@{@"title":[text substringToIndex:textIndex.location],@"href":href}];
-			}
-		}
-	}
-	return ret;
-}
-+(NSArray*) coverProjectCoversAtHref:(NSString*)href {
-	TFHpple *htmlParser = [TFHpple hppleWithHTMLData:[self contentsOfCoverProjectPageAtPath:href]];
-	NSMutableArray * ret = [NSMutableArray array];
-	for (TFHppleElement * element in [htmlParser searchWithXPathQuery:@"//div[@id='covers']//a"])  {
-		NSString * text = [element text], *href = [element objectForKey:@"href"];
-		NSRange equalsIndex = [href rangeOfString:@"=" options:NSBackwardsSearch];
-		if(equalsIndex.location != NSNotFound && [text rangeOfString:@"cover" options:NSCaseInsensitiveSearch].location != NSNotFound) {
-			[ret addObject:@{@"title":text, @"href":href}];
-		}
-	}
-	return ret;
-}
-+(NSDictionary*) coverProjectDownloadsAtHref:(NSString*)href {
-	TFHpple *htmlParser = [TFHpple hppleWithHTMLData:[self contentsOfCoverProjectPageAtPath:href]];
-	NSMutableDictionary * ret = [NSMutableDictionary dictionaryWithCapacity:2];
-	for (TFHppleElement * element in [htmlParser searchWithXPathQuery:@"//td[@class='pageBody']//a"]) {
-		NSString * href = [element objectForKey:@"href"];
-		if([href rangeOfString:@"download_cover.php"].location != NSNotFound) {
-			ret[@"fullSize"] = href;
-			break;
-		}
-	}
-	for (TFHppleElement * element in [htmlParser searchWithXPathQuery:@"//td[@class='pageBody']//img"]) {
-		NSString * href = [element objectForKey:@"src"];
-		if([href rangeOfString:@"images/covers"].location != NSNotFound) {
-			ret[@"thumb"] = href;
-			break;
-		}
-	}
-	return ret;
-}
--(void) getCoverProjectCover:(NSString *)href {
-	if([self cover]) {
-		self.image = [self cover];
-		return;
-	}
-	if(href == nil) {
-		href = [MALMupenRom coverProjectGamesMatchingSearch:[self gameTitleForSearch]][0][@"href"];
-		href = [MALMupenRom coverProjectDownloadsAtHref:href][@"thumb"];
-	}
-	[NSURLConnection connectionWithRequest:[NSURLRequest requestWithURL:[MALMupenRom coverProjectURL:href] ] delegate:self];
-}
--(void) connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response {
-	expectedCoverLength=[response expectedContentLength];
-	coverDownload = [[NSMutableData alloc] initWithCapacity:expectedCoverLength];
-}
--(void) connection:(NSURLConnection *)connection didReceiveData:(NSData*)data {
-	[self willChangeValueForKey:@"coverDownloadProgress"];
-	[coverDownload appendData:data];
-	NSLog(@"%.2f",100* self.coverDownloadProgress);
-	[self didChangeValueForKey:@"coverDownloadProgress"];
-}
--(float) coverDownloadProgress { return [coverDownload length]/(float)expectedCoverLength;}
--(void) connectionDidFinishLoading:(NSURLConnection*)connection {
-	NSError * err = nil;
-	NSFileHandle * fh = [NSFileHandle fileHandleForReadingAtPath:[path relativePath]];
-	int fd = [fh fileDescriptor];
-	NSLog(@"%s - %s - %lu , %@",[[path relativePath] UTF8String], xattrCoverKey, (unsigned long)[coverDownload length],err);
-	fsetxattr(fd, xattrCoverKey, [coverDownload bytes], [coverDownload length], 0, 0);
-	fsetxattr(fd, "bluh", self, 1, 0, 0);
-	[coverDownload release]; coverDownload = nil;
-	self.image = [self cover];
-}
-@end
-
 @implementation MALMupenRom
 #pragma mark Accessors and Setters
-
-// 1546.0 / 3366.0, 1830.0 / 3366.0
 
 @synthesize gameTitle,MD5,status,players,rumble,netplay,formattedInfo,path,isUsable,image,lastOpened;
 

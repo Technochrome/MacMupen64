@@ -592,7 +592,7 @@
 													<string>NeXT TIFF v4.0 pasteboard type</string>
 												</object>
 											</object>
-											<string key="NSFrame">{{12, 11}, {80, 80}}</string>
+											<string key="NSFrame">{{12, 11}, {110, 80}}</string>
 											<reference key="NSSuperview" ref="651331734"/>
 											<reference key="NSWindow"/>
 											<reference key="NSNextKeyView" ref="403277259"/>
@@ -601,7 +601,7 @@
 												<int key="NSCellFlags">134217728</int>
 												<int key="NSCellFlags2">33554432</int>
 												<int key="NSAlign">0</int>
-												<int key="NSScale">0</int>
+												<int key="NSScale">3</int>
 												<int key="NSStyle">0</int>
 												<bool key="NSAnimates">NO</bool>
 											</object>
@@ -611,7 +611,7 @@
 										<object class="NSTextField" id="403277259">
 											<reference key="NSNextResponder" ref="651331734"/>
 											<int key="NSvFlags">266</int>
-											<string key="NSFrame">{{100, 11}, {229, 74}}</string>
+											<string key="NSFrame">{{127, 11}, {202, 74}}</string>
 											<reference key="NSSuperview" ref="651331734"/>
 											<reference key="NSWindow"/>
 											<reference key="NSNextKeyView" ref="534767894"/>
@@ -1343,19 +1343,19 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
-						<string key="label">value: openROM.image</string>
+						<string key="label">value: openROM.frontCover</string>
 						<reference key="source" ref="312583257"/>
 						<reference key="destination" ref="426043054"/>
 						<object class="NSNibBindingConnector" key="connector">
 							<reference key="NSSource" ref="312583257"/>
 							<reference key="NSDestination" ref="426043054"/>
-							<string key="NSLabel">value: openROM.image</string>
+							<string key="NSLabel">value: openROM.frontCover</string>
 							<string key="NSBinding">value</string>
-							<string key="NSKeyPath">openROM.image</string>
+							<string key="NSKeyPath">openROM.frontCover</string>
 							<int key="NSNibBindingConnectorVersion">2</int>
 						</object>
 					</object>
-					<int key="connectionID">990</int>
+					<int key="connectionID">1120</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBOutletConnection" key="connection">
@@ -2524,7 +2524,7 @@
 				<reference key="dict.values" ref="0"/>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">1119</int>
+			<int key="maxID">1120</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
