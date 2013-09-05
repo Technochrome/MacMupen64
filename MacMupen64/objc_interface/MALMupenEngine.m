@@ -231,7 +231,7 @@ MALMupenEngine * _shared = nil;
 -(void) attachControllers {
 	MALInputCenter * inputCenter = [MALInputCenter shared];
 	NSArray * availableControllers = [[inputCenter gamepads] arrayByAddingObject:[inputCenter keyboard]];
-	NSDictionary * bindingProfiles = [[NSMutableDictionary alloc] initWithContentsOfURL:MALKeybindingsFile];
+	NSDictionary * bindingProfiles = [[[NSMutableDictionary alloc] initWithContentsOfURL:MALKeybindingsFile] autorelease];
 	self.controllerBindings = [NSMutableArray array];
 	
 	for (MALInputDevice * device in availableControllers) {

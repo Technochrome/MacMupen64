@@ -48,6 +48,7 @@ static void drawAnObject ()
 	// Let's us shrink the size of NSOpenGLView in fullscreen
 	NSView * backingView = [[NSView alloc] init];
 	[self setContentView:backingView];
+	[backingView release];
 	[backingView addSubview:openGLview];
 	[openGLview setAutoresizingMask:NSViewWidthSizable | NSViewHeightSizable];
 	[openGLview setFrame:backingView.frame];
@@ -177,7 +178,7 @@ static void drawAnObject ()
 		[self setHidesOnDeactivate:YES];
 		[self setFrame:[[NSScreen mainScreen] frame] display:YES animate:NO];
 		
-		NSSize newViewport = [self shrinkSize:self.frame.size toAspectRatio:emuSize];
+		NSSize newViewport = shrinkSizeToAspectRatio(self.frame.size, emuSize);
 		NSSize fullSize = self.frame.size;
 		[openGLview setFrameOrigin:NSMakePoint((fullSize.width - newViewport.width)/2, (fullSize.height - newViewport.height)/2)];
 		[openGLview setFrameSize:newViewport];
@@ -210,7 +211,7 @@ static void drawAnObject ()
 	}
 }
 -(NSSize) windowWillResize:(NSWindow *)sender toSize:(NSSize)frameSize {
-	frameSize = [self expandSize:frameSize toAspectRatio:hiddenWindow.frame.size];
+	frameSize = expandSizeToAspectRatio(frameSize, hiddenWindow.frame.size);
 	engine.videoSize = frameSize;
 	return frameSize;
 }

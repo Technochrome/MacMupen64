@@ -9,6 +9,7 @@
 #import "MALGetCoverWindowController.h"
 #import "MALMainWindowController.h"
 #import "MALMupenRom.h"
+#import "MALEditCoverWindowController.h"
 
 #import "TFHpple.h"
 
@@ -29,12 +30,26 @@
 	MALMainWindowController * wc = sender;
 	MALMupenRom * rom = wc.openROM;
 	
-	[searchField setStringValue:rom.gameTitle];
+	NSString * gameTitle = rom.gameTitle;
+	
+//	[rom getCoverProjectCover:nil];
+	
+	// Remove Rom Attrs; I don't think any names have ()[] in the title
+	NSRange range = [gameTitle rangeOfCharacterFromSet:[NSCharacterSet characterSetWithCharactersInString:@"()[]"]];
+	if(range.location != NSNotFound) {
+		gameTitle = [gameTitle substringToIndex:range.location - 1];
+	}
+	
+	// Remove apostraphes, because the search function can't handle it
+	gameTitle = [gameTitle stringByReplacingOccurrencesOfString:@"'" withString:@" "];
+	
+	[searchField setStringValue:gameTitle];
 }
 
 - (void)windowDidLoad
 {
     [super windowDidLoad];
+	[editWindowController showWindow:nil];
     
     // Implement this method to handle any initialization after your window controller's window has been loaded from its nib file.
 }
@@ -47,29 +62,28 @@
  */
 -(void) search {
 	[progressIndicator startAnimation:nil];
-	// sanitize the value by removing 1) rom attrs 2) apostraphes
-	NSString * searchString = searchField.stringValue;
-	searchString = [searchString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-	for(int i=1; i<1000; i++) {
-		NSURL *url = [NSURL URLWithString:
-					  [NSString stringWithFormat:@"http://www.thecoverproject.net/view.php?page=%d&searchstring=%@",i,searchString]];
-		NSData *htmlData = [NSData dataWithContentsOfURL:url];
-		
-		TFHpple *htmlParser = [TFHpple hppleWithHTMLData:htmlData];
-		NSArray *results = [htmlParser searchWithXPathQuery:@"//td[@class='pageBody']//a"];
-		if ([results count] == 0) break;
-		for (TFHppleElement *element in results) {
-			NSString * text = [element text], *href = [element objectForKey:@"href"];
-			NSRange textIndex = [text rangeOfString:@"(n64)" options:NSCaseInsensitiveSearch];
-			if(textIndex.location != NSNotFound) {
-				NSRange equalsIndex = [href rangeOfString:@"=" options:NSBackwardsSearch];
-				[titlesController performSelectorOnMainThread:@selector(addObject:)
-												   withObject:@{@"title":[text substringToIndex:textIndex.location],
-				 @"id":[href substringFromIndex:equalsIndex.location+1]} waitUntilDone:NO];
-			}
-		}
-	}
+	[titlesController performSelectorOnMainThread:@selector(addObjects:)
+									   withObject:[MALMupenRom coverProjectGamesMatchingSearch:searchField.stringValue]
+									waitUntilDone:NO];
 	[progressIndicator stopAnimation:nil];
+}
+-(void) getCovers:(NSString*)href {
+	[progressIndicator startAnimation:nil];
+	
+	[titlesController performSelectorOnMainThread:@selector(addObjects:)
+									   withObject:[MALMupenRom coverProjectCoversAtHref:href]
+									waitUntilDone:NO];
+	
+	[progressIndicator stopAnimation:nil];
+}
+-(IBAction) downloadCover:(id)sender {
+	[editWindowController showWindow:[titlesController selectedObjects][0][@"href"]];
+
+}
+-(IBAction) listCovers:(id)sender {
+	NSString * href = [titlesController selectedObjects][0][@"href"];
+	[titlesController removeObjects:[titlesController arrangedObjects]];
+	[self performSelectorInBackground:@selector(getCovers:) withObject:href];
 }
 
 -(IBAction) search:(id)sender {

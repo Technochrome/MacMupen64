@@ -90,9 +90,11 @@
 		2F8FD02917B9A2E900400C0B /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F9FF6C61628B0B400E1821F /* OpenGL.framework */; };
 		2F964D0017D1718F0035629C /* GetCoverWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2F964CFF17D1718F0035629C /* GetCoverWindow.xib */; };
 		2F964D0C17D172350035629C /* MALGetCoverWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F964D0B17D172350035629C /* MALGetCoverWindowController.m */; };
-		2F964D1317D194F10035629C /* TFHpple.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F964D0E17D194F00035629C /* TFHpple.m */; };
-		2F964D1417D194F10035629C /* TFHppleElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F964D1017D194F00035629C /* TFHppleElement.m */; };
-		2F964D1517D194F10035629C /* XPathQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F964D1217D194F10035629C /* XPathQuery.m */; };
+		2F964D1917D6D6CB0035629C /* MALEditCoverWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F964D1817D6D6CB0035629C /* MALEditCoverWindowController.m */; };
+		2F964D1A17D7CC820035629C /* TFHpple.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F964D0E17D194F00035629C /* TFHpple.m */; };
+		2F964D1B17D7CC820035629C /* TFHppleElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F964D1017D194F00035629C /* TFHppleElement.m */; };
+		2F964D1C17D7CC820035629C /* XPathQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F964D1217D194F10035629C /* XPathQuery.m */; };
+		2F964D1D17D84BEF0035629C /* MALAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F495164141102BF00D2B2C1 /* MALAdditions.m */; };
 		2F9F7F7E17BE9D9300BD5D9D /* MALInput.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 2F8FCFD517B5F27800400C0B /* MALInput.framework */; };
 		2F9F7F8417C1CF2300BD5D9D /* GeneralPrefsPane.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2F9F7F8317C1CF2300BD5D9D /* GeneralPrefsPane.xib */; };
 		2F9F7FC017C43B4000BD5D9D /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F9F7FB717C43B1A00BD5D9D /* Sparkle.framework */; };
@@ -383,6 +385,8 @@
 		2F964D1017D194F00035629C /* TFHppleElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TFHppleElement.m; sourceTree = "<group>"; };
 		2F964D1117D194F10035629C /* XPathQuery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XPathQuery.h; sourceTree = "<group>"; };
 		2F964D1217D194F10035629C /* XPathQuery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XPathQuery.m; sourceTree = "<group>"; };
+		2F964D1717D6D6CA0035629C /* MALEditCoverWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MALEditCoverWindowController.h; sourceTree = "<group>"; };
+		2F964D1817D6D6CB0035629C /* MALEditCoverWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MALEditCoverWindowController.m; sourceTree = "<group>"; };
 		2F9F7F8317C1CF2300BD5D9D /* GeneralPrefsPane.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GeneralPrefsPane.xib; sourceTree = "<group>"; };
 		2F9F7FAE17C43B1900BD5D9D /* Sparkle.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Sparkle.xcodeproj; path = Sparkle/Sparkle.xcodeproj; sourceTree = "<group>"; };
 		2F9F7FC917C44A9900BD5D9D /* CodeSign.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; name = CodeSign.sh; path = ../CodeSign.sh; sourceTree = "<group>"; };
@@ -618,6 +622,8 @@
 				2F4951531411023300D2B2C1 /* SDLMain.m */,
 				2F964D0A17D172350035629C /* MALGetCoverWindowController.h */,
 				2F964D0B17D172350035629C /* MALGetCoverWindowController.m */,
+				2F964D1717D6D6CA0035629C /* MALEditCoverWindowController.h */,
+				2F964D1817D6D6CB0035629C /* MALEditCoverWindowController.m */,
 			);
 			name = "Main Window";
 			path = main;
@@ -1090,6 +1096,10 @@
 				2F50B6FA17C82B6500F534A4 /* UKFNSubscribeFileWatcher.m in Sources */,
 				2F50B6FD17C82B6500F534A4 /* UKKQueue.m in Sources */,
 				2F50B6FF17C82B6500F534A4 /* UKMainThreadProxy.m in Sources */,
+				2F964D1A17D7CC820035629C /* TFHpple.m in Sources */,
+				2F964D1B17D7CC820035629C /* TFHppleElement.m in Sources */,
+				2F964D1C17D7CC820035629C /* XPathQuery.m in Sources */,
+				2F964D1D17D84BEF0035629C /* MALAdditions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1104,9 +1114,7 @@
 				2F49518E141102FD00D2B2C1 /* MALMainWindowController.m in Sources */,
 				2FB388A016F2A5F60023CAAF /* MALPreferencesWindowController.m in Sources */,
 				2F964D0C17D172350035629C /* MALGetCoverWindowController.m in Sources */,
-				2F964D1317D194F10035629C /* TFHpple.m in Sources */,
-				2F964D1417D194F10035629C /* TFHppleElement.m in Sources */,
-				2F964D1517D194F10035629C /* XPathQuery.m in Sources */,
+				2F964D1917D6D6CB0035629C /* MALEditCoverWindowController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1217,6 +1225,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MacMupen/MacMupen-Prefix.pch";
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				HEADER_SEARCH_PATHS = "$(SDKROOT)/usr/include/libxml2";
 				INFOPLIST_FILE = "MacMupen/MacMupen-Info.plist";
 				INSTALL_PATH = "@executable_path/../Frameworks";
 				LIBRARY_SEARCH_PATHS = (
@@ -1225,6 +1234,7 @@
 					"\"$(SRCROOT)/resources/libs\"",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				OTHER_LDFLAGS = "-lxml2";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = framework;
 			};
@@ -1255,6 +1265,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MacMupen/MacMupen-Prefix.pch";
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				HEADER_SEARCH_PATHS = "$(SDKROOT)/usr/include/libxml2";
 				INFOPLIST_FILE = "MacMupen/MacMupen-Info.plist";
 				INSTALL_PATH = "@executable_path/../Frameworks";
 				LIBRARY_SEARCH_PATHS = (
@@ -1263,6 +1274,7 @@
 					"\"$(SRCROOT)/resources/libs\"",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				OTHER_LDFLAGS = "-lxml2";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = framework;
 			};

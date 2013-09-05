@@ -24,11 +24,13 @@ extern NSString * const MALDefaultKeyBindings;
 
 extern NSURL * MALKeybindingsFile;
 extern NSURL * MALRecentlyOpenedRomsFile;
+
 extern NSURL * MALFreezesFolder;
 extern NSURL * MALSRAMFolder;
 extern NSURL * MALConfigFolder;
 extern NSURL * MALRandomDataFolder;
 extern NSURL * MALScreenshotFolder;
+extern NSURL * MALCoversFolder;
 
 extern void initializePaths(void);
 

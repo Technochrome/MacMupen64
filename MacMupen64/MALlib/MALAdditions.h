@@ -10,9 +10,8 @@
 #import "NSInvocation(ForwardedConstruction).h"
 #import "OBJprintf.h"
 
-@interface NSString (MALAdditions)
--(NSURL*) MALURLValue;
-@end
+NSSize expandSizeToAspectRatio(NSSize size, NSSize ratio);
+NSSize shrinkSizeToAspectRatio(NSSize size, NSSize ratio);
 
 @interface NSMutableAttributedString (MALAdditions)
 -(void) addBoldString:(NSString*)s;
@@ -32,5 +31,13 @@
 @end
 
 @interface NSImage (imageFormats)
++(NSImage*) imageWithRep:(NSImageRep*)rep;
 -(NSData*) imageInFormat:(NSBitmapImageFileType)format;
+-(NSImage*) croppedImage:(NSRect)bounds;
+-(NSImage*) imageRotatedByDegrees:(CGFloat)degrees;
+-(NSImage*) scaledImage:(NSSize)scale;
+@end
+
+@interface NSData (xattr)
++(NSData*) dataWithContentsOfFile:(NSURL*)file xattr:(const char *)xattr;
 @end
